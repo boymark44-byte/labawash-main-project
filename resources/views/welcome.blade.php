@@ -562,34 +562,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{-- @auth
-        Welcome {{ auth()->user()->name }}
-    <form class="inline" method="POST" action="/logout">
-        @csrf
-        <button>
-            Logout
-        </button>
-    </form>
-@else
-<h1>You are not currently logged in</h1>
-<a href="\login">Log In</a>
-<a href="\register">Register</a>
-@endauth --}}
