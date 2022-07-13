@@ -37,13 +37,13 @@
                 <nav>
                     <ul id="MenuItems">
                         <li><a href="">Home</a></li>
-                        <li><a href="">Shops</a></li>
+                        <li><a href="{{route('shops.index')}}">Shops</a></li>
                         <li><a href="">Services</a></li>
                         <li><a href="/login">Login</a></li>
                         <li><a href="/register">Register</a></li>
                     </ul>
                 </nav>
-                
+
                 <!-- Image Icon for Cart on the Upper Right-->
                 <a href="#"><img src="images/laundry-basket.png" alt="" width="30px" height="30px"></a>
                 <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
@@ -358,7 +358,7 @@
 
                 <!-- 1st User -->
                 <div class="col-3">
-                    
+
                     <i class="fa fa-quote-left"></i>
 
                     <!-- Testimony Text -->

@@ -25,7 +25,7 @@
             <div class="container">
 
                 <a class="navbar-brand" href="{{ url('/') }}">Home</a>
-                <a class="navbar-brand" href="{{ route('customers.create') }}">Shop Display</a>
+                <a class="navbar-brand" href="{{ route('shops.index') }}">Shops</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

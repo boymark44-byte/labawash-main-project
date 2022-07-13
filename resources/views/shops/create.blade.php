@@ -13,7 +13,8 @@
                 @endif
                 @csrf
                 <br>
-                <textarea name="shop_name" placeholder= "Enter Shop Name..." value="{{old('shop_name')}}"></textarea>
+                <label>Shop Name</label></br>
+                <input type="text" name="shop_name" placeholder= "Type Shop Name..." value="{{old('shop_name')}}"></br>
                     @error('shop_name')
                       <div class="form-error">
                           {{$message}}
@@ -21,7 +22,8 @@
                     @enderror
                     <br>
                     <br>
-                <textarea name="shop_address" placeholder= "Type Shop Address..." value="{{old('shop_address')}}"></textarea>
+                    <label>Shop Address</label></br>
+                    <input type="text" name="shop_address" placeholder= "Type Shop Address..." value="{{old('shop_address')}}"></br>
                     @error('shop_address')
                       <div class="form-error">
                           {{$message}}
@@ -29,7 +31,8 @@
                     @enderror
                     <br>
                     <br>
-                <textarea name="description" placeholder= "Description..." value="{{old('description')}}"></textarea>
+                    <label>Description</label></br>
+                    <input type="text" name="description" placeholder= "Description..." value="{{old('description')}}"></br>
                     @error('description')
                       <div class="form-error">
                           {{$message}}
