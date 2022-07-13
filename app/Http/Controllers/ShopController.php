@@ -42,9 +42,9 @@ class ShopController extends Controller
         $request ->validate(['shop_name' =>'required', 'shop_address' =>'required', 'description' =>'required']);
         $shop = new Shop();
 
-        $shop->shop_name = strip_tags($request->input('shop_name'));
-        $shop->shop_address = strip_tags($request->input('shop_address'));
-        $shop->description = strip_tags($request->input('description'));
+        $shop->shop_name = ($request->input('shop_name'));
+        $shop->shop_address = ($request->input('shop_address'));
+        $shop->description = ($request->input('description'));
 
         $shop->save();
         return redirect()->route('shops.index');
