@@ -36,7 +36,8 @@
                             </tbody>
                         </table>
                     @endif
-                    <button><a href="{{route('shops.create')}}">Add Shop</a></button>
+                    <button><a href="{{route('shops.create')}}" class="btn">Add Shop</a></button>
+
             </div>
         </div>
     </div>

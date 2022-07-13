@@ -60,7 +60,7 @@
                     </p>
 
                     <!-- Button: Explore now! -->
-                    <a href="" class="btn">Find Laundry Shops &#8594;</a>
+                    <a href="{{route('shops.index')}}" class="btn">Find Laundry Shops &#8594;</a>
                 </div>
 
                 <!-- Image -->

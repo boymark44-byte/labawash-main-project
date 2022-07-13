@@ -14,7 +14,7 @@
                 @csrf
                 <br>
                 <label>Name</label></br>
-                <input type="text" name="name" placeholder= "Type Your Name... value="{{old('name')}}"></br>
+                <input type="text" name="name" placeholder= "Type Your Name..." value="{{old('name')}}"></br>
                     @error('name')
                       <div class="form-error">
                           {{$message}}
@@ -39,6 +39,6 @@
                       </div>
                     @enderror
                     <br>
-                <button> Submit </button>
+                    <input type="submit" value="Submit" class="btn">
     </form>
 @endsection

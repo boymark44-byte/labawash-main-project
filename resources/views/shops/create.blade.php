@@ -39,6 +39,6 @@
                       </div>
                     @enderror
                     <br>
-                <button> Submit </button>
+                    <input type="submit" value="Submit" class="btn">
     </form>
 @endsection

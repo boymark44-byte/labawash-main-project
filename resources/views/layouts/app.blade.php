@@ -20,16 +20,15 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-secondary shadow-sm">
+        <nav class="navbar">
             <div class="container">
-
-                <a class="navbar-brand" href="{{ url('/') }}">Home</a>
-                <a class="navbar-brand" href="{{ route('shops.index') }}">Shops</a>
+                <ul>
+                <li><a class="navbar" href="{{ url('/') }}">Home</a></li>
+                <li><a class="navbar" href="{{ route('shops.index') }}">Shops</a></li>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                </ul>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
@@ -45,6 +44,5 @@
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
 </body>
 </html>
