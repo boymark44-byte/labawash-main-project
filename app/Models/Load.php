@@ -18,4 +18,9 @@ class Load extends Model
         'description',
         'customers_id'
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }
