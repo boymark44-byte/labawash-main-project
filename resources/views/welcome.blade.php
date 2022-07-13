@@ -36,7 +36,7 @@
                 <!-- Text-link -->
                 <nav>
                     <ul id="MenuItems">
-                        <li><a href="">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="{{route('shops.index')}}">Shops</a></li>
                         <li><a href="">Services</a></li>
                         <li><a href="/login">Login</a></li>
@@ -60,7 +60,7 @@
                     </p>
 
                     <!-- Button: Explore now! -->
-                    <a href="" class="btn">Find Laundry Shops &#8594;</a>
+                    <a href="{{route('shops.index')}}" class="btn">Find Laundry Shops &#8594;</a>
                 </div>
 
                 <!-- Image -->
@@ -458,16 +458,6 @@
                 <div class="col-5">
                     <img src="images/unilever-logo.png" alt="">
                 </div>
-
-                {{-- <!-- 4th Brand -->
-                <div class="col-5">
-                    <img src="images/logo-paypal.png" alt="">
-                </div>
-
-                <!-- 5th Brand -->
-                <div class="col-5">
-                    <img src="images/logo-philips.png" alt="">
-                </div> --}}
             </div>
         </div>
     </div>
