@@ -19,6 +19,7 @@ body{
     display: flex;
     align-items: center;
     padding: 20px;
+    background-color: #0093E9;
 }
 
 nav{
