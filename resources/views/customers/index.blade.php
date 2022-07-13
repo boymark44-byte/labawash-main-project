@@ -6,13 +6,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Form') }}</div>
+                <div class="card-header">{{ __('ORDERS') }}</div>
 
                     @if(isset($customers))
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Form Number | </th>
+                                    <th>Order Number | </th>
                                     <th>User ID |</th>
                                     <th>Name |</th>
                                     <th>Address |</th>
