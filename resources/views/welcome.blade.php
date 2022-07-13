@@ -39,8 +39,17 @@
                         <li><a href="">Home</a></li>
                         <li><a href="{{route('shops.index')}}">Shops</a></li>
                         <li><a href="">Services</a></li>
+                        @auth
+                        <form class="inline" method="POST" action="/logout">
+                            @csrf
+                        <button>
+                            Logout
+                        </button>
+                        </form>
+                        @else    
                         <li><a href="/login">Login</a></li>
                         <li><a href="/register">Register</a></li>
+                        @endauth
                     </ul>
                 </nav>
 
