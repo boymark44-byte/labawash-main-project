@@ -39,8 +39,14 @@
                         <li><a href="/">Home</a></li>
                         <li><a href="{{route('shops.index')}}">Shops</a></li>
                         <li><a href="">Services</a></li>
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/register">Register</a></li>
+                        @auth
+                        <form class="inline" method="POST" action="/logout">
+                            @csrf
+                            <button>Logout</button>
+                        @else
+                            <li><a href="/login">Login</a></li>
+                            <li><a href="/register">Register</a></li>
+                        @endauth
                     </ul>
                 </nav>
 
@@ -543,34 +549,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{-- @auth
-        Welcome {{ auth()->user()->name }}
-    <form class="inline" method="POST" action="/logout">
-        @csrf
-        <button>
-            Logout
-        </button>
-    </form>
-@else
-<h1>You are not currently logged in</h1>
-<a href="\login">Log In</a>
-<a href="\register">Register</a>
-@endauth --}}
