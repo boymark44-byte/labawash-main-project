@@ -32,7 +32,9 @@ Route::post('/users',
  //Logout
  Route::post('/logout',
 [UserController::class, 'logout']);
+Route::get('/logout',
 
+[UserController::class, 'logout']);
 //Show Log in Form
 Route::get('/login',
  [UserController::class, 'login']);
