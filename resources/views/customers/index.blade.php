@@ -13,7 +13,7 @@
                             <thead>
                                 <tr>
                                     <th>Form Number | </th>
-                                    <th>User ID |</th>
+                                    <th>Shop ID |</th>
                                     <th>Name |</th>
                                     <th>Address |</th>
                                     <th>Contact Number |</th>
@@ -24,7 +24,7 @@
                                     @foreach($customers as $customer)
                                         <tr>
                                         <td> <a href="{{ route('loads.create') }}">{{$customer->id}}</a></td>
-                                        <td>{{$customer->user_id}}</td>
+                                        <td>{{$customer->shop_id}}</td>
                                         <td>{{$customer->name}}</td>
                                         <td>{{$customer->address}}</td>
                                         <td>{{$customer->contact_number}}</td>
