@@ -19,6 +19,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Reditected to admin dashboard
+Route::get('/admin', function () {
+    return view('admins.admin');
+});
+//Redirected to shop dashboard
+Route::get('/shop', function () {
+    return view('shops.index');
+});
+//Redirected to customer dashboard
+Route::get('/customer', function () {
+    return view('customers.index');
+});
+
 
 //Show Register Form
 Route::get('/register',

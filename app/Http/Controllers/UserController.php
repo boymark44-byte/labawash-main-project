@@ -59,7 +59,17 @@ class UserController extends Controller
         if(auth()->attempt($formFields)) {
             $request->session()->regenerate();
 
-            return redirect('/')->with('message', 'You are now logged in');
+            if(auth()->user()->role == 1){
+                return redirect('/admin')->with('message', 'You are now logged in');
+            }
+            elseif(auth()->user()->role == 2){
+                return redirect('/shop')->with('message', 'You are now logged in');
+            }
+            elseif(auth()->user()->role == 3){
+                return redirect('/customer')->with('message', 'You are now logged in');
+            }
+
+            // return redirect('/')->with('message', 'You are now logged in');
         }
         return back()->withErrors(['email' => 'Invalid'])->onlyInput('email');
     }
