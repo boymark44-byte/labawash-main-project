@@ -55,7 +55,7 @@
                             <h1>Store</h1>
                             @endif
                             @if ( Auth::user()->role == 4)
-                            <h1>Costumer</h1>
+                            <h1>"Costumer" kay kulang ug RAM ang nag-push</h1>
                             @endif
                         </form>
                         @else
