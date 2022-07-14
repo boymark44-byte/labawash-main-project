@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\LoadController;
+<<<<<<< HEAD
+use App\Http\Controllers\DetailController;
+
+=======
+>>>>>>> 548efb761e06720b963d21ae4c5a2ea83cdac8b5
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,7 +50,9 @@ Route::post('/users',
  //Logout
  Route::post('/logout',
 [UserController::class, 'logout']);
+Route::get('/logout',
 
+[UserController::class, 'logout']);
 //Show Log in Form
 Route::get('/login',
  [UserController::class, 'login']);
@@ -55,3 +63,15 @@ Route::post('users/auth',
 
 Route::resource('customers', CustomerController::class);
 Route::resource('shops', ShopController::class);
+<<<<<<< HEAD
+
+//Show Shop Details 
+Route::resource('details', DetailController::class);
+
+Route::resource('loads', LoadController::class);
+
+
+
+=======
+Route::resource('loads', LoadController::class);
+>>>>>>> 548efb761e06720b963d21ae4c5a2ea83cdac8b5
