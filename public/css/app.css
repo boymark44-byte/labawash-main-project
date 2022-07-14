@@ -13,57 +13,13 @@ body{
 }
 
 
-/* Bootstrap NavBar */
-/* .menu-bar{
-    background: radial-gradient(#fff, #ffd6d6);
-}
-
-.nav-link{
-    font-size: 16px;
-    margin: 3px;
-    color: #000!important;
-    font-weight: 500;
-}
-
-.navbar-nav {
-    text-align: right;
-    margin-right: 20px;
-}
-
-.menu-bar .navbar-toggler {
-    padding-right: 20px;
-    outline: none!important;
-    border: none!important;
-}
-
-.navbar .fa {
-    color: #555!important;
-    font-size: 26px;
-}
-
-.nav-link:hover {
-    font-weight: 600;
-    border-bottom: 1px solid #fff;
-}
-
-.navbar-brand img {
-    width: 150px;
-    margin-top: 5px;
-    margin-left: 20px;
-}
-
-@media only screen and (max-width: 1000px) {
-    .nav-link:hover{
-        border-bottom: none!important;
-    }
-} */
-
 
 /* The NavBar class */
 .navbar{
     display: flex;
     align-items: center;
     padding: 20px;
+    background-color: #0093E9;
 }
 
 nav{
@@ -144,12 +100,7 @@ p{
 
 /* Header Class - it contains the container, */
 .header{
-    /* background-image: url('/images/header-bg-color.jpg'); */
-    
-    background-color: #045de9;
-    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
-   
-    
+    background-image: url('/images/header-bg-color.jpg');
 }
 
 
