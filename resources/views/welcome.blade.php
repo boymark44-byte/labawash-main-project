@@ -50,6 +50,18 @@
                         <li><a href="/login">Login</a></li>
                         <li><a href="/register">Register</a></li>
                         @endauth
+                        @if ( Auth::user()->role == 1)
+                        <h1>SuperAdmin</h1>
+                        @endif
+                        @if ( Auth::user()->role == 2)
+                        <h1>Admin</h1>
+                        @endif
+                        @if ( Auth::user()->role == 3)
+                        <h1>Store</h1>
+                        @endif
+                        @if ( Auth::user()->role == 4)
+                        <h1>Costumer</h1>
+                        @endif
                     </ul>
                 </nav>
 
