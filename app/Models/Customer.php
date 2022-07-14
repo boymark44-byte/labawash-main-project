@@ -15,4 +15,8 @@ class Customer extends Model
         'address',
         'contact_number',
     ];
+
+    public function loads(){
+        return $this->hasMany(Load::class, 'customers_id', 'id');
+    }
 }
