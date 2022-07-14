@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\LoadController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,3 +43,4 @@ Route::post('users/auth',
 
 Route::resource('customers', CustomerController::class);
 Route::resource('shops', ShopController::class);
+Route::resource('loads', LoadController::class);
