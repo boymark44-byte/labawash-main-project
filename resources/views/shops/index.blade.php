@@ -36,7 +36,13 @@
                             </tbody>
                         </table>
                     @endif
-                    <button><a href="{{route('shops.create')}}">Add Shop</a></button>
+                    @if ( Auth::user()->role == 1)
+                        <button class="btn"><a href ="{{route('shops.create')}}">Add Shop</a></button>
+                        @else
+                            <p></p>
+                        @endif
+
+
             </div>
         </div>
     </div>
