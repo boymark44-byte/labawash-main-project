@@ -55,14 +55,14 @@
                             <h1>Store</h1>
                             @endif
                             @if ( Auth::user()->role == 4)
-                            <h1>Costumer</h1>
+                            <h1>"Costumer" kay kulang ug RAM ang nag-push</h1>
                             @endif
                         </form>
-                        @else    
+                        @else
                         <li><a href="/login">Login</a></li>
                         <li><a href="/register">Register</a></li>
                         @endauth
-                        
+
                     </ul>
                 </nav>
 
@@ -125,8 +125,8 @@
 
             <!-- Product 1 -->
             <div class="col-4">
-                <a href="laundry-shopetails.html"><img src="images/laundry-shop-5.jpg" alt=""></a>
-                <a href="laundry-shopetails.html"><h4>Laundry Shop </h4></a>
+                <a href="/details/1"><img src="images/laundry-shop-5.jpg" alt=""></a>
+                <a href="/details"><h4>A Plus Cleaners</h4></a>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -143,8 +143,8 @@
 
             <!-- Product 2 -->
             <div class="col-4">
-                <img src="images/laundry-shop-2.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/2"><img src="images/laundry-shop-2.jpg" alt=""></a>
+                <h4>Ace Laundromat</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -161,8 +161,8 @@
 
             <!-- Product 3 -->
             <div class="col-4">
-                <img src="images/laundry-shop-6.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/3"><img src="images/laundry-shop-6.jpg" alt=""></a>
+                <h4>All Clean Laundry</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -179,8 +179,8 @@
 
             <!-- Product 4 -->
             <div class="col-4">
-                <img src="images/laundry-shop-4.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/4"><img src="images/laundry-shop-4.jpg" alt=""></a>
+                <h4>Angels Home</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -203,8 +203,8 @@
 
             <!-- Product 5 -->
             <div class="col-4">
-                <img src="images/laundry-shop-1.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/5"><img src="images/laundry-shop-1.jpg" alt=""></a>
+                <h4>Best Coin Laundry</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -221,8 +221,8 @@
 
             <!-- Product 6 -->
             <div class="col-4">
-                <img src="images/laundry-shop-2.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/6"><img src="images/laundry-shop-2.jpg" alt=""></a>
+                <h4>Bright and Beautiful Cleaning</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -239,8 +239,8 @@
 
             <!-- Product 7 -->
             <div class="col-4">
-                <img src="images/laundry-shop-3.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/7"><img src="images/laundry-shop-3.jpg" alt=""></a>
+                <h4>City Limits Laundry</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -257,8 +257,8 @@
 
             <!-- Product 8 -->
             <div class="col-4">
-                <img src="images/laundry-shop-4.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/8"><img src="images/laundry-shop-4.jpg" alt=""></a>
+                <h4>Clean Freedom</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -278,8 +278,8 @@
 
             <!-- Product 9 -->
             <div class="col-4">
-                <img src="images/laundry-shop-4.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/9"><img src="images/laundry-shop-4.jpg" alt=""></a>
+                <h4>Clean Sweep</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -296,8 +296,8 @@
 
             <!-- Product 10 -->
             <div class="col-4">
-                <img src="images/laundry-shop-3.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/10"><img src="images/laundry-shop-3.jpg" alt=""></a>
+                <h4>COIN Less Laundry</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -314,8 +314,8 @@
 
             <!-- Product 11 -->
             <div class="col-4">
-                <img src="images/laundry-shop-2.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/11"><img src="images/laundry-shop-2.jpg" alt=""></a>
+                <h4>Dirtbusters</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -332,8 +332,8 @@
 
             <!-- Product 12 -->
             <div class="col-4">
-                <img src="images/laundry-shop-1.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/12"><img src="images/laundry-shop-1.jpg" alt=""></a>
+                <h4>Do Right Cleaning</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -365,7 +365,7 @@
                     {{-- <small>
 
                     </small> --}}
-                    <a href="" class="btn">Inquire Now &#8594; </a>
+                    <a href="{{route('shops.create')}}" class="btn">Inquire Now &#8594; </a>
                 </div>
             </div>
         </div>
@@ -393,8 +393,9 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
                         <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
+
                     </div>
 
                     <!-- Image -->
@@ -419,8 +420,8 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
                     </div>
 
                     <!-- Image -->
@@ -445,8 +446,9 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
                         <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
+
                     </div>
 
                     <!-- Image -->

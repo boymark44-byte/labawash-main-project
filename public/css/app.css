@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+
 }
 
 
@@ -47,7 +47,6 @@ p{
 }
 
 
-
 /* Container for NavBar */
 .container{
     max-width: 1300px;
@@ -71,7 +70,7 @@ p{
 
 .col-2 img{
     max-width: 100%;
-    padding: 50px 0; 
+    padding: 50px 0;
 }
 
 .col-2 h1{
@@ -91,7 +90,7 @@ p{
 }
 
 .btn:hover{
-    
+
     background-color: #0093E9;
     background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 
@@ -126,8 +125,8 @@ p{
 }
 
 .col-3 img{
-    /* width: 100%;  
-    height: 100%; 
+    /* width: 100%;
+    height: 100%;
     object-fit: scale-down;  */
     height: auto;
     width: 400px;
@@ -203,7 +202,7 @@ h4{
 
     /* Full height */
     height: 100%;
-    
+
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -281,7 +280,7 @@ small{
 }
 
 
- 
+
 /* The Footer Section */
 .footer{
     background: #2766db;
@@ -310,7 +309,7 @@ small{
 
 .footer-col-2{
     flex: 1;
-    text-align: center;   
+    text-align: center;
 }
 
 .footer-col-2 img{
@@ -324,7 +323,7 @@ small{
 }
 
 ul{
-    list-style-type: none; 
+    list-style-type: none;
 }
 
 .app-logo{
@@ -491,7 +490,7 @@ table{
 
 .cart-info{
     display: flex;
-    flex-wrap: wrap;   
+    flex-wrap: wrap;
 }
 
 th{
