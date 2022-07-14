@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\DetailController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,3 +44,9 @@ Route::post('users/auth',
 
 Route::resource('customers', CustomerController::class);
 Route::resource('shops', ShopController::class);
+
+//Show Shop Details 
+Route::resource('details', DetailController::class);
+
+
+
