@@ -27,7 +27,8 @@ class LoadController extends Controller
      */
     public function create()
     {
-        return view('loads.create');
+        $customer = Customer::all();
+        return view('loads.create', compact('customer'));
     }
 
     /**
@@ -47,19 +48,24 @@ class LoadController extends Controller
             'description' => 'required',
         ]);
 
-        $customer = new Customer();
-        $customer->save();
+        $customer = Customer::findOrFail($request->customers_id);
+        $customer->loads()->create([
+            'load_quantity' => $request->load_quantity,
+            'additional_expenses' => $request->additional_expenses,
+            'color_type' => $request->color_type,
+            'load_selector' => $request->load_selector,
+            'load_type' => $request->load_type,
+            'description' => $request->description,
+        ]);
+        return redirect()->route('customers.index')->with('message', 'Load Added');
 
-        $load = new Load();
-        $load->load_quantity = $request->load_quantity;
-        $load->additional_expenses = $request->additional_expenses;
-        $load->color_type = $request->color_type;
-        $load->load_selector = $request->load_selector;
-        $load->load_type = $request->load_type;
-        $load->description = $request->description;
-        $load->customer()->associate($customer);
-        $load->save();
-        return redirect()->route('customers.index');
+        // $load = new Load();
+        // $load->load_quantity = $request->load_quantity;
+        // $load->additional_expenses = $request->additional_expenses;
+        // $load->color_type = $request->color_type;
+        // $load->load_selector = $request->load_selector;
+        // $load->load_type = $request->load_type;
+        // $load->description = $request->description;
 
         // auth()->customer()->loads()->create([
         //     'load_quantity' => $request -> load_quantity,

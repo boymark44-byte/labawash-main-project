@@ -12,6 +12,11 @@
             </div>
         @endif
         @csrf
+        <select name="customers_id" id="customers_id">
+            @foreach ($customer as $item)
+                <option value="{{ $item->id }}">{{ $item->name }}</option>
+            @endforeach
+        </select>
         <br>
             <textarea name="load_quantity" placeholder= "Load Quantity..." value="{{old('load_quantity')}}"></textarea>
             @error('load_quantity')

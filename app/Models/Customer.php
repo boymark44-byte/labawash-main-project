@@ -17,6 +17,6 @@ class Customer extends Model
     ];
 
     public function loads(){
-        return $this->hasMany(Load::class);
+        return $this->hasMany(Load::class, 'customers_id', 'id');
     }
 }

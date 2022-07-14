@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('load_selector');
             //load_type = soft or hard
             $table->string('load_type');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->foreignId('customers_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
