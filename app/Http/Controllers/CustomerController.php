@@ -43,20 +43,13 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $this ->validate($request, ['name' =>'required', 'address' =>'required', 'contact_number' =>'required']);
-        $customer = new Customer();
 
-        // $customer->name = strip_tags($request->input('name'));
-        // $customer->address = strip_tags($request->input('address'));
-        // $customer->contact_number = strip_tags($request->input('contact_number'));
-
-        // $customer->save();
-        // return redirect()->route('c.index');
         auth()->user()->customers()->create([
             'name' => $request -> name,
             'address' => $request -> address,
             'contact_number' => $request -> contact_number
         ]);
-        return redirect()->route('customers.show');
+        return redirect()->route('customers.index');
 
     }
 

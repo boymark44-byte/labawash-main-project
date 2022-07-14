@@ -36,14 +36,36 @@
                 <!-- Text-link -->
                 <nav>
                     <ul id="MenuItems">
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Shops</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="{{route('shops.index')}}">Shops</a></li>
                         <li><a href="">Services</a></li>
+                        @auth
+                        <form class="inline" method="POST" action="/logout">
+                            @csrf
+                        <button>
+                            Logout
+                        </button>
+                            @if ( Auth::user()->role == 1)
+                            <h1>SuperAdmin</h1>
+                            @endif
+                            @if ( Auth::user()->role == 2)
+                            <h1>Admin</h1>
+                            @endif
+                            @if ( Auth::user()->role == 3)
+                            <h1>Store</h1>
+                            @endif
+                            @if ( Auth::user()->role == 4)
+                            <h1>Costumer</h1>
+                            @endif
+                        </form>
+                        @else    
                         <li><a href="/login">Login</a></li>
                         <li><a href="/register">Register</a></li>
+                        @endauth
+                        
                     </ul>
                 </nav>
-                
+
                 <!-- Image Icon for Cart on the Upper Right-->
                 <a href="#"><img src="images/laundry-basket.png" alt="" width="30px" height="30px"></a>
                 <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
@@ -60,7 +82,7 @@
                     </p>
 
                     <!-- Button: Explore now! -->
-                    <a href="" class="btn">Find Laundry Shops &#8594;</a>
+                    <a href="{{route('shops.index')}}" class="btn">Find Laundry Shops &#8594;</a>
                 </div>
 
                 <!-- Image -->
@@ -358,7 +380,7 @@
 
                 <!-- 1st User -->
                 <div class="col-3">
-                    
+
                     <i class="fa fa-quote-left"></i>
 
                     <!-- Testimony Text -->
@@ -458,16 +480,6 @@
                 <div class="col-5">
                     <img src="images/unilever-logo.png" alt="">
                 </div>
-
-                {{-- <!-- 4th Brand -->
-                <div class="col-5">
-                    <img src="images/logo-paypal.png" alt="">
-                </div>
-
-                <!-- 5th Brand -->
-                <div class="col-5">
-                    <img src="images/logo-philips.png" alt="">
-                </div> --}}
             </div>
         </div>
     </div>
@@ -553,34 +565,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{-- @auth
-        Welcome {{ auth()->user()->name }}
-    <form class="inline" method="POST" action="/logout">
-        @csrf
-        <button>
-            Logout
-        </button>
-    </form>
-@else
-<h1>You are not currently logged in</h1>
-<a href="\login">Log In</a>
-<a href="\register">Register</a>
-@endauth --}}
