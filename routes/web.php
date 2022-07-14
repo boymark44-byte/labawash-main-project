@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\LoadController;
 use App\Http\Controllers\DetailController;
 
 /*
@@ -47,6 +48,8 @@ Route::resource('shops', ShopController::class);
 
 //Show Shop Details 
 Route::resource('details', DetailController::class);
+
+Route::resource('loads', LoadController::class);
 
 
 
