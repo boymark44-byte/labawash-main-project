@@ -46,16 +46,13 @@
                             Logout
                         </button>
                             @if ( Auth::user()->role == 1)
-                            <h1>SuperAdmin</h1>
+                            {{-- This here goes to admin --}}
                             @endif
                             @if ( Auth::user()->role == 2)
                             <h1>Admin</h1>
                             @endif
                             @if ( Auth::user()->role == 3)
-                            <h1>Store</h1>
-                            @endif
-                            @if ( Auth::user()->role == 4)
-                            <h1>"Costumer" kay kulang ug RAM ang nag-push</h1>
+                            {{-- This here goes to Customer --}}
                             @endif
                         </form>
                         @else

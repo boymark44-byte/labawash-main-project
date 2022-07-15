@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\LoadController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,18 +24,9 @@ Route::get('/', function () {
 });
 
 //Reditected to admin dashboard
-Route::get('/admin', function () {
-    return view('admins.admin');
-});
-//Redirected to shop dashboard
-Route::get('/shop', function () {
-    return view('shops.index');
-});
-//Redirected to customer dashboard
-Route::get('/customer', function () {
-    return view('customers.index');
-});
-
+Route::get('/admin',
+[AdminController::class, 'index']
+)->middleware('role:1');
 
 //Show Register Form
 Route::get('/register',
@@ -58,8 +50,8 @@ Route::get('/login',
 Route::post('users/auth',
 [UserController::class, 'auth']);
 
-Route::resource('customers', CustomerController::class);
-Route::resource('shops', ShopController::class);
+Route::resource('customers', CustomerController::class)->middleware('role:3');
+Route::resource('shops', ShopController::class)->middleware('role:2');
 
 //Show Shop Details 
 Route::resource('details', DetailController::class);
