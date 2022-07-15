@@ -50,9 +50,7 @@ class CustomerController extends Controller
             'contact_number' => $request -> contact_number
         ]);
 
-
         return redirect()->route('loads.create');
-
     }
 
     /**

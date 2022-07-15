@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\LoadController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\ShowTables;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,10 +62,12 @@ Route::post('users/auth',
 Route::resource('customers', CustomerController::class);
 Route::resource('shops', ShopController::class);
 
-//Show Shop Details 
+//Show Shop Details
 Route::resource('details', DetailController::class);
 
+//For Customer's Load Transaction
 Route::resource('loads', LoadController::class);
 
-
+//For showing joined tables
+Route::get('/showCustomer/{id}', [ShowTables::class, 'showCustomer'])->name('showCustomer');
 

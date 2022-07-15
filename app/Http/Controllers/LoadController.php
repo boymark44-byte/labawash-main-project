@@ -50,10 +50,19 @@ class LoadController extends Controller
             'description' => 'required',
         ]);
 
+        // $customer = Customer::findOrFail($request->customers_id);
+        // $customer->loads()->create([
+        //     'load_quantity' => $request->load_quantity,
+        //     'additional_expenses' => $request->additional_expenses,
+        //     'color_type' => $request->color_type,
+        //     'load_selector' => $request->load_selector,
+        //     'load_type' => $request->load_type,
+        //     'description' => $request->description,
+        // ]);
+        // return redirect()->route('customers.index');
 
-
-        $customer = Customer::findOrFail($request->customers_id);
-        $customer->loads()->create([
+        Load::create([
+            'customers_id' => $customers_id,
             'load_quantity' => $request->load_quantity,
             'additional_expenses' => $request->additional_expenses,
             'color_type' => $request->color_type,
@@ -61,7 +70,6 @@ class LoadController extends Controller
             'load_type' => $request->load_type,
             'description' => $request->description,
         ]);
-        return redirect()->route('customers.index');
 
         // $load = new Load();
         // $load->load_quantity = $request->load_quantity;
@@ -87,9 +95,9 @@ class LoadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($load)
     {
-        $customer = Customer::get($id);
+        $customer = Customer::get($load);
         return view('loads.create', compact('customer'));
     }
 
