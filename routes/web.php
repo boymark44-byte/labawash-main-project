@@ -6,7 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\LoadController;
 use App\Http\Controllers\DetailController;
-
+use App\Http\Controllers\ShopDashController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,13 +27,12 @@ Route::get('/admin', function () {
     return view('admins.admin');
 });
 //Redirected to shop dashboard
-Route::get('/shop', function () {
-    return view('shops.index');
-});
+Route::get('/shop_dashboard',
+ [ShopDashController::class, 'shop_dashboard']);
+
 //Redirected to customer dashboard
-Route::get('/customer', function () {
-    return view('customers.index');
-});
+Route::get('/customer_dashboard',
+ [ShopController::class, 'index']);
 
 
 //Show Register Form
@@ -59,12 +58,14 @@ Route::post('users/auth',
 [UserController::class, 'auth']);
 
 Route::resource('customers', CustomerController::class);
+
 Route::resource('shops', ShopController::class);
 
-//Show Shop Details 
+//Show Shop Details
 Route::resource('details', DetailController::class);
 
 Route::resource('loads', LoadController::class);
 
-
+//shop dashboard
+Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard');
 
