@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
@@ -31,7 +32,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customers.create');
+        $shop = Shop::all();
+        return view('customers.create', compact('shop'));
     }
 
     /**
@@ -44,13 +46,14 @@ class CustomerController extends Controller
     {
         $this ->validate($request, ['name' =>'required', 'address' =>'required', 'contact_number' =>'required']);
 
-        auth()->user()->customers()->create([
+        $shop = Shop::findOrFail($request->shop_id);
+        $shop->customers()->create([
             'name' => $request -> name,
             'address' => $request -> address,
             'contact_number' => $request -> contact_number
         ]);
-        return redirect()->route('customers.index');
 
+        return redirect()->route('loads.create');
     }
 
     /**
@@ -61,8 +64,6 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        $customer = Customer::find($id);
-        return view('customers.show')->with('customers', $customer);
     }
 
     /**

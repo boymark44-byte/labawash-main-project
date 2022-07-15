@@ -66,10 +66,10 @@ class UserController extends Controller
             return redirect('/admin')->with('message', 'You are now logged in');
             break;
           case '2':
-            return redirect('/shops')->with('message', 'You are now logged in');
+            return redirect('/shop_dashboard')->with('message', 'You are now logged in');
             break; 
           case '3':
-            return redirect('/customers')->with('message', 'You are now logged in');
+            return redirect('/customer_dashboard')->with('message', 'You are now logged in');
               break; 
       
           default:
@@ -92,22 +92,6 @@ class UserController extends Controller
         return back()->withErrors(['email' => 'Invalid'])->onlyInput('email');
     }
 
-//     public function redirectTo() {
-//         $role = Auth::user()->role; 
-//         switch ($role) {
-//           case '1':
-//             return '/admin';
-//             break;
-//           case '2':
-//             return '/shop';
-//             break; 
-//           case '3':
-//               return '/customer';
-//               break; 
-      
-//           default:
-//             return '/home'; 
-//           break;
-//         }
+
      }
  }

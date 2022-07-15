@@ -8,6 +8,8 @@ use App\Http\Controllers\LoadController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\AdminController;
 
+use App\Http\Controllers\ShopDashController;
+use App\Http\Controllers\ShowTables;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +21,8 @@ use App\Http\Controllers\AdminController;
 |
 */
 
+//Role Legends 1 = Admin, 2 = Shop, 3 = Customer
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,6 +31,11 @@ Route::get('/', function () {
 Route::get('/admin',
 [AdminController::class, 'index']
 )->middleware('role:1');
+
+//Redirected to customer dashboard
+Route::get('/customer_dashboard',
+ [ShopController::class, 'index'])->middleware('role:3');
+
 
 //Show Register Form
 Route::get('/register',
@@ -53,10 +62,14 @@ Route::post('users/auth',
 Route::resource('customers', CustomerController::class)->middleware('role:3');
 Route::resource('shops', ShopController::class)->middleware('role:2');
 
-//Show Shop Details 
+//Show Shop Details
 Route::resource('details', DetailController::class);
 
-Route::resource('loads', LoadController::class);
+//For Customer's Load Transaction
+Route::resource('loads', LoadController::class)->middleware('role:3');
 
+//shop dashboard
+Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard')->middleware('role:2');
 
-
+//For showing joined tables
+Route::get('/showCustomer/{id}', [ShowTables::class, 'showCustomer'])->name('showCustomer');
