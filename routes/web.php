@@ -71,3 +71,8 @@ Route::resource('loads', LoadController::class);
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+//shop dashboard
+Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard');
+
+//For showing joined tables
+Route::get('/showCustomer/{id}', [ShowTables::class, 'showCustomer'])->name('showCustomer');
