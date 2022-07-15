@@ -52,8 +52,8 @@ class CustomerController extends Controller
             'address' => $request -> address,
             'contact_number' => $request -> contact_number
         ]);
-        return redirect()->route('customers.index');
 
+        return redirect()->route('loads.create');
     }
 
     /**
@@ -64,7 +64,6 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**
