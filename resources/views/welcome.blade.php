@@ -52,7 +52,7 @@
                             <h1>Admin</h1>
                             @endif
                             @if ( Auth::user()->role == 3)
-                            <h1>Store</h1>
+                            <h1>Shop</h1>
                             @endif
                             @if ( Auth::user()->role == 4)
                             <h1>"Costumer" kay kulang ug RAM ang nag-push</h1>
