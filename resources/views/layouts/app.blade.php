@@ -17,34 +17,28 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="css/app.css" type="text/css">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-secondary shadow-sm">
-            <div class="container">
 
-                <a class="navbar-brand" href="{{ url('/') }}">Home</a>
-                <a class="navbar-brand" href="{{ route('shops.index') }}">Shops</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
+    <div class="header">
+        <div class="container">
+            <div class="navbar navbar-expand-md navbar-light">
+                <nav>
+                    <ul id="MenuItems">
+                        <a href="{{ url('/') }}">Home</a>
+                        <a href="{{ route('shops.index') }}">Shops</a>
+                        <a href="/logout">Logout</a>
                     </ul>
-
-                    <!-- Right Side Of Navbar -->
-
-                </div>
+                </nav>
             </div>
-        </nav>
+        </div>
+    </div>
+
+
 
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
 </body>
 </html>
