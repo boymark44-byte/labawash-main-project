@@ -66,5 +66,6 @@ Route::resource('details', DetailController::class);
 
 Route::resource('loads', LoadController::class);
 
-
-
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
