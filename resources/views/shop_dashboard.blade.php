@@ -5,27 +5,25 @@
     <div class="container">
 
 
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
+         @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
+                <form class="form bg-white p-6 border-1" method ="GET" action="{{route('shop_dashboard')}}">
+                    <textarea name="query" cols="50" placeholder= "Search shop ID..."></textarea>
+                        @error('query')
+                            <div class="form-error">
+                                {{$message}}
                             </div>
-                        @endif
-                        <br>
-                        <form class="form bg-white p-6 border-1" method ="GET" action="{{route('shop_dash')}}">
-                            <textarea name="query" cols="50" placeholder= "Search shop ID..."></textarea>
-                            @error('query')
-                                <div class="form-error">
-                                    {{$message}}
-                                </div>
-                            @enderror
-                        <br>
-                        <button> Submit </button>
+                        @enderror
+                            <button> Submit </button>
+                </form>
 
-                    </div>
-                    </div>
-                    <br>
-                    <br>
+
+
+
+
                     @if(isset($customers))
                         <table class="table table-hover">
                             <thead>

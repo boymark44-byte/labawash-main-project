@@ -27,13 +27,12 @@ Route::get('/admin', function () {
     return view('admins.admin');
 });
 //Redirected to shop dashboard
-Route::get('/shop', function () {
-    return view('shop_dash');
-});
+Route::get('/shop_dashboard',
+ [ShopDashController::class, 'shop_dashboard']);
+
 //Redirected to customer dashboard
-Route::get('/customer', function () {
-    return view('customers.index');
-});
+Route::get('/customer_dashboard',
+ [ShopController::class, 'index']);
 
 
 //Show Register Form
@@ -59,6 +58,7 @@ Route::post('users/auth',
 [UserController::class, 'auth']);
 
 Route::resource('customers', CustomerController::class);
+
 Route::resource('shops', ShopController::class);
 
 //Show Shop Details
@@ -66,5 +66,6 @@ Route::resource('details', DetailController::class);
 
 Route::resource('loads', LoadController::class);
 
-Route::get('/search', [ShopDashController::class, 'shop_dash'])->name('shop_dash');
+//shop dashboard
+Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard');
 

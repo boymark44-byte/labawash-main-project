@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\DB;
 
 class ShopDashController extends Controller
 {
-    public function shop_dash(Request $request){
+    public function shop_dashboard(Request $request){
         if(isset($_GET['query'])){
             $search_text=$_GET['query'];
             $customers = DB::table('customers')->where('shop_id','LIKE','%' .$search_text.'%')->paginate(100);
-            return view('shop_dash',['customers'=>$customers]);
-        }else{
-             return view('shop_dash');
-        }
+            return view('shop_dashboard',['customers'=>$customers]);
+        }   else{
+                return view('shop_dashboard');
+            }
     }
 }
