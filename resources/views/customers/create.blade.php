@@ -13,6 +13,11 @@
                 @endif
                 @csrf
                 <br>
+                <select name="shop_id" id="shop_id">
+                    @foreach ($shop as $item)
+                        <option value="{{ $item->id }}">{{ $item->shop_name }}</option>
+                    @endforeach
+                </select>
                 <label>Name</label></br>
                 <input type="text" name="name" placeholder= "Type Your Name..." value="{{old('name')}}"></br>
                     @error('name')

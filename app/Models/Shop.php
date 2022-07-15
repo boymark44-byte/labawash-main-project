@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Customer;
 
 class Shop extends Model
 {
@@ -11,8 +12,11 @@ class Shop extends Model
 
     protected $fillable = [
         'name',
-        'user_id',
         'address',
         'contact_number',
     ];
+
+    public function customers(){
+        return $this->hasMany(Customer::class);
+    }
 }
