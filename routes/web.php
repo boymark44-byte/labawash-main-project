@@ -79,3 +79,5 @@ Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->na
 
 //For showing joined tables for customers loads
 Route::get('/showLoads/{id}', [ShowTables::class, 'showLoads'])->name('showLoads');
+
+//Sample
