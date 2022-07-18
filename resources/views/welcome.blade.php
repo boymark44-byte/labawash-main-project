@@ -77,7 +77,12 @@
                     </p>
 
                     <!-- Button: Explore now! -->
+                    @auth
                     <a href="{{route('shops.index')}}" class="btn">Find Laundry Shops &#8594;</a>
+                    @else
+                    <a href="/login" class="btn">Find Laundry Shops &#8594;</a>
+                    @endauth
+
                 </div>
 
                 <!-- Image -->
@@ -360,7 +365,11 @@
                     {{-- <small>
 
                     </small> --}}
-                    <a href="{{route('shops.create')}}" class="btn">Inquire Now &#8594; </a>
+                    @auth
+                    <a href="{{route('shops.create')}}" class="btn">Inquire Now &#8594;</a>
+                    @else
+                    <a href="/login" class="btn">Inquire Now &#8594;</a>
+                    @endauth
                 </div>
             </div>
         </div>
