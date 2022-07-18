@@ -13,11 +13,11 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-
                                             <th>Shop ID |</th>
                                             <th>Shop Name |</th>
                                             <th>Shop Address |</th>
                                             <th>Description |</th>
+                                            <th>Action |</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -28,7 +28,13 @@
                                                 <td>{{$shop->shop_name}}</td>
                                                 <td>{{$shop->shop_address}}</td>
                                                 <td>{{$shop->description}}</td>
-
+                                                {{-- <td><img alt="img" src="/img/{{$shop->image}} width='50' height='50' " /> </td> --}}
+                                                <td>
+                                                    <form method="POST" action="/shops/{{$shop->id}}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class= "btn">Remove </button>
+                                                </td>
                                                 </tr>
                                             @endforeach
                                         @else
@@ -50,6 +56,7 @@
                                             <th>Shop Name |</th>
                                             <th>Shop Address |</th>
                                             <th>Description |</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,6 +67,7 @@
                                                 <td><a href="{{route('customers.create')}}">{{$shop->shop_name}}</td>
                                                 <td>{{$shop->shop_address}}</td>
                                                 <td>{{$shop->description}}</td>
+
 
                                                 </tr>
                                             @endforeach

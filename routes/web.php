@@ -59,8 +59,11 @@ Route::get('/login',
 Route::post('users/auth',
 [UserController::class, 'auth']);
 
+//Customer's form
 Route::resource('customers', CustomerController::class)->middleware('role:3');
-Route::resource('shops', ShopController::class)->middleware('role:3');
+
+//Shop's Form
+Route::resource('shops', ShopController::class)->middleware('role:1,3');
 
 //Show Shop Details
 Route::resource('details', DetailController::class);
@@ -73,3 +76,7 @@ Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->na
 
 //For showing joined tables
 Route::get('/showCustomer/{id}', [ShowTables::class, 'showCustomer'])->name('showCustomer');
+
+Route::get('/foo', function(){
+    Artisan::call('storage:link');
+});
