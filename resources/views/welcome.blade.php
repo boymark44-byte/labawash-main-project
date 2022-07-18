@@ -40,24 +40,22 @@
                         <li><a href="{{route('shops.index')}}">Shops</a></li>
                         <li><a href="">Services</a></li>
                         @auth
-                        <form class="inline" method="POST" action="/logout">
-                            @csrf
-                        <button>
-                            Logout
-                        </button>
-                            @if ( Auth::user()->role == 1)
-                            {{-- This here goes to admin --}}
-                            @endif
-                            @if ( Auth::user()->role == 2)
-                            <h1>Admin</h1>
-                            @endif
-                            @if ( Auth::user()->role == 3)
-                            {{-- This here goes to Customer --}}
-                            @endif
-                        </form>
-                        @else
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/register">Register</a></li>
+                            <li><form class="inline" method="POST" action="/logout">
+                                @csrf
+                                <button>logout</button>
+                                @if ( Auth::user()->role == 1)
+                                {{-- This here goes to admin --}}
+                                @endif
+                                @if ( Auth::user()->role == 2)
+                                <h1>Admin</h1>
+                                @endif
+                                @if ( Auth::user()->role == 3)
+                                {{-- This here goes to Customer --}}
+                                @endif
+                            </form></li>
+                            @else
+                            <li><a href="/login">Login</a></li>
+                            <li><a href="/register">Register</a></li>
                         @endauth
 
                     </ul>
