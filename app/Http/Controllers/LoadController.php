@@ -59,24 +59,19 @@ class LoadController extends Controller
             'load_type' => $request->load_type,
             'description' => $request->description,
         ]);
-        return redirect()->route('customers.index');
 
-        // $load = new Load();
-        // $load->load_quantity = $request->load_quantity;
-        // $load->additional_expenses = $request->additional_expenses;
-        // $load->color_type = $request->color_type;
-        // $load->load_selector = $request->load_selector;
-        // $load->load_type = $request->load_type;
-        // $load->description = $request->description;
-
-        // auth()->customer()->loads()->create([
-        //     'load_quantity' => $request -> load_quantity,
-        //     'additional_expenses' => $request -> additional_expenses,
-        //     'color_type' => $request -> color_type,
-        //     'load_selector' => $request -> load_selector,
-        //     'load_type' => $request -> load_type,
-        //     'description' => $request -> description,
+        // $validatedata = $request->validate([
+        //     'load_quantity' => ['required', 'integer'],
+        //     'additional_expenses' => ['required', 'integer'],
+        //     'color_type' => 'required',
+        //     'load_selector' => 'required',
+        //     'load_type' => 'required',
+        //     'description' => 'required',
         // ]);
+
+        // Load::create($validatedata);
+
+        return redirect()->route('customers.index');
     }
 
     /**

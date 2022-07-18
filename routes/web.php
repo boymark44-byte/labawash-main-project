@@ -7,7 +7,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\LoadController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ShopDashController;
 use App\Http\Controllers\ShowTables;
 /*
@@ -73,3 +73,15 @@ Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->na
 
 //For showing joined tables
 Route::get('/showCustomer/{id}', [ShowTables::class, 'showCustomer'])->name('showCustomer');
+
+
+
+
+
+
+
+//For creating expenses data
+Route::get('/expenses/{id}', [ExpenseController::class, 'create'])->name('expenses');
+
+//For storing expenses data
+Route::post('/load_expense', [ExpenseController::class, 'store'])->name('load_expense');
