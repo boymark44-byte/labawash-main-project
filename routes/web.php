@@ -68,6 +68,9 @@ Route::resource('details', DetailController::class);
 //For Customer's Load Transaction
 Route::resource('loads', LoadController::class)->middleware('role:3');
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 //shop dashboard
 Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard')->middleware('role:2');
 
