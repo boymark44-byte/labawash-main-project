@@ -71,12 +71,11 @@ Route::resource('details', DetailController::class);
 //For Customer's Load Transaction
 Route::resource('loads', LoadController::class)->middleware('role:3');
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 //shop dashboard
 Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard')->middleware('role:2');
 
-//For showing joined tables
-Route::get('/showCustomer/{id}', [ShowTables::class, 'showCustomer'])->name('showCustomer');
-
-Route::get('/foo', function(){
-    Artisan::call('storage:link');
-});
+//For showing joined tables for customers loads
+Route::get('/showLoads/{id}', [ShowTables::class, 'showLoads'])->name('showLoads');
