@@ -11,7 +11,7 @@ use function Ramsey\Uuid\v1;
 
 class ShowTables extends Controller
 {
-    public function showCustomer($id)
+    public function showLoads($id)
     {
         // return view('tables.customer', [
         //     'ctable' => Customer::findOrFail($id)

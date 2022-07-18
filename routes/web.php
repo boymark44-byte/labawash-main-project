@@ -71,5 +71,5 @@ Route::resource('loads', LoadController::class)->middleware('role:3');
 //shop dashboard
 Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard')->middleware('role:2');
 
-//For showing joined tables
-Route::get('/showCustomer/{id}', [ShowTables::class, 'showCustomer'])->name('showCustomer');
+//For showing joined tables for customers loads
+Route::get('/showLoads/{id}', [ShowTables::class, 'showLoads'])->name('showLoads');
