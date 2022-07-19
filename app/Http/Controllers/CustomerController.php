@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -32,8 +33,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $shop = Shop::all();
-        return view('customers.create', compact('shop'));
+        // $shop = Shop::all();
+        // return view('customers.create', compact('shop'));
     }
 
     /**
@@ -52,8 +53,8 @@ class CustomerController extends Controller
             'address' => $request -> address,
             'contact_number' => $request -> contact_number
         ]);
-
-        return redirect()->route('customers.index');
+        $id = DB::getPdo()->lastInsertId();
+        return redirect()->route('loads.show', ['load'=> $id]);
     }
 
     /**
