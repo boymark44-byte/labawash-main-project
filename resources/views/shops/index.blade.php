@@ -13,11 +13,11 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Shop ID |</th>
-                                            <th>Shop Name |</th>
-                                            <th>Shop Address |</th>
-                                            <th>Description |</th>
-                                            <th>Action |</th>
+                                            <th style="padding:10px">Shop ID </th>
+                                            <th style="padding:10px">Shop Name </th>
+                                            <th style="padding:10px">Shop Address </th>
+                                            <th style="padding:10px">Description </th>
+                                            <th style="padding:10px">Action </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -52,10 +52,10 @@
                                     <thead>
                                         <tr>
 
-                                            <th>Shop ID |</th>
-                                            <th>Shop Name |</th>
-                                            <th>Shop Address |</th>
-                                            <th>Description |</th>
+                                            <th style="padding:10px">Shop ID |</th>
+                                            <th style="padding:10px">Shop Name |</th>
+                                            <th style="padding:10px">Shop Address |</th>
+                                            <th style="padding:10px">Description |</th>
 
                                         </tr>
                                     </thead>
