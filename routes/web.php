@@ -10,6 +10,8 @@ use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\ShopDashController;
 use App\Http\Controllers\ShowTables;
+use App\Http\Middleware\Role;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,7 +79,8 @@ Route::get('/dashboard', function () {
 //shop dashboard
 Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard')->middleware('role:2');
 
-//For showing joined tables for customers loads
+//For showing table for customers loads
 Route::get('/showLoads/{id}', [ShowTables::class, 'showLoads'])->name('showLoads');
 
-
+//For showing joined tables of customer and load
+Route::get('/customertransaction/{id}', [ShowTables::class, 'customertransaction'])->name('customertransaction');

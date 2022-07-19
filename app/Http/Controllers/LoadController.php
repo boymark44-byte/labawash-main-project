@@ -57,10 +57,8 @@ class LoadController extends Controller
             'load_type' => $request->load_type,
             'description' => $request->description,
         ]);
-
-        return redirect()->route('customers.index');
-
-
+        $id = $customer->id;
+        return redirect()->route('customertransaction', ['id' => $id]);
     }
 
     /**
