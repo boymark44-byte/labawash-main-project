@@ -40,24 +40,22 @@
                         <li><a href="{{route('shops.index')}}">Shops</a></li>
                         <li><a href="">Services</a></li>
                         @auth
-                        <form class="inline" method="POST" action="/logout">
-                            @csrf
-                        <button>
-                            Logout
-                        </button>
-                            @if ( Auth::user()->role == 1)
-                            {{-- This here goes to admin --}}
-                            @endif
-                            @if ( Auth::user()->role == 2)
-                            <h1>Admin</h1>
-                            @endif
-                            @if ( Auth::user()->role == 3)
-                            {{-- This here goes to Customer --}}
-                            @endif
-                        </form>
-                        @else
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/register">Register</a></li>
+                            <li><form class="inline" method="POST" action="/logout">
+                                @csrf
+                                <button>logout</button>
+                                @if ( Auth::user()->role == 1)
+                                {{-- This here goes to admin --}}
+                                @endif
+                                @if ( Auth::user()->role == 2)
+                                <h1>Admin</h1>
+                                @endif
+                                @if ( Auth::user()->role == 3)
+                                {{-- This here goes to Customer --}}
+                                @endif
+                            </form></li>
+                            @else
+                            <li><a href="/login">Login</a></li>
+                            <li><a href="/register">Register</a></li>
                         @endauth
 
                     </ul>
@@ -79,7 +77,12 @@
                     </p>
 
                     <!-- Button: Explore now! -->
+                    @auth
                     <a href="{{route('shops.index')}}" class="btn">Find Laundry Shops &#8594;</a>
+                    @else
+                    <a href="/login" class="btn">Find Laundry Shops &#8594;</a>
+                    @endauth
+
                 </div>
 
                 <!-- Image -->
@@ -362,7 +365,11 @@
                     {{-- <small>
 
                     </small> --}}
-                    <a href="{{route('shops.create')}}" class="btn">Inquire Now &#8594; </a>
+                    @auth
+                    <a href="{{route('shops.create')}}" class="btn">Inquire Now &#8594;</a>
+                    @else
+                    <a href="/login" class="btn">Inquire Now &#8594;</a>
+                    @endauth
                 </div>
             </div>
         </div>

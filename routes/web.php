@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\ShopDashController;
 use App\Http\Controllers\ShowTables;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,8 +60,11 @@ Route::get('/login',
 Route::post('users/auth',
 [UserController::class, 'auth']);
 
+//Customer's form
 Route::resource('customers', CustomerController::class)->middleware('role:3');
-Route::resource('shops', ShopController::class)->middleware('role:2');
+
+//Shop's Form
+Route::resource('shops', ShopController::class)->middleware('role:1,3');
 
 //Show Shop Details
 Route::resource('details', DetailController::class);
@@ -68,8 +72,15 @@ Route::resource('details', DetailController::class);
 //For Customer's Load Transaction
 Route::resource('loads', LoadController::class)->middleware('role:3');
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 //shop dashboard
 Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard')->middleware('role:2');
 
-//For showing joined tables
-Route::get('/showCustomer/{id}', [ShowTables::class, 'showCustomer'])->name('showCustomer');
+//For showing joined tables for customers loads
+Route::get('/showLoads/{id}', [ShowTables::class, 'showLoads'])->name('showLoads');
+
+//Admin approval
+Route::get('/show/{id}', [ShopController::class, 'show'])->name('show');
+Route::get('/edit/{id}', [ShopController::class, 'edit'])->name('edit');
