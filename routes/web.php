@@ -60,7 +60,7 @@ Route::post('users/auth',
 [UserController::class, 'auth']);
 
 Route::resource('customers', CustomerController::class)->middleware('role:3');
-Route::resource('shops', ShopController::class)->middleware('role:3');
+Route::resource('shops', ShopController::class)->middleware('role:3,1');
 
 //Show Shop Details
 Route::resource('details', DetailController::class);

@@ -30,7 +30,6 @@ class LoadController extends Controller
         $customer = Customer::all();
         return view('loads.create', compact('customer'));
 
-
     }
 
     /**
@@ -50,8 +49,19 @@ class LoadController extends Controller
             'description' => 'required',
         ]);
 
-        $customer = Customer::findOrFail($request->customers_id);
-        $customer->loads()->create([
+        // $customer = Customer::findOrFail($request->customers_id);
+        // $customer->loads()->create([
+        //     'load_quantity' => $request->load_quantity,
+        //     'additional_expenses' => $request->additional_expenses,
+        //     'color_type' => $request->color_type,
+        //     'load_selector' => $request->load_selector,
+        //     'load_type' => $request->load_type,
+        //     'description' => $request->description,
+        // ]);
+
+        $customer = Customer::get();
+        Load::create([
+            'customer_id' => $customer->id,
             'load_quantity' => $request->load_quantity,
             'additional_expenses' => $request->additional_expenses,
             'color_type' => $request->color_type,
@@ -59,24 +69,10 @@ class LoadController extends Controller
             'load_type' => $request->load_type,
             'description' => $request->description,
         ]);
+
         return redirect()->route('customers.index');
 
-        // $load = new Load();
-        // $load->load_quantity = $request->load_quantity;
-        // $load->additional_expenses = $request->additional_expenses;
-        // $load->color_type = $request->color_type;
-        // $load->load_selector = $request->load_selector;
-        // $load->load_type = $request->load_type;
-        // $load->description = $request->description;
 
-        // auth()->customer()->loads()->create([
-        //     'load_quantity' => $request -> load_quantity,
-        //     'additional_expenses' => $request -> additional_expenses,
-        //     'color_type' => $request -> color_type,
-        //     'load_selector' => $request -> load_selector,
-        //     'load_type' => $request -> load_type,
-        //     'description' => $request -> description,
-        // ]);
     }
 
     /**
