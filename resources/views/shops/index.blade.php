@@ -59,7 +59,7 @@
                                         @if(count($shops)>0)
                                             @foreach($shops as $shop)
                                                 <tr>
-                                                <td><a href="{{route('customers.create')}}">{{$shop->shop_name}}</td>
+                                                <td><a href="{{route('customers.show', ['customer' => $shop->id])}}">{{$shop->shop_name}}</td>
                                                 <td>{{$shop->shop_address}}</td>
                                                 <td>{{$shop->description}}</td>
                                                 </tr>
