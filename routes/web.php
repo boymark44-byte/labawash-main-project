@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\ShopDashController;
 use App\Http\Controllers\ShowTables;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -80,4 +81,6 @@ Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->na
 //For showing joined tables for customers loads
 Route::get('/showLoads/{id}', [ShowTables::class, 'showLoads'])->name('showLoads');
 
-
+//Admin approval
+Route::get('/show/{id}', [ShopController::class, 'show'])->name('show');
+Route::get('/edit/{id}', [ShopController::class, 'edit'])->name('edit');

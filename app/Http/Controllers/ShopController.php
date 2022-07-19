@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Shop;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
@@ -16,11 +17,20 @@ class ShopController extends Controller
 
     public function index()
     {
+        if ( Auth::user()->role == 1){
         return view('shops.index', [
             'shops' => Shop::all()
 
         ]);
+        } else {
+            return view('shops.index', [
+                'shops' => Shop::where('approve', '1')->get()
+
+            ]);
+        }
+
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -48,23 +58,6 @@ class ShopController extends Controller
         ]);
 
         $shop = new Shop();
-        // $newImageName = time() . '-' . $request->name . '.' . $request-> image->extension();
-
-        // $request->image->move(public_path('images'), $newImageName);
-        // $shop = Shop::create([
-        //     'shop_name' =>$request->input('shop_name'),
-        //     'shop_address' =>$request->input('shop_address'),
-        //     'description' =>$request->input('description'),
-        //     'image' =>  $newImageName
-        // ]);
-
-
-        // if($request->hasFile('image')) {
-        //     $shop['image'] = $request->file('image')->store('images', 'public');
-        // }
-
-        // Shop::create($shop);
-
 
         $shop->shop_name = strip_tags($request->input('shop_name'));
         $shop->shop_address = strip_tags($request->input('shop_address'));
@@ -72,17 +65,14 @@ class ShopController extends Controller
 
 
         $shop->save();
-        // $shop = $request->all();
-        // $fileName = time().$request->file('image');
-        // $path = $request->file('image')->storeAs('images', $fileName, 'public');
-        // $shop["image"]='/storage/' .$path;
-        // Shop::create($shop);
 
 
 
         return redirect()->route('shops.index');
 
     }
+
+
 
     /**
      * Display the specified resource.
@@ -92,7 +82,11 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        //
+        $data=Shop::find($id);
+        $data->approve = 1;
+        $data->save();
+
+        return redirect()->route('shops.index');
     }
 
     /**
@@ -103,7 +97,11 @@ class ShopController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data=Shop::find($id);
+        $data->approve = 0;
+        $data->save();
+
+        return redirect()->route('shops.index');
     }
 
     /**
@@ -113,9 +111,9 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
     }
 
     /**
