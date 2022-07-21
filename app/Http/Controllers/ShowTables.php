@@ -30,4 +30,10 @@ class ShowTables extends Controller
 
         return view('tables.customerLoad')->with('loads', $loads);
     }
+
+    public function customertransaction($id)
+    {
+        $customer = Customer::where('id', $id)->with('loads')->get();
+        $loads = Load::with('customer')->where('customers_id', $id)->get();
+    }
 }
