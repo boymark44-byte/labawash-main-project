@@ -14,6 +14,7 @@
                                     <thead>
                                         <tr>
                                             <th style="padding:10px">Shop ID </th>
+                                            <th style="padding: 10px">Shop Image</th>
                                             <th style="padding:10px">Shop Name </th>
                                             <th style="padding:10px">Status </th>
                                             <th style="padding:10px">Approve </th>
@@ -26,6 +27,7 @@
                                             @foreach($shops as $shop)
                                                 <tr>
                                                 <td>{{$shop->id}}</td>
+                                                <td><img src="{{ $shop->image }}" alt=""></td>
                                                 <td>{{$shop->shop_name}}</td>
                                                 <td>{{$shop->approve}}</td>
 
