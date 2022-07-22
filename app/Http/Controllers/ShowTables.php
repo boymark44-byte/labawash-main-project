@@ -33,7 +33,15 @@ class ShowTables extends Controller
 
     public function customertransaction($id)
     {
-        $customer = Customer::where('id', $id)->with('loads')->get();
+        // $record = Customer::find($id);
+        // $customers = $record->loads()->get();
+
+        $customers = Customer::where('id', $id)->with('loads')->get();
         $loads = Load::with('customer')->where('customers_id', $id)->get();
+        $index = Customer::where('id', $id)->with('loads')->select('id')->first();
+
+        return view('loads.index', compact('customers', 'loads', 'index'));
+
+        // dd($loads);
     }
 }

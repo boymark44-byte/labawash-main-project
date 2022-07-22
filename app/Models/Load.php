@@ -16,6 +16,7 @@ class Load extends Model
         'color_type',
         'load_selector',
         'load_type',
+        'status',
         'description',
         'customers_id'
     ];
