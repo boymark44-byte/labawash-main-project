@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
@@ -21,7 +22,6 @@ class ShopController extends Controller
         if ( Auth::user()->role == 1){
         return view('shops.index', [
             'shops' => Shop::all()
-
         ]);
         } else {
             return view('shops.index', [
@@ -68,9 +68,8 @@ class ShopController extends Controller
 
         $shop->save();
 
+        return redirect('/');
 
-
-        return redirect()->route('shops.index');
 
     }
 
@@ -82,13 +81,11 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    // admin approves to display a shop
     public function show($id)
     {
-        $data=Shop::find($id);
-        $data->approve = 1;
-        $data->save();
 
-        return redirect()->route('shops.index');
     }
 
     /**
@@ -97,14 +94,14 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //admin didn't approve the shop yet
     public function edit($id)
     {
-        $data=Shop::find($id);
-        $data->approve = 0;
-        $data->save();
-
-        return redirect()->route('shops.index');
+        $shop = DB::select('select * from shops where id = ?', [$id]);
+        return view('shops.edit', ['shop'=>$shop]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -113,9 +110,15 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
 
+        $shop_name = $request->input('shop_name');
+        $shop_address = $request->input('shop_address');
+        $description = $request->input('description');
+
+        DB::update('update shops set shop_name = ?, shop_address = ?, description = ? where id = ?', [$shop_name, $shop_address, $description, $id]);
+        return redirect('/shop_dashboard');
     }
 
     /**
@@ -124,10 +127,9 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Shop $shop)
+    public function destroy($id)
     {
-        $shop->delete();
-        return redirect()->route('shops.index');
+
     }
 
 }
