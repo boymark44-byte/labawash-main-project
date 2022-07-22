@@ -17,6 +17,8 @@
                                         <th>Load Type |</th>
                                         <th>Additional Expenses |</th>
                                         <th>Description |</th>
+                                        <th>Status |</th>
+                                        <th>Edit Status |</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -29,6 +31,8 @@
                                                 <td>{{$item->load_type}}</td>
                                                 <td>{{$item->additional_expenses}}</td>
                                                 <td>{{$item->description}}</td>
+                                                <td>{{$item->status}}</td>
+                                                <td><button class="btn"><a href="{{ route('loads.edit', ['load' => $item->id]) }}">Edit</a></button></td>
                                             </tr>
                                         @endforeach
 

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Shop;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
@@ -49,20 +50,21 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-
+        $uploadedFileUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
         $request ->validate([
             'shop_name' =>'required',
             'shop_address' =>'required',
             'description' =>'required',
+            // 'file' => [],
 
         ]);
-
+        $url = $uploadedFileUrl;
         $shop = new Shop();
 
         $shop->shop_name = strip_tags($request->input('shop_name'));
         $shop->shop_address = strip_tags($request->input('shop_address'));
         $shop->description = strip_tags($request->input('description'));
-
+        $shop->image = $url;
 
         $shop->save();
 
@@ -110,14 +112,6 @@ class ShopController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $request ->validate(['shop_name' =>'required','shop_address' =>'required','description' =>'required']);
-        // $data = Shop::findOrFail($shop);
-
-        // $data->shop_name = strip_tags($request->input('shop_name'));
-        // $data->shop_address = strip_tags($request->input('shop_address'));
-        // $data->description = strip_tags($request->input('description'));
-        // $data->save();
-        // return redirect('/shop_dashboard');
 
         $shop_name = $request->input('shop_name');
         $shop_address = $request->input('shop_address');

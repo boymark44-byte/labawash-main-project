@@ -74,7 +74,7 @@ Route::put('update/{id}', [ShopController::class, 'update'])->name('update');
 Route::resource('details', DetailController::class);
 
 //For Customer's Load Transaction
-Route::resource('loads', LoadController::class)->middleware('role:3');
+Route::resource('loads', LoadController::class)->middleware('role:2,3');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
