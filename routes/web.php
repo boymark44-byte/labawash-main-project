@@ -70,7 +70,7 @@ Route::resource('shops', ShopController::class)->middleware('role:1,3');
 Route::resource('details', DetailController::class);
 
 //For Customer's Load Transaction
-Route::resource('loads', LoadController::class)->middleware('role:3');
+Route::resource('loads', LoadController::class)->middleware('role:2,3');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
