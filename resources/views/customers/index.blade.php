@@ -12,11 +12,10 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Form Number | </th>
-                                    <th>Shop ID |</th>
-                                    <th>Name |</th>
-                                    <th>Address |</th>
-                                    <th>Contact Number |</th>
+                                    <th style="padding:10px">Form Number</th>
+                                    <th style="padding:10px">Name</th>
+                                    <th style="padding:10px">Address</th>
+                                    <th style="padding:10px">Contact Number</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -24,7 +23,6 @@
                                     @foreach($customers as $customer)
                                         <tr>
                                         <td><a href="{{ route('showLoads', ['id' => $customer['id']]) }}">{{$customer->id}}</a></td>
-                                        <td>{{$customer->shop_id}}</td>
                                         <td>{{$customer->name}}</td>
                                         <td>{{$customer->address}}</td>
                                         <td>{{$customer->contact_number}}</td>

@@ -35,6 +35,7 @@ class CustomerController extends Controller
     {
         // $shop = Shop::all();
         // return view('customers.create', compact('shop'));
+
     }
 
     /**
