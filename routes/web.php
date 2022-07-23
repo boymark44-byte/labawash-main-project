@@ -7,9 +7,10 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\LoadController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\AdminController;
-
 use App\Http\Controllers\ShopDashController;
 use App\Http\Controllers\ShowTables;
+use App\Http\Controllers\ApprovalController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,7 @@ Route::get('/', function () {
 
 //Reditected to admin dashboard
 Route::get('/admin',
-[AdminController::class, 'index']
+[ShopController::class, 'index']
 )->middleware('role:1');
 
 //Redirected to customer dashboard
@@ -63,14 +64,17 @@ Route::post('users/auth',
 //Customer's form
 Route::resource('customers', CustomerController::class)->middleware('role:3');
 
+
 //Shop's Form
-Route::resource('shops', ShopController::class)->middleware('role:1,3');
+Route::resource('shops', ShopController::class);
+Route::put('edit/{id}', [ShopController::class, 'edit'])->name('edit');
+Route::put('update/{id}', [ShopController::class, 'update'])->name('update');
 
 //Show Shop Details
 Route::resource('details', DetailController::class);
 
 //For Customer's Load Transaction
-Route::resource('loads', LoadController::class)->middleware('role:3');
+Route::resource('loads', LoadController::class)->middleware('role:2,3');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -81,9 +85,10 @@ Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->na
 //For showing table for customers loads
 Route::get('/showLoads/{id}', [ShowTables::class, 'showLoads'])->name('showLoads');
 
-//Admin approval
-Route::get('/show/{id}', [ShopController::class, 'show'])->name('show');
-Route::get('/edit/{id}', [ShopController::class, 'edit'])->name('edit');
 
 //For showing joined tables of customer and load
 Route::get('/customertransaction/{id}', [ShowTables::class, 'customertransaction'])->name('customertransaction');
+
+//admin's approval
+Route::get('/accept/{id}', [ApprovalController::class, 'accept'])->name('accept');
+Route::get('/cancel/{id}', [ApprovalController::class, 'cancel'])->name('cancel');

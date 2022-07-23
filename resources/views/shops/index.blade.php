@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Shop') }}</div>
+                    <div class="card-header">{{ __('Choose Shop') }}</div>
 
                         @if ( Auth::user()->role == 1)
                             @if(isset($shops))
@@ -16,9 +16,11 @@
                                             <th style="padding:10px">Shop ID </th>
                                             <th style="padding: 10px">Shop Image</th>
                                             <th style="padding:10px">Shop Name </th>
+                                            <th style="padding:10px">Shop Address </th>
+                                            <th style="padding:10px">Description </th>
                                             <th style="padding:10px">Status </th>
                                             <th style="padding:10px">Approve </th>
-                                            <th style="padding:10px">Canceled </th>
+                                            <th style="padding:10px">Cancel </th>
 
                                         </tr>
                                     </thead>
@@ -29,13 +31,15 @@
                                                 <td>{{$shop->id}}</td>
                                                 <td><img src="{{ $shop->image }}" alt=""></td>
                                                 <td>{{$shop->shop_name}}</td>
+                                                <td>{{$shop->shop_address}}</td>
+                                                <td>{{$shop->description}}</td>
                                                 <td>{{$shop->approve}}</td>
 
                                                 <td>
-                                                    <a class="btn" href="{{url('show', $shop->id)}}">Approved</a>
+                                                    <a class="" href="{{route('accept', $shop->id)}}">Approved</a>
                                                 </td>
                                                 <td>
-                                                    <a class="btn" href="{{url('edit', $shop->id)}}">Canceled</a>
+                                                    <a class="" href="{{route('cancel', $shop->id)}}">Canceled</a>
                                                 </td>
                                                 </tr>
                                             @endforeach
@@ -44,16 +48,15 @@
                                         @endif
                                     </tbody>
                                 </table>
-                                <button class="btn"><a href ="{{route('shops.create')}}">Add Shop</a></button>
                             @endif
                         @else
                             @if(isset($shops))
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th style="padding:10px">Shop Name |</th>
-                                            <th style="padding:10px">Shop Address |</th>
-                                            <th style="padding:10px">Description |</th>
+                                            <th style="padding:10px">Shop Name </th>
+                                            <th style="padding:10px">Shop Address </th>
+                                            <th style="padding:10px">Description </th>
 
                                         </tr>
                                     </thead>
