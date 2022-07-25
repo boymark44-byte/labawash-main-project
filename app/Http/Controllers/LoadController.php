@@ -10,35 +10,20 @@ use Illuminate\Support\Facades\Auth;
 
 class LoadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //
     public function index()
     {
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //
     public function create()
     {
         $customer = Customer::all();
         return view('loads.create', compact('customer'));
-
-
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //store load data
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -59,62 +44,50 @@ class LoadController extends Controller
             'load_type' => $request->load_type,
             'description' => $request->description,
         ]);
-
-        // $validatedata = $request->validate([
-        //     'load_quantity' => ['required', 'integer'],
-        //     'additional_expenses' => ['required', 'integer'],
-        //     'color_type' => 'required',
-        //     'load_selector' => 'required',
-        //     'load_type' => 'required',
-        //     'description' => 'required',
-        // ]);
-
-        // Load::create($validatedata);
-
+        $id = $customer->id;
         return redirect()->route('customers.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($load)
+    // passing foreign key to create load under customers_id
+    public function show($id)
     {
-        $customer = Customer::get($load);
-        return view('loads.create', compact('customer'));
+        // $customer = Customer::get($id);
+        // return view('loads.create', compact('customer'));
+        return view('loads.create')->with('customers_id', $id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //VIEW EDIT FORM
     public function edit($id)
     {
-        //
+        // $load = Load::findOrFail($id);
+        // dd($load->id);
+
+        return view('loads.edit', [
+            'load' => Load::findOrFail($id)
+        ]);
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //STORE EDITTED DATA
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            // 'load_quantity',
+            // 'additional_expenses',
+            // 'color_type',
+            // 'load_selector',
+            // 'load_type',
+            // 'description',
+            'status'
+        ]);
+        $load = Load::where('id', $id);
+        $load->update(['status' => $request->status]);
+
+
+        return redirect()->route('shop_dashboard');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //
     public function destroy($id)
     {
         //
