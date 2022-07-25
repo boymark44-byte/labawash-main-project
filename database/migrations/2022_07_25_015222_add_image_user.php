@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('role')->default('3');
+            //Add Image
+            $table->string('image')->nullable();
         });
     }
 
@@ -26,8 +27,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //Drop Role
-            $table->dropColumn('role');
+            //Drop image
+            $table->dropColumn('image');
         });
     }
 };
