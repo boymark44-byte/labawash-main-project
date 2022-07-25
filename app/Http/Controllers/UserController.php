@@ -60,20 +60,20 @@ class UserController extends Controller
         if(auth()->attempt($formFields)) {
             $request->session()->regenerate();
 
-            $role = Auth::user()->role; 
+            $role = Auth::user()->role;
         switch ($role) {
           case '1':
-            return redirect('/admin')->with('message', 'You are now logged in');
+            return redirect('/shops')->with('message', 'You are now logged in');
             break;
           case '2':
             return redirect('/shop_dashboard')->with('message', 'You are now logged in');
-            break; 
+            break;
           case '3':
             return redirect('/customer_dashboard')->with('message', 'You are now logged in');
-              break; 
-      
+              break;
+
           default:
-            return '/home'; 
+            return '/login';
           break;
 
           //This comment be removed in the next update

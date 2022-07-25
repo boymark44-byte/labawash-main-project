@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
-            $table->string('shop_name');
+            $table->string('shop_name')->unique();
             $table->string('shop_address');
             $table->string('description');
+            $table->boolean('approve')->default(false);
             $table->timestamps();
         });
     }

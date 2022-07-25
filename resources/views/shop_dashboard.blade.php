@@ -17,12 +17,37 @@
                                 {{$message}}
                             </div>
                         @enderror
-                            <button> Submit </button>
+                            <button class="btn"> Submit </button>
                 </form>
+                        @if(isset($shops))
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="padding:10px">Shop Name </th>
+                                    <th style="padding:10px">Shop Address </th>
+                                    <th style="padding:10px">Description </th>
+                                    <th style="padding:10px">Action </th>
 
-
-
-
+                                </tr>
+                            </thead>
+                                <tbody>
+                                    @if(count($shops)>0)
+                                        @foreach($shops as $shop)
+                                            <tr>
+                                            <td>{{$shop->shop_name}}</td>
+                                            <td>{{$shop->shop_address}}</td>
+                                            <td>{{$shop->description}}</td>
+                                            <td>
+                                                <a class="" href="{{route('shops.edit', $shop->id)}}">Edit</a>
+                                            <td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr><td>No Shop to display</td></tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        @endif
 
                     @if(isset($customers))
                         <table class="table table-hover">
@@ -38,7 +63,7 @@
                                 @if(count($customers)>0)
                                     @foreach($customers as $customer)
                                         <tr>
-                                        <td>{{$customer->name}}</td>
+                                        <td><a href="{{ route('showLoads', ['id' => $customer->id]) }}">{{$customer->name}}</a></td>
                                         <td>{{$customer->address}}</td>
                                         <td>{{$customer->contact_number}}</td>
                                         </tr>

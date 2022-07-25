@@ -11,7 +11,7 @@ use function Ramsey\Uuid\v1;
 
 class ShowTables extends Controller
 {
-    public function showCustomer($id)
+    public function showLoads($id)
     {
         // return view('tables.customer', [
         //     'ctable' => Customer::findOrFail($id)
@@ -29,5 +29,19 @@ class ShowTables extends Controller
 
 
         return view('tables.customerLoad')->with('loads', $loads);
+    }
+
+    public function customertransaction($id)
+    {
+        // $record = Customer::find($id);
+        // $customers = $record->loads()->get();
+
+        $customers = Customer::where('id', $id)->with('loads')->get();
+        $loads = Load::with('customer')->where('customers_id', $id)->get();
+        $index = Customer::where('id', $id)->with('loads')->select('id')->first();
+
+        return view('loads.index', compact('customers', 'loads', 'index'));
+
+        // dd($loads);
     }
 }
