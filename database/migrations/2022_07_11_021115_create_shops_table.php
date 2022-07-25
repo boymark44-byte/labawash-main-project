@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('shop_name')->unique();
             $table->string('shop_address');
+            $table->string('image');
             $table->string('description');
             $table->boolean('approve')->default(false);
             $table->timestamps();

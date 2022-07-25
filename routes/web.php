@@ -10,6 +10,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShopDashController;
 use App\Http\Controllers\ShowTables;
 use App\Http\Controllers\ApprovalController;
+use App\Http\Controllers\ExpenseController;
+use App\Models\Shop;
 
 
 /*
@@ -26,7 +28,8 @@ use App\Http\Controllers\ApprovalController;
 //Role Legends 1 = Admin, 2 = Shop, 3 = Customer
 
 Route::get('/', function () {
-    return view('welcome');
+    $images = Shop::all();
+    return view('welcome')->with('images', $images);
 });
 
 //Reditected to admin dashboard
@@ -94,4 +97,5 @@ Route::get('/accept/{id}', [ApprovalController::class, 'accept'])->name('accept'
 Route::get('/cancel/{id}', [ApprovalController::class, 'cancel'])->name('cancel');
 
 //for expenses table
-Route::get('expense', ExpenseController::class);
+Route::resource('expense', ExpenseController::class);
+
