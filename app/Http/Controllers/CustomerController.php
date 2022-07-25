@@ -77,7 +77,7 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -100,6 +100,8 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $customers = Customer::find($id);
+        $customers->delete();
+        return view('/shop_dashboard');
     }
 }

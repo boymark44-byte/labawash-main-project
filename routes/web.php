@@ -64,10 +64,14 @@ Route::post('users/auth',
 //Customer's form
 Route::resource('customers', CustomerController::class)->middleware('role:3');
 
+//Delete Customer's info
+Route::delete('/destroy/{id}', [ShopDashController::class, 'destroy'])->name('destroy');
+// Route::get('/show/{id}', [ShopDashController::class, 'show'])->name('show');
+// Route::get('/shop/{id}', [ShopDashController::class, 'shop'])->name('shop');
 
 //Shop's Form
 Route::resource('shops', ShopController::class);
-Route::put('edit/{id}', [ShopController::class, 'edit'])->name('edit');
+Route::put('edit/{id}', [ShopController::class, 'edit'])->name('edit')->middleware('role:1,3');
 Route::put('update/{id}', [ShopController::class, 'update'])->name('update');
 
 //Show Shop Details
@@ -92,3 +96,5 @@ Route::get('/customertransaction/{id}', [ShowTables::class, 'customertransaction
 //admin's approval
 Route::get('/accept/{id}', [ApprovalController::class, 'accept'])->name('accept');
 Route::get('/cancel/{id}', [ApprovalController::class, 'cancel'])->name('cancel');
+
+

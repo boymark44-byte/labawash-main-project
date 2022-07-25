@@ -2,11 +2,6 @@
 
 @section('content')
 
-
-
-
-
-
             <!-- Row -->
             <div class="row">
                 <div class="col-2">

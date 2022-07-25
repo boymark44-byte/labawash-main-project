@@ -21,6 +21,7 @@
                                             <th style="padding:10px">Status </th>
                                             <th style="padding:10px">Approve </th>
                                             <th style="padding:10px">Cancel </th>
+                                            <th style="padding:10px">View </th>
 
                                         </tr>
                                     </thead>

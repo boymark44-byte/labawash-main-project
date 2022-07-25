@@ -42,6 +42,20 @@ class ShowTables extends Controller
 
         return view('loads.index', compact('customers', 'loads', 'index'));
 
-        // dd($loads);
+        // dd($index);
+    }
+
+    public function shopcustomers($id)
+    {
+        // $record = Customer::find($id);
+        // $customers = $record->loads()->get();
+
+        $shops = Shop::where('id', $id)->with('customers')->get();
+        $customers = Customer::with('shop')->where('shop_id', $id)->get();
+        $index = Shop::where('id', $id)->with('customers')->select('id')->first();
+
+        return view('loads.index', compact('customers', 'loads', 'index'));
+
+        // dd($index);
     }
 }

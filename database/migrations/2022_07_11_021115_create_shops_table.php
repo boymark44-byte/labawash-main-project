@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('shop_address');
             $table->string('description');
             $table->boolean('approve')->default(false);
+            $table->string('image');
             $table->timestamps();
         });
     }
