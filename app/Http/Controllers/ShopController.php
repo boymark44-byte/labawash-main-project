@@ -113,12 +113,26 @@ class ShopController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // $uploadedFileUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        // $url = $uploadedFileUrl;
+        $image = $request->image;
+        if ($image) {
+        $shop_name = $request->input('shop_name');
+        $shop_address = $request->input('shop_address');
+        $description = $request->input('description');
+        $image = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        DB::update('update shops set shop_name = ?, shop_address = ?, description = ?, image = ? where id = ?', [$shop_name, $shop_address, $description, $image, $id]);
+        }
+        else {
 
         $shop_name = $request->input('shop_name');
         $shop_address = $request->input('shop_address');
         $description = $request->input('description');
-
         DB::update('update shops set shop_name = ?, shop_address = ?, description = ? where id = ?', [$shop_name, $shop_address, $description, $id]);
+        }
+        
+
+        // DB::update('update shops set shop_name = ?, shop_address = ?, description = ? where id = ?', [$shop_name, $shop_address, $description, $id]);
         return redirect('/shop_dashboard');
     }
 
