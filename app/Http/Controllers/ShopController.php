@@ -85,7 +85,8 @@ class ShopController extends Controller
     // admin approves to display a shop
     public function show($id)
     {
-
+        $shop = Shop::find($id);
+        return view('shops.show')->with('shops', $shop);
     }
 
     /**
