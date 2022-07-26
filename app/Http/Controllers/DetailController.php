@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
+use App\Models\Shop;
+use App\Models\Shops;
 use Illuminate\Http\Request;
-use App\Models\Details;
+use App\Http\Controllers\Controller;
 
 class DetailController extends Controller
 {
@@ -16,7 +17,7 @@ class DetailController extends Controller
     {
         //
         return view('details.index', [
-            'details' => Details::all()
+            'shops' => Shop::all()
         ]);
     }
 
@@ -40,17 +41,6 @@ class DetailController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate(['name'=>'required', 'type'=>'required', 'location'=>'required', 'year_created'=>'require    d']);
-        $detail = new Details();
-
-        $detail->name = strip_tags($request->input('name'));
-        $detail->type = strip_tags($request->input('type'));
-        $detail->location = strip_tags($request->input('location'));
-        $detail->year_created = strip_tags($request->input('year_created'));
-
-        $detail->save();
-        return redirect()->route('details.index');
- 
     }
 
     /**
@@ -59,11 +49,11 @@ class DetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Details $detail)
+    public function show(Request $shop)
     {
         //
         return view('details.show', [
-            'detail' => $detail
+            'shop' => $shop
         ]);
     }
 
