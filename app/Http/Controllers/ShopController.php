@@ -50,7 +50,7 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        $uploadedFileUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        
         $request ->validate([
             'shop_name' =>'required',
             'shop_address' =>'required',
@@ -58,16 +58,28 @@ class ShopController extends Controller
             // 'file' => [],
 
         ]);
-        $url = $uploadedFileUrl;
+        // $url = $uploadedFileUrl;
         $shop = new Shop();
+        if( ! $request->file('image')){
+        $shop->shop_name = strip_tags($request->input('shop_name'));
+        $shop->shop_address = strip_tags($request->input('shop_address'));
+        $shop->description = strip_tags($request->input('description'));
+        $shop->save();
 
+        return redirect('/');
+        }
+        else{
+        $uploadedFileUrl = Cloudinary::upload($request->file('image')->getPathname())->getSecurePath();
+        }
+        $url = $uploadedFileUrl;
         $shop->shop_name = strip_tags($request->input('shop_name'));
         $shop->shop_address = strip_tags($request->input('shop_address'));
         $shop->description = strip_tags($request->input('description'));
         $shop->image = $url;
-
+        
+        
         $shop->save();
-
+        
         return redirect('/');
 
 
