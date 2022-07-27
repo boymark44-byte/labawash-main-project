@@ -20,7 +20,7 @@ class Shop extends Model
     ];
 
     public function customers(){
-        return $this->hasMany(Customer::class);
+        return $this->hasMany(Customer::class, 'shop_id', 'id');
     }
 
     public function user()

@@ -7,7 +7,7 @@
     <title></title>
 
     <!-- Linking the CSS file -->
-    <link rel="stylesheet" href="css/app.css" type="text/css">
+    <link rel="stylesheet" href="/css/app.css" type="text/css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +30,7 @@
 
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="/"><img src="images/logo.png" alt="" width="75px" height="75px"></a>
+                    <a href="/"><img src="/images/logo.png" alt="" width="75px" height="75px"></a>
                 </div>
 
                 <!-- Text-link -->
@@ -62,9 +62,9 @@
                 </nav>
                  <!-- Image Icon for Cart on the Upper Right-->
                     <a href="{{ route('mycart') }}">
-                        <img src="images/laundry-basket.png" alt="" width="30px" height="30px">
+                        <img src="/images/laundry-basket.png" alt="" width="30px" height="30px">
                     </a>
-                    <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+                    {{-- <img src="/images/menu.png" class="menu-icon" onclick="menutoggle()"> --}}
             </div>
         </div>
     </div>
