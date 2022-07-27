@@ -26,9 +26,4 @@ class Shop extends Model
         return $this->hasMany(Customer::class, 'shop_id', 'id');
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
 }
