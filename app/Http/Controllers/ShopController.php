@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Shop;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Shop;
+use App\Models\User;
 class ShopController extends Controller
 {
     /*  display shops needed to be approve when role is 1 and displays all approved shops
@@ -32,6 +33,7 @@ class ShopController extends Controller
     //view shop create form
     public function create()
     {
+
         return view('shops.create');
     }
 
@@ -39,7 +41,7 @@ class ShopController extends Controller
     public function store(Request $request)
     {
 
-        $request ->validate([
+        $this->validate($request, [
             'shop_name' =>'required',
             'shop_address' =>'required',
             'description' =>'required',
@@ -49,9 +51,10 @@ class ShopController extends Controller
         // $url = $uploadedFileUrl;
         $shop = new Shop();
         if( ! $request->file('image')){
-        $shop->shop_name = strip_tags($request->input('shop_name'));
-        $shop->shop_address = strip_tags($request->input('shop_address'));
-        $shop->description = strip_tags($request->input('description'));
+            $shop->user_id = Auth::user()->id;
+            $shop->shop_name = ($request->input('shop_name'));
+            $shop->shop_address = ($request->input('shop_address'));
+            $shop->description = ($request->input('description'));
         $shop->save();
 
         return redirect('/');
@@ -60,24 +63,45 @@ class ShopController extends Controller
         $uploadedFileUrl = Cloudinary::upload($request->file('image')->getPathname())->getSecurePath();
         }
         $url = $uploadedFileUrl;
-        $shop->shop_name = strip_tags($request->input('shop_name'));
-        $shop->shop_address = strip_tags($request->input('shop_address'));
-        $shop->description = strip_tags($request->input('description'));
+        $shop->user_id = Auth::user()->id;
+        $shop->shop_name = ($request->input('shop_name'));
+        $shop->shop_address = ($request->input('shop_address'));
+        $shop->description = ($request->input('description'));
         $shop->image = $url;
 
 
         $shop->save();
         return redirect('/');
+
+
+
     }
 
-    // display shop information
+
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+
     public function show($id)
     {
         $shop = Shop::find($id);
         return view('shops.show')->with('shops', $shop);
     }
 
-    // edit shop information
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+
     public function edit($id)
     {
         $shop = DB::select('select * from shops where id = ?', [$id]);

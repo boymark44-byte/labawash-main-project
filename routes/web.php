@@ -67,10 +67,13 @@ Route::post('users/auth',
 //Customer's form
 Route::resource('customers', CustomerController::class)->middleware('role:3');
 
+//Delete Customer's info
+Route::delete('/destroy/{id}', [ShopDashController::class, 'destroy'])->name('destroy');
+
 
 //Shop's Form
 Route::resource('shops', ShopController::class);
-Route::put('edit/{id}', [ShopController::class, 'edit'])->name('edit');
+Route::put('edit/{id}', [ShopController::class, 'edit'])->name('edit')->middleware('role:1,3');
 Route::put('update/{id}', [ShopController::class, 'update'])->name('update');
 
 //Show Shop Details
@@ -82,8 +85,11 @@ Route::resource('loads', LoadController::class)->middleware('role:2,3');
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
-//shop dashboard
-Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard')->middleware('role:2');
+//display owner and the shops
+Route::get('/shop_dashboard/{id}', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard')->middleware('role:2');
+
+//display shop and its customers
+Route::get('/display/{id}', [ShopDashController::class, 'display'])->name('display')->middleware('role:2');
 
 //For showing table for customers loads
 Route::get('/showloads/{id}', [ShowTables::class, 'showloads'])->name('showloads');
