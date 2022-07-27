@@ -28,7 +28,7 @@ use App\Models\Shop;
 //Role Legends 1 = Admin, 2 = Shop, 3 = Customer
 
 Route::get('/', function () {
-    $images = Shop::all();
+    $images = Shop::where('approve', '1')->get();
     return view('welcome')->with('images', $images);
 });
 
@@ -86,7 +86,7 @@ Route::get('/dashboard', function () {
 Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard')->middleware('role:2');
 
 //For showing table for customers loads
-Route::get('/showLoads/{id}', [ShowTables::class, 'showLoads'])->name('showLoads');
+Route::get('/showloads/{id}', [ShowTables::class, 'showloads'])->name('showloads');
 
 
 //For showing joined tables of customer and load
@@ -99,3 +99,5 @@ Route::get('/cancel/{id}', [ApprovalController::class, 'cancel'])->name('cancel'
 //for expenses table
 Route::resource('expense', ExpenseController::class);
 
+//to get my cart
+Route::get('/mycart', [ShowTables::class, 'mycart'])->name('mycart');

@@ -1,3 +1,5 @@
+//For shop role, display all loads for specific customer
+
 @extends('layouts.app')
 
 @section('content')

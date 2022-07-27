@@ -11,11 +11,8 @@ use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /*  display shops needed to be approve when role is 1 and displays all approved shops
+        when role is customer */
 
     public function index()
     {
@@ -32,22 +29,13 @@ class ShopController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //view shop create form
     public function create()
     {
         return view('shops.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //store data from create form
     public function store(Request $request)
     {
         $uploadedFileUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
@@ -61,56 +49,31 @@ class ShopController extends Controller
         $url = $uploadedFileUrl;
         $shop = new Shop();
 
-        $shop->shop_name = strip_tags($request->input('shop_name'));
-        $shop->shop_address = strip_tags($request->input('shop_address'));
-        $shop->description = strip_tags($request->input('description'));
+        $shop->user_id = Auth::user()->id;
+        $shop->shop_name = ($request->input('shop_name'));
+        $shop->shop_address = ($request->input('shop_address'));
+        $shop->description = ($request->input('description'));
         $shop->image = $url;
 
         $shop->save();
 
         return redirect('/');
-
-
     }
 
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    // admin approves to display a shop
+    // display shop information
     public function show($id)
     {
         $shop = Shop::find($id);
         return view('shops.show')->with('shops', $shop);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    //admin didn't approve the shop yet
+    // edit shop information
     public function edit($id)
     {
         $shop = DB::select('select * from shops where id = ?', [$id]);
         return view('shops.edit', ['shop'=>$shop]);
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         // $uploadedFileUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
@@ -130,18 +93,12 @@ class ShopController extends Controller
         $description = $request->input('description');
         DB::update('update shops set shop_name = ?, shop_address = ?, description = ? where id = ?', [$shop_name, $shop_address, $description, $id]);
         }
-        
+
 
         // DB::update('update shops set shop_name = ?, shop_address = ?, description = ? where id = ?', [$shop_name, $shop_address, $description, $id]);
         return redirect('/shop_dashboard');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
 

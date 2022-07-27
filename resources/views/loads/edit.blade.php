@@ -1,3 +1,5 @@
+// edit only the status
+
 @extends('layouts.app')
 
 @section('content')

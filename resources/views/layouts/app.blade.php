@@ -61,8 +61,10 @@
                     </ul>
                 </nav>
                  <!-- Image Icon for Cart on the Upper Right-->
-                 <a href="#"><img src="images/laundry-basket.png" alt="" width="30px" height="30px"></a>
-                 <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+                    <a href="{{ route('mycart') }}">
+                        <img src="images/laundry-basket.png" alt="" width="30px" height="30px">
+                    </a>
+                    <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
             </div>
         </div>
     </div>

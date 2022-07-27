@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class ShopDashController extends Controller
 {
+    // if role = 2, this will display only the shop dashboard of the shop owner
     public function shop_dashboard(Request $request){
         if(isset($_GET['query'])){
             $search_text=$_GET['query'];

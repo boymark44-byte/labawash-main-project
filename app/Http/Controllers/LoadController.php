@@ -10,13 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class LoadController extends Controller
 {
-    //
+    //not used at the moment
     public function index()
     {
-
+        // $id = Auth::id();
+        // dd($id);
     }
 
-    //
+    //not used at the moment
     public function create()
     {
         $customer = Customer::all();

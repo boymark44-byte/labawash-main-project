@@ -11,6 +11,7 @@ class Customer extends Model
 
     protected $fillable = [
         'name',
+        'user_id',
         'shop_id',
         'address',
         'contact_number',
@@ -21,5 +22,10 @@ class Customer extends Model
     }
     public function loads(){
         return $this->hasMany(Load::class, 'customers_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
