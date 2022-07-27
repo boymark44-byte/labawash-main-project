@@ -35,7 +35,6 @@ class ShowTables extends Controller
 
     public function mycart()
     {
-        $user = auth()->user()->customer()->get();
         $customers = Customer::with('loads')->get();
 
         // dd($customers);
