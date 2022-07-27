@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->string('shop_name')->unique();
             $table->string('shop_address');
+            $table->string('image');
             $table->string('description');
             $table->boolean('approve')->default(false);
-            $table->string('image');
             $table->timestamps();
         });
     }

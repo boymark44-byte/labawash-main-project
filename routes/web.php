@@ -10,6 +10,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShopDashController;
 use App\Http\Controllers\ShowTables;
 use App\Http\Controllers\ApprovalController;
+use App\Http\Controllers\ExpenseController;
+use App\Models\Shop;
 
 
 /*
@@ -26,7 +28,8 @@ use App\Http\Controllers\ApprovalController;
 //Role Legends 1 = Admin, 2 = Shop, 3 = Customer
 
 Route::get('/', function () {
-    return view('welcome');
+    $images = Shop::where('approve', '1')->get();
+    return view('welcome')->with('images', $images);
 });
 
 //Reditected to admin dashboard
@@ -66,8 +69,7 @@ Route::resource('customers', CustomerController::class)->middleware('role:3');
 
 //Delete Customer's info
 Route::delete('/destroy/{id}', [ShopDashController::class, 'destroy'])->name('destroy');
-// Route::get('/show/{id}', [ShopDashController::class, 'show'])->name('show');
-// Route::get('/shop/{id}', [ShopDashController::class, 'shop'])->name('shop');
+
 
 //Shop's Form
 Route::resource('shops', ShopController::class);
@@ -83,8 +85,11 @@ Route::resource('loads', LoadController::class)->middleware('role:2,3');
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
-//shop dashboard
-Route::get('/shop_dashboard', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard')->middleware('role:2');
+//display owner and the shops
+Route::get('/shop_dashboard/{id}', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard')->middleware('role:2');
+
+//display shop and its customers
+Route::get('/display/{id}', [ShopDashController::class, 'display'])->name('display')->middleware('role:2');
 
 //For showing table for customers loads
 Route::get('/showLoads/{id}', [ShowTables::class, 'showLoads'])->name('showLoads');
@@ -96,5 +101,8 @@ Route::get('/customertransaction/{id}', [ShowTables::class, 'customertransaction
 //admin's approval
 Route::get('/accept/{id}', [ApprovalController::class, 'accept'])->name('accept');
 Route::get('/cancel/{id}', [ApprovalController::class, 'cancel'])->name('cancel');
+
+//for expenses table
+Route::resource('expense', ExpenseController::class);
 
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Customer;
 use App\Models\Load;
+use App\Models\Shop;
 
 use function Ramsey\Uuid\v1;
 
@@ -33,29 +34,11 @@ class ShowTables extends Controller
 
     public function customertransaction($id)
     {
-        // $record = Customer::find($id);
-        // $customers = $record->loads()->get();
-
         $customers = Customer::where('id', $id)->with('loads')->get();
         $loads = Load::with('customer')->where('customers_id', $id)->get();
         $index = Customer::where('id', $id)->with('loads')->select('id')->first();
 
-        return view('loads.index', compact('customers', 'loads', 'index'));
-
-        // dd($index);
-    }
-
-    public function shopcustomers($id)
-    {
-        // $record = Customer::find($id);
-        // $customers = $record->loads()->get();
-
-        $shops = Shop::where('id', $id)->with('customers')->get();
-        $customers = Customer::with('shop')->where('shop_id', $id)->get();
-        $index = Shop::where('id', $id)->with('customers')->select('id')->first();
 
         return view('loads.index', compact('customers', 'loads', 'index'));
-
-        // dd($index);
     }
 }

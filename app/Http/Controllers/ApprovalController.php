@@ -7,6 +7,7 @@ use App\Models\Shop;
 
 class ApprovalController extends Controller
 {
+
     public function accept($id)
     {
         $data=Shop::find($id);

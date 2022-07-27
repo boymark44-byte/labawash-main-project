@@ -2,6 +2,7 @@
 
 @section('content')
 
+<div class="header">
             <!-- Row -->
             <div class="row">
                 <div class="col-2">
@@ -23,8 +24,9 @@
                 <div class="col-2">
                     <img src="images/woman-landing.png" alt="">
                 </div>
-            </div>
 
+            </div>
+        </div>
     <!-- The Featured Category Section -->
     <div class="categories">
         <div class="small-container">
@@ -52,10 +54,27 @@
         <h2 class="title">Featured Laundry Shops</h2>
 
         <div class="row">
-
-            <!-- Product 1 -->
+            @foreach ($images as $item)
             <div class="col-4">
-                <a href="/details/1"><img src="images/laundry-shop-5.jpg" alt=""></a>
+                <a href="{{ route('shops.show', $item->id) }}"><img src="{{$item->image}}" alt=""></a>
+                <a href="/details"><h4>{{ $item->shop_name }}</h4></a>
+
+                <!-- Rating -->
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+
+                <!-- Price -->
+                <p>$50.00</p>
+            </div>
+            @endforeach
+            {{-- <!-- Product 1 -->
+            <div class="col-4">
+                <a href="/details/1"><img src="https://res.cloudinary.com/dzk7k6owk/image/upload/v1658719348/agthbif8pcjbzack6c4y.jpg" alt=""></a>
                 <a href="/details"><h4>A Plus Cleaners</h4></a>
 
                 <!-- Rating -->
@@ -73,7 +92,7 @@
 
             <!-- Product 2 -->
             <div class="col-4">
-                <a href="/details/2"><img src="images/laundry-shop-2.jpg" alt=""></a>
+                <a href="/details/2"><img src="https://res.cloudinary.com/dzk7k6owk/image/upload/v1658719377/p31ydy625nwlegqwem98.jpg" alt=""></a>
                 <h4>Ace Laundromat</h4>
 
                 <!-- Rating -->
@@ -123,7 +142,7 @@
 
                 <!-- Price -->
                 <p>$53.00</p>
-            </div>
+            </div> --}}
         </div>
 
 
