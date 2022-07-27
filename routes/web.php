@@ -105,4 +105,3 @@ Route::get('/cancel/{id}', [ApprovalController::class, 'cancel'])->name('cancel'
 //for expenses table
 Route::resource('expense', ExpenseController::class);
 
-

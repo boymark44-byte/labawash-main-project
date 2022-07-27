@@ -52,7 +52,7 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        $uploadedFileUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+
         $this->validate($request, [
             'shop_name' =>'required',
             'shop_address' =>'required',
@@ -60,14 +60,27 @@ class ShopController extends Controller
             // 'file' => [],
 
         ]);
-        $url = $uploadedFileUrl;
+        // $url = $uploadedFileUrl;
         $shop = new Shop();
+        if( ! $request->file('image')){
+            $shop->user_id = Auth::user()->id;
+            $shop->shop_name = ($request->input('shop_name'));
+            $shop->shop_address = ($request->input('shop_address'));
+            $shop->description = ($request->input('description'));
+        $shop->save();
 
+        return redirect('/');
+        }
+        else{
+        $uploadedFileUrl = Cloudinary::upload($request->file('image')->getPathname())->getSecurePath();
+        }
+        $url = $uploadedFileUrl;
         $shop->user_id = Auth::user()->id;
         $shop->shop_name = ($request->input('shop_name'));
         $shop->shop_address = ($request->input('shop_address'));
         $shop->description = ($request->input('description'));
         $shop->image = $url;
+
 
         $shop->save();
         return redirect('/');
@@ -75,6 +88,7 @@ class ShopController extends Controller
 
 
     }
+
 
 
 
@@ -133,6 +147,7 @@ class ShopController extends Controller
         $description = $request->input('description');
         DB::update('update shops set shop_name = ?, shop_address = ?, description = ? where id = ?', [$shop_name, $shop_address, $description, $id]);
         }
+
 
 
         // DB::update('update shops set shop_name = ?, shop_address = ?, description = ? where id = ?', [$shop_name, $shop_address, $description, $id]);

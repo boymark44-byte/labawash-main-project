@@ -3,17 +3,14 @@
    
 <div>
     <h3>
-        {{$detail['name']}}
+        {{$shop['shop_name']}}
     </h3>
         <ul>
             <li>
-                Type: {{$detail['type']}}
+                Location: {{$shop['shop_address']}}
             </li>
             <li>
-                Location: {{$detail['location']}}
-            </li>
-            <li>
-                Year Established: {{$detail['year_created']}}
+                Description: {{$shop['description']}}
             </li>
         </ul> 
 </div>

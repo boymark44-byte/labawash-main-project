@@ -32,7 +32,12 @@
                                                 <tr>
                                                 <td>{{$shop->user_id}}</td>
                                                 <td>{{$shop->id}}</td>
-                                                <td><img src="{{ $shop->image }}" alt=""></td>
+                                                @if ($shop->image == true)
+                                                    <td><img src="{{ $shop->image }}" alt=""></td>
+                                                @else
+                                                    <td><img src="images/laundry-default.jpg" alt=""></td>
+                                                @endif
+
                                                 <td>{{$shop->shop_name}}</td>
                                                 <td>{{$shop->shop_address}}</td>
                                                 <td>{{$shop->description}}</td>
@@ -52,34 +57,38 @@
                                     </tbody>
                                 </table>
                             @endif
+                        @else
+                            @if(isset($shops))
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th style="padding: 10px">Shop Image</th>
+                                            <th style="padding:10px">Shop Name </th>
+                                            <th style="padding:10px">Shop Address </th>
+                                            <th style="padding:10px">Description </th>
 
-                    @else
-                        @if(isset($shops))
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th style="padding:10px">Shop Image </th>
-                                        <th style="padding:10px">Shop Name </th>
-                                        <th style="padding:10px">Shop Address </th>
-                                        <th style="padding:10px">Description </th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if(count($shops)>0)
-                                        @foreach($shops as $shop)
-                                            <tr>
-                                            <td><img src="{{ $shop->image }}"></td>
-                                            <td><a href="{{route('customers.show', ['customer' => $shop->id])}}">{{$shop->shop_name}}</td>
-                                            <td>{{$shop->shop_address}}</td>
-                                            <td>{{$shop->description}}</td>
-                                            </tr>
-                                        @endforeach
-                                    @else
-                                        <tr><td>No Shop to display</td></tr>
-                                    @endif
-                                </tbody>
-                            </table>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if(count($shops)>0)
+                                            @foreach($shops as $shop)
+                                                <tr>
+                                                @if ($shop->image == true)
+                                                    <td><img src="{{ $shop->image }}" alt=""></td>
+                                                @else
+                                                    <td><img src="images/laundry-default.jpg" alt=""></td>
+                                                @endif
+                                                <td><a href="{{route('customers.show', ['customer' => $shop->id])}}">{{$shop->shop_name}}</td>
+                                                <td>{{$shop->shop_address}}</td>
+                                                <td>{{$shop->description}}</td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr><td>No Shop to display</td></tr>
+                                        @endif
+                                    </tbody>
+                                </table>
+                            @endif
                         @endif
                     @endif
 

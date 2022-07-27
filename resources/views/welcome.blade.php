@@ -56,7 +56,13 @@
         <div class="row">
             @foreach ($images as $item)
             <div class="col-4">
+                @if ($item->image == true)
                 <a href="{{ route('shops.show', $item->id) }}"><img src="{{$item->image}}" alt=""></a>
+
+                @else
+                <a href="{{ route('shops.show', $item->id) }}"><img src="images/laundry-default.jpg" alt="">
+
+                @endif
                 <a href="/details"><h4>{{ $item->shop_name }}</h4></a>
 
                 <!-- Rating -->
@@ -64,8 +70,8 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    <i class="fa fa-star-o"></i>
                 </div>
 
                 <!-- Price -->
