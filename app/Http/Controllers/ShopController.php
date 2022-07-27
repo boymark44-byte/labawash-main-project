@@ -12,11 +12,8 @@ use App\Models\Shop;
 use App\Models\User;
 class ShopController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /*  display shops needed to be approve when role is 1 and displays all approved shops
+        when role is customer */
 
     public function index()
     {
@@ -33,23 +30,14 @@ class ShopController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //view shop create form
     public function create()
     {
 
         return view('shops.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //store data from create form
     public function store(Request $request)
     {
 
@@ -120,14 +108,6 @@ class ShopController extends Controller
         return view('shops.edit', ['shop'=>$shop]);
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         // $uploadedFileUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
@@ -149,17 +129,10 @@ class ShopController extends Controller
         }
 
 
-
         // DB::update('update shops set shop_name = ?, shop_address = ?, description = ? where id = ?', [$shop_name, $shop_address, $description, $id]);
         return redirect('/shop_dashboard');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
 

@@ -1,4 +1,4 @@
-{{-- To display customer and load information after fill up --}}
+{{-- To display my cart --}}
 
 @extends('layouts.app')
 
@@ -6,15 +6,15 @@
     <h1>Your Information</h1>
 
     <div>
-        @if (isset($customers, $loads))
-            @foreach ($customers as $item)
-                <p>Name: {{ $item->name }}</p>
-                <p>Address: {{ $item->address }}</p>
-                <p>Contact Number: {{ $item->contact_number }}</p>
-                <p>Shop: {{ $item->shop_id }}</p>
+        @if (isset($customers))
+        @if(count($customers)>0)
+            @foreach ($customers as $customer)
 
-                <h1>Your Loads</h1>
-                @foreach ($item->loads as $load)
+                <p>Customer: {{ $customer->address }}</p>
+                <p>Contact Number: {{ $customer->contact_number }}</p>
+                <p>Shop Name: {{ $customer->shops->shop_name }}</p>
+
+                @foreach ($customer->loads as $load)
                     <p>Load Quantity: {{ $load->load_quantity }}</p>
                     <p>Load Selector: {{ $load->load_selector }}</p>
                     <p>Color Type: {{ $load->color_type }}</p>
@@ -24,11 +24,9 @@
                     <p>Status: {{ $load->status }}</p>
                 @endforeach
 
+                <br>
             @endforeach
-
-            <label>Would you like to add another load?</label>
-            <a href="{{ route('loads.show', ['load'=>$index->id]) }}">Yes</a>
-            <a href="/">No</a>
+        @endif
         @endif
 
     </div>

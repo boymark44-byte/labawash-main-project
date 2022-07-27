@@ -23,7 +23,7 @@ class Shop extends Model
         return $this->belongsTo(User::class);
     }
     public function customers(){
-        return $this->hasMany(Customer::class);
+        return $this->hasMany(Customer::class, 'shop_id', 'id');
     }
 
 }

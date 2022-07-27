@@ -92,7 +92,7 @@ Route::get('/shop_dashboard/{id}', [ShopDashController::class, 'shop_dashboard']
 Route::get('/display/{id}', [ShopDashController::class, 'display'])->name('display')->middleware('role:2');
 
 //For showing table for customers loads
-Route::get('/showLoads/{id}', [ShowTables::class, 'showLoads'])->name('showLoads');
+Route::get('/showloads/{id}', [ShowTables::class, 'showloads'])->name('showloads');
 
 
 //For showing joined tables of customer and load
@@ -105,3 +105,5 @@ Route::get('/cancel/{id}', [ApprovalController::class, 'cancel'])->name('cancel'
 //for expenses table
 Route::resource('expense', ExpenseController::class);
 
+//to get my cart
+Route::get('/mycart', [ShowTables::class, 'mycart'])->name('mycart');
