@@ -1,17 +1,24 @@
 @extends('layouts.app')
 @section('content')
-
-        {{-- Ibutang sa tunga ang image pls --}}
-        
-        <h1>Logo</h1>
+    <div class="container">
         @if ($shops->image == true)
-            <img src="{{ $shops->image }}" alt="">
+            <h1> Logo<img src="{{ $shops->image }}"></h1>
         @else
-            <img src="images/laundry-default.jpg" alt="">
+            <img src="images/laundry-default.jpg">
         @endif
+        <h1>Name : {{ $shops->shop_name }}</h1>
+        <h2>Address : {{ $shops->shop_address }}</h2>
+        <h3>Description : {{ $shops->description }}</h3>
 
-        <h5>Name : {{ $shops->shop_name }}</h5>
-        <p>Address : {{ $shops->shop_address }}</p>
-        <p>Description : {{ $shops->description }}</p>
+        @auth
+        <label>Magpa laundry ka?</label>
+        <a href="{{route('customers.show', ['customer' => $shops->id])}}">Yes</a>
+        <a href="/">No</a>
+        @else
+        <label>Magpa laundry ka?</label>
+        <a href="/login">Yes</a>
+        <a href="/">No</a>
+        @endauth
 
+    </div>
 @endsection

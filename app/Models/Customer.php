@@ -16,7 +16,7 @@ class Customer extends Model
         'contact_number',
     ];
 
-    public function shops(){
+    public function shop(){
         return $this->belongsTo(Shop::class);
     }
     public function loads(){

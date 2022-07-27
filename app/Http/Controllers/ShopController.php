@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Shop;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Shop;
+use App\Models\User;
 class ShopController extends Controller
 {
     /**
@@ -39,6 +40,7 @@ class ShopController extends Controller
      */
     public function create()
     {
+
         return view('shops.create');
     }
 
@@ -50,8 +52,8 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $request ->validate([
+
+        $this->validate($request, [
             'shop_name' =>'required',
             'shop_address' =>'required',
             'description' =>'required',
@@ -61,9 +63,10 @@ class ShopController extends Controller
         // $url = $uploadedFileUrl;
         $shop = new Shop();
         if( ! $request->file('image')){
-        $shop->shop_name = strip_tags($request->input('shop_name'));
-        $shop->shop_address = strip_tags($request->input('shop_address'));
-        $shop->description = strip_tags($request->input('description'));
+            $shop->user_id = Auth::user()->id;
+            $shop->shop_name = ($request->input('shop_name'));
+            $shop->shop_address = ($request->input('shop_address'));
+            $shop->description = ($request->input('description'));
         $shop->save();
 
         return redirect('/');
@@ -72,18 +75,20 @@ class ShopController extends Controller
         $uploadedFileUrl = Cloudinary::upload($request->file('image')->getPathname())->getSecurePath();
         }
         $url = $uploadedFileUrl;
-        $shop->shop_name = strip_tags($request->input('shop_name'));
-        $shop->shop_address = strip_tags($request->input('shop_address'));
-        $shop->description = strip_tags($request->input('description'));
+        $shop->user_id = Auth::user()->id;
+        $shop->shop_name = ($request->input('shop_name'));
+        $shop->shop_address = ($request->input('shop_address'));
+        $shop->description = ($request->input('description'));
         $shop->image = $url;
-        
-        
+
+
         $shop->save();
-        
         return redirect('/');
 
 
+
     }
+
 
 
 
@@ -94,7 +99,7 @@ class ShopController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // admin approves to display a shop
+
     public function show($id)
     {
         $shop = Shop::find($id);
@@ -108,7 +113,7 @@ class ShopController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    //admin didn't approve the shop yet
+
     public function edit($id)
     {
         $shop = DB::select('select * from shops where id = ?', [$id]);
@@ -142,7 +147,8 @@ class ShopController extends Controller
         $description = $request->input('description');
         DB::update('update shops set shop_name = ?, shop_address = ?, description = ? where id = ?', [$shop_name, $shop_address, $description, $id]);
         }
-        
+
+
 
         // DB::update('update shops set shop_name = ?, shop_address = ?, description = ? where id = ?', [$shop_name, $shop_address, $description, $id]);
         return redirect('/shop_dashboard');

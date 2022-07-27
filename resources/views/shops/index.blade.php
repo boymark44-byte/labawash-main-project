@@ -13,6 +13,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
+                                            <th style="padding:10px">User ID </th>
                                             <th style="padding:10px">Shop ID </th>
                                             <th style="padding: 10px">Shop Image</th>
                                             <th style="padding:10px">Shop Name </th>
@@ -21,6 +22,7 @@
                                             <th style="padding:10px">Status </th>
                                             <th style="padding:10px">Approve </th>
                                             <th style="padding:10px">Cancel </th>
+                                            <th style="padding:10px">View </th>
 
                                         </tr>
                                     </thead>
@@ -28,13 +30,14 @@
                                         @if(count($shops)>0)
                                             @foreach($shops as $shop)
                                                 <tr>
+                                                <td>{{$shop->user_id}}</td>
                                                 <td>{{$shop->id}}</td>
                                                 @if ($shop->image == true)
                                                     <td><img src="{{ $shop->image }}" alt=""></td>
                                                 @else
                                                     <td><img src="images/laundry-default.jpg" alt=""></td>
                                                 @endif
-                                                
+
                                                 <td>{{$shop->shop_name}}</td>
                                                 <td>{{$shop->shop_address}}</td>
                                                 <td>{{$shop->description}}</td>
@@ -87,6 +90,8 @@
                                 </table>
                             @endif
                         @endif
+                    @endif
+
                 </div>
             </div>
         </div>

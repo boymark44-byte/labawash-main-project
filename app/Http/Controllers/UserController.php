@@ -63,13 +63,13 @@ class UserController extends Controller
             $role = Auth::user()->role;
         switch ($role) {
           case '1':
-            return redirect('/shops')->with('message', 'You are now logged in');
+            return redirect('/')->with('message', 'You are now logged in');
             break;
           case '2':
-            return redirect('/shop_dashboard')->with('message', 'You are now logged in');
+            return redirect('/')->with('message', 'You are now logged in');
             break;
           case '3':
-            return redirect('/customer_dashboard')->with('message', 'You are now logged in');
+            return redirect('/')->with('message', 'You are now logged in');
               break;
 
           default:
