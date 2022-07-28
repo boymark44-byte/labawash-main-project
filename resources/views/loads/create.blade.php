@@ -60,6 +60,6 @@
                         <button class="btn"> Submit </button>
             </form>
         </div>
-        <button class="btn"><a href="{{ route('customertransaction', $customers_id) }}">Back</a></button>
+        <a href="{{ route('customertransaction', $customers_id) }}" class="btn">Back</a>
     </div>
 @endsection

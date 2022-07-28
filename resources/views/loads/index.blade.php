@@ -28,7 +28,6 @@
             @endforeach
         @endif
             <label>Would you like to add another load?</label>
-            <button class="btn"><a href="{{ route('loads.show', ['load'=>$index->id]) }}">Yes</a></button>
-            <button class="btn"><a href="/">No</a></button>
-    </div>
+            <a href="{{ route('loads.show', ['load'=>$index->id]) }}" class="btn">Yes</a>
+            <a href="{{ route('mycart') }}" class="btn">No</a>
 @endsection
