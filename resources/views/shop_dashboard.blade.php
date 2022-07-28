@@ -29,11 +29,11 @@
 
                     @foreach ($item->shops as $shop)
                     <tr>
-                        <td><a href="{{ route('display', $shop->id) }}">{{$shop->id}}</td></a>
+                        <td>{{$shop->id}}</td>
                         @if ($shop->image == true)
-                            <td><img src="{{ $shop->image }}" alt=""></td>
+                            <td><a href="{{ route('display', $shop->id) }}"><img src="{{ $shop->image }}" alt=""></a></td>
                         @else
-                            <td><img src="../images/laundry-default.jpg" style="width: 150px" alt=""></td>
+                            <td><a href="{{ route('display', $shop->id) }}"><img src="../images/laundry-default.jpg" style="width: 150px" alt=""></a></td>
                         @endif
                         <td>{{$shop->shop_name}}</td>
                         <td>{{$shop->shop_address}}</td>
