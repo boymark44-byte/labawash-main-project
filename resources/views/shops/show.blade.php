@@ -6,7 +6,7 @@
         @if ($shops->image == true)
             <h1> Logo<img src="{{ $shops->image }}"></h1>
         @else
-            <img src="images/laundry-default.jpg">
+            <h1> No Logo <img src="../images/laundry-default.jpg" alt=""></h1>
         @endif
         <h1>Name : {{ $shops->shop_name }}</h1>
         <h2>Address : {{ $shops->shop_address }}</h2>

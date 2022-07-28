@@ -33,7 +33,7 @@
                         @if ($shop->image == true)
                             <td><img src="{{ $shop->image }}" alt=""></td>
                         @else
-                            <td><img src="images/laundry-default.jpg" style="width: 150px" alt=""></td>
+                            <td><img src="../images/laundry-default.jpg" style="width: 150px" alt=""></td>
                         @endif
                         <td>{{$shop->shop_name}}</td>
                         <td>{{$shop->shop_address}}</td>
