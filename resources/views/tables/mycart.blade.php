@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Your Information</h1>
+    <h1>Your Transactions</h1>
 
     <div class="container">
         @if (isset($customers))
