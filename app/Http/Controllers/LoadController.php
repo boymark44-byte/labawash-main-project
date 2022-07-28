@@ -13,8 +13,9 @@ class LoadController extends Controller
     //not used at the moment
     public function index()
     {
-        // $id = Auth::id();
-        // dd($id);
+
+
+        return view('loads.rating');
     }
 
     //not used at the moment
