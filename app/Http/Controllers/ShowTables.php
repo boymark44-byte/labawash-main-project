@@ -35,7 +35,8 @@ class ShowTables extends Controller
 
     public function mycart()
     {
-        $customers = Customer::with( 'loads', 'shops')->get();
+        $id = auth()->user()->id;
+        $customers = Customer::with( 'loads', 'shops')->where('user_id', $id)->get();
 
         // dd($customers);
         return view('tables.mycart', compact('customers'));

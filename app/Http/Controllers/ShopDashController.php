@@ -23,7 +23,7 @@ class ShopDashController extends Controller
     public function display($id){
 
         $shops = Shop::where('id', $id)->with('customers')->get();
-        $customers = Customer::with('shop')->where('shop_id', $id)->get();
+        $customers = Customer::with('shops')->where('shop_id', $id)->get();
         $index = Shop::where('id', $id)->with('customers')->select('id')->first();
 
 
@@ -34,7 +34,8 @@ class ShopDashController extends Controller
 
         $customers = Customer::find($id);
         $customers->delete();
-        return view('/shop_dashboard');
+        $index = $customers->shop_id;
+        return redirect()->route('display', ['id'=>$index]);
     }
 
     public function show($id){
