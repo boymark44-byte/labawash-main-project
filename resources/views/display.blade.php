@@ -29,6 +29,7 @@
                         @csrf
                         @method('DELETE')
                             <button class="btn">Delete</button>
+                        </form>
                     </td>
                 </tr>
 
@@ -36,6 +37,7 @@
                 @endforeach
             @endforeach
         </table>
+        <button class="btn"><a href="{{ route('shop_dashboard', $id = Auth::id()) }}">Back</a></button>
     @endif
 </div>
 @endsection
