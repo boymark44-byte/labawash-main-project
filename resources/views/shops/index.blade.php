@@ -59,36 +59,6 @@
                             @endif
                         @else
                             @if(isset($shops))
-                                {{-- <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th style="padding: 10px">Shop Image</th>
-                                            <th style="padding:10px">Shop Name </th>
-                                            <th style="padding:10px">Shop Address </th>
-                                            <th style="padding:10px">Description </th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if(count($shops)>0)
-                                            @foreach($shops as $shop)
-                                                <tr>
-                                                    @if ($shop->image == true)
-                                                    <td><img src="{{ $shop->image }}" alt=""></td>
-                                                @else
-                                                    <td><img src="images/laundry-default.jpg" alt=""></td>
-                                                @endif
-                                                <td><a href="{{route('customers.show', ['customer' => $shop->id])}}">{{$shop->shop_name}}</td>
-                                                <td>{{$shop->shop_address}}</td>
-                                                <td>{{$shop->description}}</td>
-                                                </tr>
-                                            @endforeach
-                                        @else
-                                            <tr><td>No Shop to display</td></tr>
-                                        @endif
-                                    </tbody>
-                                </table> --}}
-
                                 <div class="small-container">
                                     <h2 class="title">Choose Shop</h2>
 
