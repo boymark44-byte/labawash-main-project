@@ -1,4 +1,4 @@
-//For shop role, display all loads for specific customer
+{{-- For shop role, display all loads for specific customer --}}
 
 @extends('layouts.app')
 
@@ -34,14 +34,14 @@
                                                 <td>{{$item->additional_expenses}}</td>
                                                 <td>{{$item->description}}</td>
                                                 <td>{{$item->status}}</td>
-                                                <td><button class="btn"><a href="{{ route('loads.edit', ['load' => $item->id]) }}">Edit</a></button></td>
+                                                <td class="card-header"><button class="btn"><a href="{{ route('loads.edit', ['load' => $item->id]) }}">Edit</a></button></td>
                                             </tr>
                                         @endforeach
 
                                 </tbody>
                             </table>
                         @endif
-                        <button class ="btn"><a href ="{{route('shop_dashboard')}}">Back</a></button>
+                        <button class ="btn"><a href ="{{route('shop_dashboard', $id = Auth::id())}}">Back</a></button>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Choose Shop') }}</div>
+
 
                         @if ( Auth::user()->role == 1)
                             @if(isset($shops))
@@ -59,7 +59,7 @@
                             @endif
                         @else
                             @if(isset($shops))
-                                <table class="table table-hover">
+                                {{-- <table class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th style="padding: 10px">Shop Image</th>
@@ -87,10 +87,41 @@
                                             <tr><td>No Shop to display</td></tr>
                                         @endif
                                     </tbody>
-                                </table>
+                                </table> --}}
+
+                                <div class="small-container">
+                                    <h2 class="title">Choose Shop</h2>
+
+                                    <div class="row">
+                                        @foreach ($shops as $shop)
+                                        <div class="col-4">
+                                            @if ($shop->image == true)
+                                            <a href="{{ route('shops.show', $shop->id) }}"><img src="{{$shop->image}}" alt=""></a>
+
+                                            @else
+                                            <a href="{{ route('shops.show', $shop->id) }}"><img src="images/laundry-default.jpg" alt="">
+
+                                            @endif
+                                            <a href="/details"><h4>{{ $shop->shop_name }}</h4></a>
+
+                                            <!-- Rating -->
+                                            <div class="rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+
+                                            <!-- Price -->
+                                            <p>$50.00</p>
+                                        </div>
+                                        @endforeach
+
+                                    </div>
                             @endif
                         @endif
-                    @endif
+
 
                 </div>
             </div>

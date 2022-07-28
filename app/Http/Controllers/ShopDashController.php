@@ -23,7 +23,7 @@ class ShopDashController extends Controller
     public function display($id){
 
         $shops = Shop::where('id', $id)->with('customers')->get();
-        $customers = Customer::with('shop')->where('shop_id', $id)->get();
+        $customers = Customer::with('shops')->where('shop_id', $id)->get();
         $index = Shop::where('id', $id)->with('customers')->select('id')->first();
 
 

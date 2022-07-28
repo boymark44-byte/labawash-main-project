@@ -20,7 +20,7 @@
                 @foreach ($item->customers as $customer)
                 <tr>
                     <td>{{$customer->shop_id}}</td></a>
-                    <td>{{$customer->name}}</td>
+                    <td><a href="{{ route('showloads', $customer->id) }}">{{$customer->name}}</a></td>
                     <td>{{$customer->address}}</td>
                     <td>{{$customer->contact_number}}</td>
                 </tr>

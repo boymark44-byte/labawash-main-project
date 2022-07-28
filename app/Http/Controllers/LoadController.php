@@ -73,19 +73,13 @@ class LoadController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            // 'load_quantity',
-            // 'additional_expenses',
-            // 'color_type',
-            // 'load_selector',
-            // 'load_type',
-            // 'description',
-            'status'
+            'status' => 'required'
         ]);
         $load = Load::where('id', $id);
         $load->update(['status' => $request->status]);
+        $id = $load->first()->customers_id;
 
-
-        return redirect()->route('shop_dashboard');
+        return redirect()->route('showloads', $id);
     }
 
     //
