@@ -4,17 +4,49 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Customer;
+use App\Models\Shop;
+use App\Models\User;
 
 class ShopDashController extends Controller
 {
-    public function shop_dashboard(Request $request){
-        if(isset($_GET['query'])){
-            $search_text=$_GET['query'];
-            $shops = DB::table('shops')->where('id','LIKE','%' .$search_text.'%')->paginate(100);
-            $customers = DB::table('customers')->where('shop_id','LIKE','%' .$search_text.'%')->paginate(100);
-            return view('shop_dashboard',['shops'=>$shops],['customers'=>$customers]);
-        }   else{
-                return view('shop_dashboard');
-            }
+    public function shop_dashboard($id){
+
+        $user = User::where('id', $id)->with('shops')->get();
+        $shops = Shop::with('user')->where('user_id', $id)->get();
+        $index = User::where('id', $id)->with('shops')->select('id')->first();
+
+
+        return view('/shop_dashboard', compact('user', 'shops', 'index'));
+    }
+
+    public function display($id){
+
+        $shops = Shop::where('id', $id)->with('customers')->get();
+        $customers = Customer::with('shops')->where('shop_id', $id)->get();
+        $index = Shop::where('id', $id)->with('customers')->select('id')->first();
+
+
+        return view('/display', compact('shops', 'customers', 'index'));
+    }
+
+    public function destroy($id){
+
+        $customers = Customer::find($id);
+        $customers->delete();
+        $index = $customers->shop_id;
+        return redirect()->route('display', ['id'=>$index]);
+    }
+
+    public function show($id){
+
+        $customer = Customer::find($id);
+        return view('customers.show')->with('customers', $customer);
+    }
+
+    public function shop($id){
+
+        $shop = Shop::find($id);
+        return view('shops.shop')->with('shops', $shop);
     }
 }

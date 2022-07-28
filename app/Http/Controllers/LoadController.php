@@ -10,13 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class LoadController extends Controller
 {
-    //
+    //not used at the moment
     public function index()
     {
-
+        // $id = Auth::id();
+        // dd($id);
     }
 
-    //
+    //not used at the moment
     public function create()
     {
         $customer = Customer::all();
@@ -45,7 +46,7 @@ class LoadController extends Controller
             'description' => $request->description,
         ]);
         $id = $customer->id;
-        return redirect()->route('customers.index');
+        return redirect()->route('customertransaction', $id);
     }
 
     // passing foreign key to create load under customers_id
@@ -72,19 +73,13 @@ class LoadController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            // 'load_quantity',
-            // 'additional_expenses',
-            // 'color_type',
-            // 'load_selector',
-            // 'load_type',
-            // 'description',
-            'status'
+            'status' => 'required'
         ]);
         $load = Load::where('id', $id);
         $load->update(['status' => $request->status]);
+        $id = $load->first()->customers_id;
 
-
-        return redirect()->route('shop_dashboard');
+        return redirect()->route('showloads', $id);
     }
 
     //

@@ -19,8 +19,11 @@ class Shop extends Model
         'contact_number',
     ];
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     public function customers(){
-        return $this->hasMany(Customer::class);
+        return $this->hasMany(Customer::class, 'shop_id', 'id');
     }
 
 }

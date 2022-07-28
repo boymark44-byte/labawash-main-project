@@ -2,11 +2,7 @@
 
 @section('content')
 
-
-
-
-
-
+<div class="header">
             <!-- Row -->
             <div class="row">
                 <div class="col-2">
@@ -28,8 +24,9 @@
                 <div class="col-2">
                     <img src="images/woman-landing.png" alt="">
                 </div>
-            </div>
 
+            </div>
+        </div>
     <!-- The Featured Category Section -->
     <div class="categories">
         <div class="small-container">
@@ -57,11 +54,16 @@
         <h2 class="title">Featured Laundry Shops</h2>
 
         <div class="row">
-
-            <!-- Product 1 -->
+            @foreach ($images as $item)
             <div class="col-4">
-                <a href="/details/1"><img src="images/laundry-shop-5.jpg" alt=""></a>
-                <a href="/details"><h4>A Plus Cleaners</h4></a>
+                @if ($item->image == true)
+                <a href="{{ route('shops.show', $item->id) }}"><img src="{{$item->image}}" alt=""></a>
+
+                @else
+                <a href="{{ route('shops.show', $item->id) }}"><img src="images/laundry-default.jpg" alt="">
+
+                @endif
+                <a href="/details"><h4>{{ $item->shop_name }}</h4></a>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -75,60 +77,8 @@
                 <!-- Price -->
                 <p>$50.00</p>
             </div>
+            @endforeach
 
-            <!-- Product 2 -->
-            <div class="col-4">
-                <a href="/details/2"><img src="images/laundry-shop-2.jpg" alt=""></a>
-                <h4>Ace Laundromat</h4>
-
-                <!-- Rating -->
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-
-                <!-- Price -->
-                <p>$51.00</p>
-            </div>
-
-            <!-- Product 3 -->
-            <div class="col-4">
-                <a href="/details/3"><img src="images/laundry-shop-6.jpg" alt=""></a>
-                <h4>All Clean Laundry</h4>
-
-                <!-- Rating -->
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-
-                <!-- Price -->
-                <p>$52.00</p>
-            </div>
-
-            <!-- Product 4 -->
-            <div class="col-4">
-                <a href="/details/4"><img src="images/laundry-shop-4.jpg" alt=""></a>
-                <h4>Angels Home</h4>
-
-                <!-- Rating -->
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-
-                <!-- Price -->
-                <p>$53.00</p>
-            </div>
         </div>
 
 

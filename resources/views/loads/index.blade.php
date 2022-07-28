@@ -1,3 +1,5 @@
+{{-- To display customer and load information after fill up --}}
+
 @extends('layouts.app')
 
 @section('content')
@@ -9,25 +11,24 @@
                 <p>Name: {{ $item->name }}</p>
                 <p>Address: {{ $item->address }}</p>
                 <p>Contact Number: {{ $item->contact_number }}</p>
+                <p>Shop: {{ $item->shop_id }}</p>
+
+                <h1>Your Loads</h1>
+                @foreach ($item->loads as $load)
+                    <p>Load Quantity: {{ $load->load_quantity }}</p>
+                    <p>Load Selector: {{ $load->load_selector }}</p>
+                    <p>Color Type: {{ $load->color_type }}</p>
+                    <p>Load Type: {{ $load->load_type }}</p>
+                    <p>Additional Expenses: {{ $load->additional_expenses }}</p>
+                    <p>Description: {{ $load->description }}</p>
+                    <p>Status: {{ $load->status }}</p>
+                @endforeach
+
             @endforeach
-
-            <h1>Your Loads</h1>
-
-            @foreach ($loads as $item)
-                <p>Load Quantity: {{ $item->load_quantity }}</p>
-                <p>Load Selector: {{ $item->load_selector }}</p>
-                <p>Color Type: {{ $item->color_type }}</p>
-                <p>Load Type: {{ $item->load_type }}</p>
-                <p>Additional Expenses: {{ $item->additional_expenses }}</p>
-                <p>Description: {{ $item->description }}</p>
-                <p>Status: {{ $item->status }}</p>
-                <br>
-            @endforeach
-
 
             <label>Would you like to add another load?</label>
             <a href="{{ route('loads.show', ['load'=>$index->id]) }}">Yes</a>
-            <a href="{{ route('shops.index') }}">No</a>
+            <a href="/">No</a>
         @endif
 
     </div>

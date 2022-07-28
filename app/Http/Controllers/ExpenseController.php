@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Shop;
-use App\Models\Shops;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class DetailController extends Controller
+use Illuminate\Http\Request;
+
+class ExpenseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,6 @@ class DetailController extends Controller
     public function index()
     {
         //
-        return view('details.index', [
-            'shops' => Shop::all()
-        ]);
     }
 
     /**
@@ -29,7 +24,6 @@ class DetailController extends Controller
     public function create()
     {
         //
-        return view('details.create');
     }
 
     /**
@@ -49,12 +43,9 @@ class DetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $shop)
+    public function show($id)
     {
         //
-        return view('details.show', [
-            'shop' => $shop
-        ]);
     }
 
     /**

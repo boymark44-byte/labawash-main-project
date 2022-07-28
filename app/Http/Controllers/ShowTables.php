@@ -6,42 +6,38 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Customer;
 use App\Models\Load;
+use App\Models\Shop;
 
 use function Ramsey\Uuid\v1;
 
 class ShowTables extends Controller
 {
-    public function showLoads($id)
+    // when role is 2, this will display the loads of customer with id = $id
+    public function showloads($id)
     {
-        // return view('tables.customer', [
-        //     'ctable' => Customer::findOrFail($id)
-        // ]);
-
-        // $customerloads = Customer::where('id', $id)->with('loads')->first();
-        // return $customerloads;
-
-        // return view('tables.customerLoad', compact('customerloads'));
-
-        // return redirect()->route('shop_dashboard');
-
         $customers = Customer::where('id', $id)->with('loads')->get();
         $loads = Load::with('customer')->where('customers_id', $id)->get();
 
 
-        return view('tables.customerLoad')->with('loads', $loads);
+        return view('tables.showloads')->with('loads', $loads);
     }
 
+    // this will display the customer and load information after saving
     public function customertransaction($id)
     {
-        // $record = Customer::find($id);
-        // $customers = $record->loads()->get();
 
         $customers = Customer::where('id', $id)->with('loads')->get();
         $loads = Load::with('customer')->where('customers_id', $id)->get();
         $index = Customer::where('id', $id)->with('loads')->select('id')->first();
 
         return view('loads.index', compact('customers', 'loads', 'index'));
+    }
 
-        // dd($loads);
+    public function mycart()
+    {
+        $id = auth()->user()->id;
+        $customers = Customer::with( 'loads', 'shops')->where('user_id', $id)->get();
+
+        return view('tables.mycart', compact('customers'));
     }
 }
