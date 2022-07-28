@@ -9,7 +9,7 @@
                 @csrf
                     @method('PUT')
                         <label>Shop Name</label>
-                        <input type="text" name="shop_name" value="{{$shop[0]->shop_name}}" id="shop_name"><</br>
+                        <input type="text" name="shop_name" value="{{$shop[0]->shop_name}}" id="shop_name"></br>
 
                         <label>Shop Address</label>
                         <input type="text" name="shop_address" value="{{$shop[0]->shop_address}}" id="shop_address"></br>

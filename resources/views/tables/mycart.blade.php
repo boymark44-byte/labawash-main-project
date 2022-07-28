@@ -5,14 +5,15 @@
 @section('content')
     <h1>Your Information</h1>
 
-    <div>
+    <div class="container">
         @if (isset($customers))
         @if(count($customers)>0)
             @foreach ($customers as $customer)
 
-                <p>Customer: {{ $customer->address }}</p>
+                <h3>Shop Name: {{ $customer->shops->shop_name }}</h3>
+                <p>Customer Name: {{ $customer->name }}</p>
+                <p>Customer Address: {{ $customer->address }}</p>
                 <p>Contact Number: {{ $customer->contact_number }}</p>
-                <p>Shop Name: {{ $customer->shops->shop_name }}</p>
 
                 @foreach ($customer->loads as $load)
                     <p>Load Quantity: {{ $load->load_quantity }}</p>
@@ -26,6 +27,8 @@
 
                 <br>
             @endforeach
+        @else
+        <p>No information to display</p>
         @endif
         @endif
 

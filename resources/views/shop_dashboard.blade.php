@@ -22,6 +22,7 @@
                             <th style="padding:10px">Shop Name </th>
                             <th style="padding:10px">Shop Address </th>
                             <th style="padding:10px">Description </th>
+                            <th style="padding:10px">Action </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +38,9 @@
                         <td>{{$shop->shop_name}}</td>
                         <td>{{$shop->shop_address}}</td>
                         <td>{{$shop->description}}</td>
+                        <td>
+                            <a class="btn" href="{{route('shops.edit', $shop->id)}}">Edit</a>
+                        <td>
                     </tr>
 
                     </tbody>

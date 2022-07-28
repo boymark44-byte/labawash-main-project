@@ -130,7 +130,7 @@ class ShopController extends Controller
 
 
         // DB::update('update shops set shop_name = ?, shop_address = ?, description = ? where id = ?', [$shop_name, $shop_address, $description, $id]);
-        return redirect('/shop_dashboard');
+        return redirect()->route('shop_dashboard', ['id'=>Auth::id()]);
     }
 
     public function destroy($id)
