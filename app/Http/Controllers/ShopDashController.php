@@ -34,7 +34,8 @@ class ShopDashController extends Controller
 
         $customers = Customer::find($id);
         $customers->delete();
-        return view('/shop_dashboard');
+        $index = $customers->shop_id;
+        return redirect()->route('display', ['id'=>$index]);
     }
 
     public function show($id){
