@@ -26,6 +26,8 @@
 
                 <br>
             @endforeach
+        @else
+        <p>No information to display</p>
         @endif
         @endif
 

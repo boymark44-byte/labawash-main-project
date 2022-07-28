@@ -13,6 +13,7 @@
                         <th style="padding:10px">Customer Name </th>
                         <th style="padding:10px">Customer Address </th>
                         <th style="padding:10px">Contact Number </th>
+                        <th style="padding:10px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,12 @@
                     <td>{{$customer->name}}</td>
                     <td>{{$customer->address}}</td>
                     <td>{{$customer->contact_number}}</td>
+                    <td>
+                        <form method="POST" action="{{url('/destroy', $customer->id)}}">
+                        @csrf
+                        @method('DELETE')
+                            <button class="btn">Delete</button>
+                    </td>
                 </tr>
 
                 </tbody>

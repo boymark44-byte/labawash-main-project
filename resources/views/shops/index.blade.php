@@ -73,7 +73,7 @@
                                         @if(count($shops)>0)
                                             @foreach($shops as $shop)
                                                 <tr>
-                                                @if ($shop->image == true)
+                                                    @if ($shop->image == true)
                                                     <td><img src="{{ $shop->image }}" alt=""></td>
                                                 @else
                                                     <td><img src="images/laundry-default.jpg" alt=""></td>
@@ -90,7 +90,6 @@
                                 </table>
                             @endif
                         @endif
-                    @endif
 
                 </div>
             </div>
