@@ -270,7 +270,7 @@ small{
 }
 
 .testimonial .col-3 img{
-    width: 100px;
+    width: 50px;
     margin-top: 20px;
     border-radius: 50%;
 
@@ -306,8 +306,8 @@ small{
 .testimonials .col-6{
     margin: 20px;
     text-align: center;
-    padding: 25px 100px 10px;
-    /* box-shadow: 0 0 20px 0px rgba(0,0,0,0.1); */
+    padding: 25px 50px 10px;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: transform 0.5s;
 }
@@ -317,7 +317,7 @@ small{
 }
 
 .testimonials .col-6 img{
-    width: 80px;
+    width: 100px;
     margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 15px;
