@@ -19,7 +19,7 @@ class ShowTables extends Controller
         $loads = Load::with('customer')->where('customers_id', $id)->get();
 
 
-        return view('tables.customerLoad')->with('loads', $loads);
+        return view('tables.showloads')->with('loads', $loads);
     }
 
     // this will display the customer and load information after saving
@@ -38,7 +38,6 @@ class ShowTables extends Controller
         $id = auth()->user()->id;
         $customers = Customer::with( 'loads', 'shops')->where('user_id', $id)->get();
 
-        // dd($customers);
         return view('tables.mycart', compact('customers'));
     }
 }
