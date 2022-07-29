@@ -30,10 +30,11 @@ class UserController extends Controller
         // Create User
         $user = User::create($formFields);
 
+        //$accessToken = $user->createToken('remember_token')->accessToken;
         //Login
         auth()->login($user);
 
-        return redirect('/')->with('message', 'User Created and logged in');
+        return redirect('/');
     }
 
     public function logout(Request $request) {
@@ -75,23 +76,12 @@ class UserController extends Controller
           default:
             return '/login';
           break;
-
-          //This comment be removed in the next update
-            // if(auth()->user()->role == 1){
-            //     return redirect('/admin')->with('message', 'You are now logged in');
-            // }
-            // elseif(auth()->user()->role == 2){
-            //     return redirect('/shop')->with('message', 'You are now logged in');
-            // }
-            // elseif(auth()->user()->role == 3){
-            //     return redirect('/customer')->with('message', 'You are now logged in');
-            // }
-
-            // return redirect('/')->with('message', 'You are now logged in');
         }
-        return back()->withErrors(['email' => 'Invalid'])->onlyInput('email');
-    }
-
-
+        
+  }
+  else{
+    return back()->withErrors(['email' => 'Invalid'])->onlyInput('email');
+}
+    
      }
  }
