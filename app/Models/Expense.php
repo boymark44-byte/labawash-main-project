@@ -12,7 +12,9 @@ class Expense extends Model
 
     protected $fillable = [
         'cost',
-        'description',
+        'fabcon',
+        'detergent',
+        'total',
         'modeOfPayment',
         'loads_id',
     ];

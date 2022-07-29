@@ -75,7 +75,7 @@
                 </div>
 
                 <!-- Price -->
-                <p>$50.00</p>
+                <p>Php {{ $item->price }} {{$item->category}}</p>
             </div>
             @endforeach
 

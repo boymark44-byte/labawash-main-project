@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Customer;
 use App\Models\Shop;
 use App\Models\User;
-
+use App\Models\Load;
+use App\Models\Expense;
 class ShopDashController extends Controller
 {
     public function shop_dashboard($id){
@@ -48,5 +49,14 @@ class ShopDashController extends Controller
 
         $shop = Shop::find($id);
         return view('shops.shop')->with('shops', $shop);
+    }
+
+    public function customer_expenses($id)
+    {
+        $loads = Load::where('id', $id)->with('expenses')->get();
+        $expenses = Expense::with('loads')->where('loads_id', $id)->get();
+        $index = Load::where('id', $id)->with('expenses')->select('id')->first();
+
+        return view('expenses.index', compact('loads', 'expenses', 'index'));
     }
 }

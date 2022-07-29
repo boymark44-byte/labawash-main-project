@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Customer;
 use App\Models\Load;
 use App\Models\Shop;
+use App\Models\Expense;
 
 use function Ramsey\Uuid\v1;
 
@@ -37,7 +38,6 @@ class ShowTables extends Controller
     {
         $id = auth()->user()->id;
         $customers = Customer::with( 'loads', 'shops')->where('user_id', $id)->get();
-
         return view('tables.mycart', compact('customers'));
     }
 }
