@@ -26,16 +26,34 @@
                     <p>Load Selector: {{ $load->load_selector }}</p>
                     <p>Color Type: {{ $load->color_type }}</p>
                     <p>Load Type: {{ $load->load_type }}</p>
-                    <p>Additional Expenses: {{ $load->additional_expenses }}</p>
+                    <p>Fabcon: {{ $load->fabcon }}</p>
+                    <p>Detergent: {{ $load->detergent }}</p>
                     <p>Description: {{ $load->description }}</p>
                     <p>Status: {{ $load->status }}</p>
-                    <a href="{{ route('comment.show', ['comment' => $customer->shops->id])}}" class="btn">Laundry received</a>
+                    <br>
+
+                    <h3>Expenses Breakdown</h3>
+                    <?php
+                    $cost = (int)$customer->shops->price * $load->load_quantity;
+                    $a = (int)$load->fabcon * $customer->shops->fabcon;
+                    $b = (int)$load->detergent * $customer->shops->detergent;
+                    $total = $cost + $a + $b;
+                    ?>
+                    <p>Cost: <?php echo $cost ?></p>
+                    <p>Fabcon Expenses: <?php echo $a ?></p>
+                    <p> Detergent Expenses: <?php echo $b ?></p>
+                    <h3>Total: <?php echo $total ?></h3>
+                    <a href="{{ route('comment.show', $customer->shops->id)}}" class="btn">Laundry received</a>
                 @endforeach
-                </div>
+                <br>
 
-        @endforeach
-
-
+                {{-- <h3>Expenses Breakdown</h3>
+                <p>Cost: {{ $load->expenses->cost }}</p>
+                <p>Fabcon Expenses: {{ $load->expenses->fabcon }}</p>
+                <p>Detergent Expenses: {{ $load->expenses->detergent }}</p>
+                <h3>Total Expenses: {{$load->expenses->total }}</h3>
+                <br> --}}
+            @endforeach
         @else
             <p>No information to display</p>
         @endif

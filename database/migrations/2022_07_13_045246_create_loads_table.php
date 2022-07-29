@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('loads', function (Blueprint $table) {
             $table->id();
             $table->integer('load_quantity');
-            $table->integer('additional_expenses');
             $table->string('color_type');
             //load_selector = separate or not?
             $table->string('load_selector');

@@ -104,10 +104,10 @@ Route::get('/accept/{id}', [ApprovalController::class, 'accept'])->name('accept'
 Route::get('/cancel/{id}', [ApprovalController::class, 'cancel'])->name('cancel');
 
 //for expenses table
-Route::resource('expense', ExpenseController::class);
+Route::resource('expenses', ExpenseController::class)->middleware('role:2');;
 
 //to get my cart
-Route::get('/mycart', [ShowTables::class, 'mycart'])->name('mycart');
+Route::get('/mycart', [ShowTables::class, 'mycart'])->name('mycart')->middleware('role:3');
 
-//for testimonials
+//for comment testimonials
 Route::resource('comment', CommentController::class);

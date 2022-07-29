@@ -7,17 +7,18 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Customer;
 use App\Models\Shop;
 use App\Models\User;
-
+use App\Models\Load;
+use App\Models\Expense;
 class ShopDashController extends Controller
 {
     public function shop_dashboard($id){
 
-        $user = User::where('id', $id)->with('shops')->get();
-        $shops = Shop::with('user')->where('user_id', $id)->get();
+        $user = User::where('id', $id)->with('shops')->first();
+        $shops = Shop::with('user')->where('approve', '1')->where('user_id', $id)->get();
         $index = User::where('id', $id)->with('shops')->select('id')->first();
 
-
-        return view('/shop_dashboard', compact('user', 'shops', 'index'));
+        // return view('/shop_dashboard', compact('user', 'shops', 'index'));
+        return view('/shop_dashboard', compact('user', 'shops'));
     }
 
     public function display($id){
@@ -48,5 +49,14 @@ class ShopDashController extends Controller
 
         $shop = Shop::find($id);
         return view('shops.shop')->with('shops', $shop);
+    }
+
+    public function customer_expenses($id)
+    {
+        $loads = Load::where('id', $id)->with('expenses')->get();
+        $expenses = Expense::with('loads')->where('loads_id', $id)->get();
+        $index = Load::where('id', $id)->with('expenses')->select('id')->first();
+
+        return view('expenses.index', compact('loads', 'expenses', 'index'));
     }
 }

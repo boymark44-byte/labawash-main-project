@@ -6,9 +6,18 @@
 
         {{-- to store comments/feedbacks --}}
         <div class="row justify-content-center">
-            <form action="{{ route('comment.store', $id = Auth::id()) }}">
+            <form method="POST" action="{{ route('comment.store') }}">
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                @csrf
+                <input type="hidden" name="shop_id" value="{{ $shop_id }}">
+
                 <label>Send feedback?</label>
-                <input type="text" name="comment_body">
+                <input type="text" name="comment_body" placeholder="Add comment/feedback">
+
                 <button class="btn">Submit</button>
             </form>
 
