@@ -13,20 +13,22 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Load Quantity |</th>
-                                        <th>Load Selector |</th>
-                                        <th>Color Type |</th>
-                                        <th>Load Type |</th>
-                                        <th>Additional Expenses |</th>
-                                        <th>Description |</th>
-                                        <th>Status |</th>
-                                        <th>Edit Status |</th>
+                                        <th>Load ID </th>
+                                        <th>Load Quantity </th>
+                                        <th>Load Selector </th>
+                                        <th>Color Type </th>
+                                        <th>Load Type </th>
+                                        <th>Additional Expenses </th>
+                                        <th>Description </th>
+                                        <th>Status </th>
+                                        <th>Edit Status </th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                         @foreach($loads as $item)
                                             <tr>
+                                                <td><a href="{{route('expenses.edit', $item->id)}}">{{$item->id}}</a></td>
                                                 <td>{{$item->load_quantity}}</td>
                                                 <td>{{$item->load_selector}}</td>
                                                 <td>{{$item->color_type}}</td>

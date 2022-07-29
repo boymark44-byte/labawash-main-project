@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->integer('cost');
-            $table->text('description')->nullable();
-            $table->string('modeOfPayment');
+            $table->integer('additional_expenses');
+            $table->integer('total');
             $table->foreignId('loads_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

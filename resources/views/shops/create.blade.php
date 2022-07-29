@@ -29,6 +29,14 @@
                       </div>
                     @enderror
 
+                    <label>Price</label></br>
+                    <input type="text" name="price" placeholder= "Price Per Load/Per Kg" value="{{old('price')}}"></br>
+                    @error('price')
+                      <div class="form-error">
+                          {{$message}}
+                      </div>
+                    @enderror
+
                     <label>Description</label></br>
                     <input type="text" name="description" placeholder= "Description..." value="{{old('description')}}"></br>
                     @error('description')

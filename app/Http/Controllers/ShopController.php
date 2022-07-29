@@ -44,6 +44,7 @@ class ShopController extends Controller
         $this->validate($request, [
             'shop_name' =>'required',
             'shop_address' =>'required',
+            'price' =>'required',
             'description' =>'required',
             // 'file' => [],
 
@@ -54,6 +55,7 @@ class ShopController extends Controller
             $shop->user_id = Auth::user()->id;
             $shop->shop_name = ($request->input('shop_name'));
             $shop->shop_address = ($request->input('shop_address'));
+            $shop->price = ($request->input('price'));
             $shop->description = ($request->input('description'));
         $shop->save();
 
@@ -66,6 +68,7 @@ class ShopController extends Controller
         $shop->user_id = Auth::user()->id;
         $shop->shop_name = ($request->input('shop_name'));
         $shop->shop_address = ($request->input('shop_address'));
+        $shop->price = ($request->input('price'));
         $shop->description = ($request->input('description'));
         $shop->image = $url;
 
@@ -116,16 +119,18 @@ class ShopController extends Controller
         if ($image) {
         $shop_name = $request->input('shop_name');
         $shop_address = $request->input('shop_address');
+        $price = $request->input('price');
         $description = $request->input('description');
         $image = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-        DB::update('update shops set shop_name = ?, shop_address = ?, description = ?, image = ? where id = ?', [$shop_name, $shop_address, $description, $image, $id]);
+        DB::update('update shops set shop_name = ?, shop_address = ?, price = ?, description = ?, image = ? where id = ?', [$shop_name, $shop_address, $price, $description, $image, $id]);
         }
         else {
 
         $shop_name = $request->input('shop_name');
         $shop_address = $request->input('shop_address');
+        $price = $request->input('price');
         $description = $request->input('description');
-        DB::update('update shops set shop_name = ?, shop_address = ?, description = ? where id = ?', [$shop_name, $shop_address, $description, $id]);
+        DB::update('update shops set shop_name = ?, shop_address = ?, price = ?, description = ? where id = ?', [$shop_name, $shop_address, $price, $description, $id]);
         }
 
 

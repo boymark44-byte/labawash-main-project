@@ -24,7 +24,10 @@
                     <p>Description: {{ $load->description }}</p>
                     <p>Status: {{ $load->status }}</p>
                 @endforeach
-
+                <br>
+                <p>Cost: {{ $load->expenses->cost }}</p>
+                <p>Additional Expenses: {{ $load->expenses->additional_expenses }}</p>
+                <h3>Total Expenses: {{$load->expenses->total }}</h3>
                 <br>
             @endforeach
         @else

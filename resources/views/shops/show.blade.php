@@ -10,6 +10,7 @@
         @endif
         <h1>Name : {{ $shops->shop_name }}</h1>
         <h2>Address : {{ $shops->shop_address }}</h2>
+        <h3>Price : {{ $shops->price}}</h3>
         <h3>Description : {{ $shops->description }}</h3>
 
         @auth

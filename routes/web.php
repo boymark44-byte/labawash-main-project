@@ -103,7 +103,10 @@ Route::get('/accept/{id}', [ApprovalController::class, 'accept'])->name('accept'
 Route::get('/cancel/{id}', [ApprovalController::class, 'cancel'])->name('cancel');
 
 //for expenses table
-Route::resource('expense', ExpenseController::class);
+Route::resource('expenses', ExpenseController::class)->middleware('role:2');;
 
 //to get my cart
 Route::get('/mycart', [ShowTables::class, 'mycart'])->name('mycart');
+
+//show total expenses
+Route::get('/customer_expenses/{id}', [ShopDashController::class, 'customer_expenses'])->name('customer_expenses');

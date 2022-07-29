@@ -26,7 +26,7 @@ class Load extends Model
         return $this->belongsTo(Customer::class, 'customers_id');
     }
 
-    public function expense (){
+    public function expenses (){
         return $this->hasOne(Expense::class, 'loads_id', 'id');
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Load;
+use App\Models\Expense;
 
 class ExpenseController extends Controller
 {
@@ -13,7 +15,7 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -34,7 +36,22 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'cost' => ['required', 'integer'],
+            'additional_expenses' => ['required', 'integer'],
+            'total' => 'required',
+        ]);
+
+        $load = Load::findOrFail($request->loads_id);
+        $load->expenses()->create([
+            'cost' => $request->cost,
+            'additional_expenses' => $request->additional_expenses,
+            'total' => $request->total,
+
+        ]);
+        $id = $load->id;
+
+        return redirect()->route('customer_expenses', $id);
     }
 
     /**
@@ -45,7 +62,8 @@ class ExpenseController extends Controller
      */
     public function show($id)
     {
-        //
+        $expense = Expense::find($id);
+        return view('expenses.show')->with('expenses', $expense);
     }
 
     /**
@@ -56,7 +74,7 @@ class ExpenseController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('expenses.create')->with('loads_id', $id);
     }
 
     /**

@@ -14,6 +14,9 @@
                         <label>Shop Address</label>
                         <input type="text" name="shop_address" value="{{$shop[0]->shop_address}}" id="shop_address"></br>
 
+                        <label>Price</label>
+                        <input type="text" name="price" value="{{$shop[0]->price}}" id="price"></br>
+
                         <label>Description</label>
                         <input type="text" name="description" value="{{$shop[0]->description}}" id="description"></br>
 
