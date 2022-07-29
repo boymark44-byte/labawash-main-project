@@ -9,7 +9,8 @@
 
 
                 <p>Cost: {{ $item->expenses->cost }}</p>
-                <p>Additional Expenses: {{ $item->expenses->additional_expenses }}</p>
+                <p>Fabcon: {{ $item->expenses->fabcon }}</p>
+                <p>Detergent: {{ $item->expenses->detergent }}</p>
                 <p>Total: {{$item->expenses->total }}</p>
 
             @endforeach

@@ -12,7 +12,8 @@ class Expense extends Model
 
     protected $fillable = [
         'cost',
-        'additional_expenses',
+        'fabcon',
+        'detergent',
         'total',
         'modeOfPayment',
         'loads_id',

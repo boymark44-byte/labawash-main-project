@@ -12,11 +12,12 @@ class Load extends Model
 
     protected $fillable = [
         'load_quantity',
-        'additional_expenses',
         'color_type',
         'load_selector',
         'load_type',
         'status',
+        'fabcon',
+        'detergent',
         'description',
         'customers_id'
     ];

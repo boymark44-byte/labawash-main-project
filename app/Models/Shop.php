@@ -17,6 +17,9 @@ class Shop extends Model
         'user_id',
         'shop_address',
         'price',
+        'category',
+        'fabcon',
+        'detergent',
         'description',
     ];
 

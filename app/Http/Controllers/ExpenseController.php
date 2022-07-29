@@ -38,14 +38,16 @@ class ExpenseController extends Controller
     {
         $this->validate($request, [
             'cost' => ['required', 'integer'],
-            'additional_expenses' => ['required', 'integer'],
+            'fabcon' => ['required', 'integer'],
+            'detergent' => ['required', 'integer'],
             'total' => 'required',
         ]);
 
         $load = Load::findOrFail($request->loads_id);
         $load->expenses()->create([
             'cost' => $request->cost,
-            'additional_expenses' => $request->additional_expenses,
+            'fabcon' => $request->fabcon,
+            'detergent' => $request->detergent,
             'total' => $request->total,
 
         ]);

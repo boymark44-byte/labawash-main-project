@@ -17,6 +17,15 @@
                         <label>Price</label>
                         <input type="text" name="price" value="{{$shop[0]->price}}" id="price"></br>
 
+                        <label>Category</label>
+                        <input type="text" name="category" value="{{$shop[0]->category}}" id="category"></br>
+
+                        <label>Fabcon Price</label>
+                        <input type="text" name="fabcon" value="{{$shop[0]->fabcon}}" id="fabcon"></br>
+
+                        <label>Detergent Price</label>
+                        <input type="text" name="detergent" value="{{$shop[0]->detergent}}" id="detergent"></br>
+
                         <label>Description</label>
                         <input type="text" name="description" value="{{$shop[0]->description}}" id="description"></br>
 

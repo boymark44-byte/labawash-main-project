@@ -21,9 +21,17 @@
                       </div>
                     @enderror
 
-                    <label>Addition Expenses</label></br>
-                    <input type="text" name="additional_expenses" placeholder= "Additional Expenses..." value="{{old('additional_expenses')}}"></br>
-                    @error('additional_expenses')
+                    <label>Fabcon Expenses</label></br>
+                    <input type="text" name="fabcon" placeholder= "Fabcon Expenses..." value="{{old('fabcon')}}"></br>
+                    @error('fabcon')
+                      <div class="form-error">
+                          {{$message}}
+                      </div>
+                    @enderror
+
+                    <label>Detergent Expenses</label></br>
+                    <input type="text" name="detergent" placeholder= "Detergent Expenses..." value="{{old('detergent')}}"></br>
+                    @error('detergent')
                       <div class="form-error">
                           {{$message}}
                       </div>

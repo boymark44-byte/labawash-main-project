@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->integer('cost');
-            $table->integer('additional_expenses');
+            $table->integer('fabcon');
+            $table->integer('detergent');
             $table->integer('total');
             $table->foreignId('loads_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

@@ -45,6 +45,9 @@ class ShopController extends Controller
             'shop_name' =>'required',
             'shop_address' =>'required',
             'price' =>'required',
+            'fabcon' =>'required',
+            'detergent' =>'required',
+            'category' =>'required',
             'description' =>'required',
             // 'file' => [],
 
@@ -56,6 +59,9 @@ class ShopController extends Controller
             $shop->shop_name = ($request->input('shop_name'));
             $shop->shop_address = ($request->input('shop_address'));
             $shop->price = ($request->input('price'));
+            $shop->category = ($request->input('category'));
+            $shop->fabcon = ($request->input('fabcon'));
+            $shop->detergent = ($request->input('detergent'));
             $shop->description = ($request->input('description'));
         $shop->save();
 
@@ -69,6 +75,9 @@ class ShopController extends Controller
         $shop->shop_name = ($request->input('shop_name'));
         $shop->shop_address = ($request->input('shop_address'));
         $shop->price = ($request->input('price'));
+        $shop->category = ($request->input('category'));
+        $shop->fabcon = ($request->input('fabcon'));
+        $shop->detergent = ($request->input('detergent'));
         $shop->description = ($request->input('description'));
         $shop->image = $url;
 
@@ -120,8 +129,11 @@ class ShopController extends Controller
         $shop_address = $request->input('shop_address');
         $price = $request->input('price');
         $description = $request->input('description');
+        $category = $request->input('category');
+        $fabcon = $request->input('fabcon');
+        $detergent = $request->input('detergent');
         $image = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-        DB::update('update shops set shop_name = ?, shop_address = ?, price = ?, description = ?, image = ? where id = ?', [$shop_name, $shop_address, $price, $description, $image, $id]);
+        DB::update('update shops set shop_name = ?, shop_address = ?, price = ?, category = ?, fabcon = ?, detergent = ?,description = ?, image = ? where id = ?', [$shop_name, $shop_address, $price, $category, $fabcon, $detergent, $description, $image, $id]);
         }
         else {
 
@@ -129,7 +141,10 @@ class ShopController extends Controller
         $shop_address = $request->input('shop_address');
         $price = $request->input('price');
         $description = $request->input('description');
-        DB::update('update shops set shop_name = ?, shop_address = ?, price = ?, description = ? where id = ?', [$shop_name, $shop_address, $price, $description, $id]);
+        $category = $request->input('category');
+        $fabcon = $request->input('fabcon');
+        $detergent = $request->input('detergent');
+        DB::update('update shops set shop_name = ?, shop_address = ?, price = ?, category = ?, fabcon = ?, detergent = ?, description = ? where id = ?', [$shop_name, $shop_address, $price, $category, $fabcon, $detergent, $description, $id]);
         }
 
         return redirect()->route('shop_dashboard', ['id'=>Auth::id()]);
