@@ -113,8 +113,7 @@ class ShopController extends Controller
 
     public function update(Request $request, $id)
     {
-        // $uploadedFileUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-        // $url = $uploadedFileUrl;
+
         $image = $request->image;
         if ($image) {
         $shop_name = $request->input('shop_name');
@@ -133,8 +132,6 @@ class ShopController extends Controller
         DB::update('update shops set shop_name = ?, shop_address = ?, price = ?, description = ? where id = ?', [$shop_name, $shop_address, $price, $description, $id]);
         }
 
-
-        // DB::update('update shops set shop_name = ?, shop_address = ?, description = ? where id = ?', [$shop_name, $shop_address, $description, $id]);
         return redirect()->route('shop_dashboard', ['id'=>Auth::id()]);
     }
 

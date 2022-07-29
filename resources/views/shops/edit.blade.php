@@ -5,7 +5,7 @@
 </head>
     <body>
         <div class="container">
-            <form class="" method ="POST" action="/update/{{$shop[0]->id}}">
+            <form enctype="multipart/form-data" class="" method ="POST" action="/update/{{$shop[0]->id}}">
                 @csrf
                     @method('PUT')
                         <label>Shop Name</label>

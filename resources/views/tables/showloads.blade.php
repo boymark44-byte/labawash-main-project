@@ -36,14 +36,14 @@
                                                 <td>{{$item->additional_expenses}}</td>
                                                 <td>{{$item->description}}</td>
                                                 <td>{{$item->status}}</td>
-                                                <td class="card-header"><button class="btn"><a href="{{ route('loads.edit', ['load' => $item->id]) }}">Edit</a></button></td>
+                                                <td class="card-header"><a href="{{ route('loads.edit', ['load' => $item->id]) }}" class="btn">Edit</a></td>
                                             </tr>
                                         @endforeach
 
                                 </tbody>
                             </table>
                         @endif
-                        <button class ="btn"><a href ="{{route('shop_dashboard', $id = Auth::id())}}">Back</a></button>
+                        <a href ="{{route('shop_dashboard', $id = Auth::id())}}" class="btn">Back</a
                 </div>
             </div>
         </div>
