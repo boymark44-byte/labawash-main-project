@@ -19,7 +19,8 @@
                     <p>Load Selector: {{ $load->load_selector }}</p>
                     <p>Color Type: {{ $load->color_type }}</p>
                     <p>Load Type: {{ $load->load_type }}</p>
-                    <p>Additional Expenses: {{ $load->additional_expenses }}</p>
+                    <p>How many fabon: {{ $load->fabcon }}</p>
+                    <p>How many detergent: {{ $load->detergent }}</p>
                     <p>Description: {{ $load->description }}</p>
                     <p>Status: {{ $load->status }}</p>
                     <br>

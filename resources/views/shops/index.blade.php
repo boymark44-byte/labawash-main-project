@@ -18,6 +18,8 @@
                                             <th style="padding: 10px">Shop Image</th>
                                             <th style="padding:10px">Shop Name </th>
                                             <th style="padding:10px">Shop Address </th>
+                                            <th style="padding:10px">Price </th>
+                                            <th style="padding:10px">Category </th>
                                             <th style="padding:10px">Description </th>
                                             <th style="padding:10px">Status </th>
                                             <th style="padding:10px">Approve </th>
@@ -40,6 +42,8 @@
 
                                                 <td>{{$shop->shop_name}}</td>
                                                 <td>{{$shop->shop_address}}</td>
+                                                <td>Php {{$shop->price}}</td>
+                                                <td>{{$shop->category}}</td>
                                                 <td>{{$shop->description}}</td>
                                                 <td>{{$shop->approve}}</td>
 

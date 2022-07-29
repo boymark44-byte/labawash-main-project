@@ -43,9 +43,16 @@
                     @enderror
                 <br>
                 <br>
-                <label>Additional Expenses</label>
-                <input type="text" name="additional_expenses" value="{{old('additional_expenses')}}">
-                    @error('additional_expenses')
+                <label>How many fabcon</label>
+                <input type="text" name="fabcon" placeholder="Php10/fabcon" value="{{old('fabcon')}}">
+                    @error('fabcon')
+                    <div class="form-error">{{$message}}</div>
+                    @enderror
+                <br>
+                <br>
+                <label>How many detergent</label>
+                <input type="text" name="detergent" placeholder="Php10/detergent" value="{{old('detergent')}}">
+                    @error('detergent')
                     <div class="form-error">{{$message}}</div>
                     @enderror
                 <br>
