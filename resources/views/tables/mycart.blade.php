@@ -29,7 +29,7 @@
                     <p>Additional Expenses: {{ $load->additional_expenses }}</p>
                     <p>Description: {{ $load->description }}</p>
                     <p>Status: {{ $load->status }}</p>
-                    <a href="{{ route('loads.index')}}" class="btn">Laundry received</a>
+                    <a href="{{ route('comment.show', ['comment' => $customer->shops->id])}}" class="btn">Laundry received</a>
                 @endforeach
                 </div>
 
@@ -40,6 +40,8 @@
             <p>No information to display</p>
         @endif
         @endif
+
+
 
     </div>
 @endsection

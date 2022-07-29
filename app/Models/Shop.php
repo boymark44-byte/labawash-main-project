@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Customer;
 use App\Models\User;
+use App\Models\Comment;
 
 
 class Shop extends Model
@@ -26,4 +27,8 @@ class Shop extends Model
         return $this->hasMany(Customer::class, 'shop_id', 'id');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'shop_id', 'id');
+    }
 }

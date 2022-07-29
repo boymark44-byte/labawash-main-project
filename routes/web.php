@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShopDashController;
 use App\Http\Controllers\ShowTables;
 use App\Http\Controllers\ApprovalController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ExpenseController;
 use App\Models\Shop;
 
@@ -107,3 +108,6 @@ Route::resource('expense', ExpenseController::class);
 
 //to get my cart
 Route::get('/mycart', [ShowTables::class, 'mycart'])->name('mycart');
+
+//for testimonials
+Route::resource('comment', CommentController::class);
