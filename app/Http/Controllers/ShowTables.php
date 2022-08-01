@@ -39,6 +39,7 @@ class ShowTables extends Controller
     {
         $id = auth()->user()->id;
         $customers = Customer::with('loads', 'shops')->where('user_id', $id)->get();
+
         return view('tables.mycart', compact('customers'));
 
     }

@@ -111,3 +111,6 @@ Route::get('/mycart', [ShowTables::class, 'mycart'])->name('mycart')->middleware
 
 //for comment testimonials
 Route::resource('comment', CommentController::class);
+
+//to receive laundry
+Route::get('/receive/{id}', [ApprovalController::class, 'receive'])->name('receive');
