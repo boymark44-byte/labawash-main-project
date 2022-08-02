@@ -106,5 +106,6 @@ Route::get('/cancel/{id}', [ApprovalController::class, 'cancel'])->name('cancel'
 Route::resource('expenses', ExpenseController::class)->middleware('role:2');;
 
 //to get my cart
-Route::get('/mycart', [ShowTables::class, 'mycart'])->name('mycart')->middleware('role:3');
+Route::get('/mycart', [ShowTables::class, 'mycart'])->name('mycart')->middleware('role: 3');
 
+Route::get('/earnings/{id}', [ShopDashController::class, 'earnings'])->name('earnings')->middleware('role:2');

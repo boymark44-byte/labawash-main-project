@@ -47,18 +47,10 @@
 
                 @endforeach
                 <br>
-
-                {{-- <h3>Expenses Breakdown</h3>
-                <p>Cost: {{ $load->expenses->cost }}</p>
-                <p>Fabcon Expenses: {{ $load->expenses->fabcon }}</p>
-                <p>Detergent Expenses: {{ $load->expenses->detergent }}</p>
-                <h3>Total Expenses: {{$load->expenses->total }}</h3>
-                <br> --}}
             @endforeach
         @else
             <p>No information to display</p>
         @endif
         @endif
-
     </div>
 @endsection

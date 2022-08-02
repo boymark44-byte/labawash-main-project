@@ -68,10 +68,26 @@
 
                 </nav>
                  <!-- Image Icon for Cart on the Upper Right-->
-                    <a href="{{ route('mycart') }}">
+                @auth
+                    @if ( Auth::user()->role == 2)
+
+                        <a href="{{ route('earnings', ['id'=>Auth::id()] )}}">
+                            <img src="/images/laundry-basket.png" alt="" width="30px" height="30px">
+                        </a>
+                            <img src="/images/menu.png" class="menu-icon" onclick="menutoggle()">
+                    @else
+                        <a href="{{ route('mycart') }}">
+                            <img src="/images/laundry-basket.png" alt="" width="30px" height="30px">
+                        </a>
+                            <img src="/images/menu.png" class="menu-icon" onclick="menutoggle()">
+                    @endif
+                @else
+                    <a href="/">
                         <img src="/images/laundry-basket.png" alt="" width="30px" height="30px">
                     </a>
-                    <img src="/images/menu.png" class="menu-icon" onclick="menutoggle()">
+                        <img src="/images/menu.png" class="menu-icon" onclick="menutoggle()">
+                @endauth
+
             </div>
         </div>
     </div>
