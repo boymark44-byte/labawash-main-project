@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\DB;
 use App\Models\Shop;
+use App\Models\Comment;
 use App\Models\User;
 class ShopController extends Controller
 {
@@ -102,8 +103,13 @@ class ShopController extends Controller
 
     public function show($id)
     {
+        $user_id = Auth::id();
+
         $shop = Shop::find($id);
-        return view('shops.show')->with('shops', $shop);
+
+        $comment = Comment::with('shop')->where('shop_id', $id)->get();
+
+        return view('shops.show')->with('shops', $shop)->with('comments', $comment);
     }
 
     /**

@@ -13,12 +13,12 @@ class ShopDashController extends Controller
 {
     public function shop_dashboard($id){
 
-        $user = User::where('id', $id)->with('shops')->get();
-        $shops = Shop::with('user')->where('user_id', $id)->get();
+        $user = User::where('id', $id)->with('shops')->first();
+        $shops = Shop::with('user')->where('approve', '1')->where('user_id', $id)->get();
         $index = User::where('id', $id)->with('shops')->select('id')->first();
 
-
-        return view('/shop_dashboard', compact('user', 'shops', 'index'));
+        // return view('/shop_dashboard', compact('user', 'shops', 'index'));
+        return view('/shop_dashboard', compact('user', 'shops'));
     }
 
     public function display($id){

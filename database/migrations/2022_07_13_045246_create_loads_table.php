@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('color_type');
             //load_selector = separate or not?
             $table->string('load_selector');
-            $table->integer('fabcon');
-            $table->integer('detergent');
             //load_type = soft or hard
             $table->string('load_type');
             $table->string('status')->default('On Going');
