@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShopDashController;
 use App\Http\Controllers\ShowTables;
 use App\Http\Controllers\ApprovalController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ExpenseController;
 use App\Models\Shop;
 
@@ -107,5 +108,11 @@ Route::resource('expenses', ExpenseController::class)->middleware('role:2');;
 
 //to get my cart
 Route::get('/mycart', [ShowTables::class, 'mycart'])->name('mycart')->middleware('role: 3');
+
+//for comment testimonials
+Route::resource('comment', CommentController::class);
+
+//to receive laundry
+Route::get('/receive/{id}', [ApprovalController::class, 'receive'])->name('receive');
 
 Route::get('/earnings/{id}', [ShopDashController::class, 'earnings'])->name('earnings')->middleware('role:2');

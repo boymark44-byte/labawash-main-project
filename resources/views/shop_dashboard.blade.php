@@ -11,14 +11,12 @@
         @endif
 
         @if (isset($user, $shops))
+
+        <h3 class="title">Shops under {{ $user->name }} </h3>
             <div class="testimonials">
                 <div class="small-container">
-
-                    @foreach ($user as $user)
-                        <h3 class="title">Shops under {{ $user->name }} </h3>
-
-                        <div class="row">
-                            @foreach ($user->shops as $shop)
+                    <div class="row">
+                        @foreach ($shops as $shop)
                             <div class="col-6">
                                 {{-- images --}}
                                 @if ($shop->image == true)
@@ -33,13 +31,11 @@
                                 <a class="btn" href="{{route('shops.edit', $shop->id)}}">Edit</a>
                                 <h4>{{$shop->id}}</h4>
                             </div>
-                            @endforeach
-                        </div>
-                    @endforeach
-
+                        @endforeach
+                    </div>
                 </div>
-
             </div>
+
         @endif
     </div>
 @endsection

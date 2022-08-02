@@ -3,14 +3,25 @@
 @section('content')
 
     <div class="container">
+
+        {{-- to store comments/feedbacks --}}
         <div class="row justify-content-center">
-            <form action="">
+            <form method="POST" action="{{ route('comment.store') }}">
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                @csrf
+                <input type="hidden" name="shop_id" value="{{ $shop_id }}">
+
                 <label>Send feedback?</label>
-                <input type="text">
+                <input type="text" name="comment_body" placeholder="Add comment/feedback">
+
                 <button class="btn">Submit</button>
             </form>
 
-            {{-- Charchar muna --}}
+            {{-- Charchar muna to store rating --}}
             <p>Rate</p>
             <div class="rate">
                 <input type="radio" id="star5" name="rate" value="5" />
