@@ -50,6 +50,7 @@
                         <a href="{{ route('comment.show', $customer->shops->id)}}" class="btn">Add Comment</a>
                     @endif
                 @endforeach
+                <br>
             </div>
             @endforeach
 

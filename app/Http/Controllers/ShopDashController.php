@@ -59,4 +59,16 @@ class ShopDashController extends Controller
 
         return view('expenses.index', compact('loads', 'expenses', 'index'));
     }
+
+    public function earnings($id){
+
+        $user = User::where('id', $id)->with('shops')->get();
+        $shops = Shop::with('user')->where('user_id', $id)->get();
+        $customers = Customer::with('shops')->where('shop_id', $id)->get();
+        $loads = Load::with('customer')->where('customers_id', $id)->get();
+        $index = User::where('id', $id)->with('shops')->select('id')->first();
+
+
+        return view('/earnings',compact('user', 'shops', 'customers', 'loads', 'index'));
+    }
 }

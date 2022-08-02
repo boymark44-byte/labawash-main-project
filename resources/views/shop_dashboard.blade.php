@@ -28,7 +28,6 @@
                                 <h2>{{$shop->shop_name}}</h2>
                                 <p>{{$shop->shop_address}}</p>
                                 <p>{{$shop->description}}</p>
-
                                 <a class="btn" href="{{route('shops.edit', $shop->id)}}">Edit</a>
                                 <h4>{{$shop->id}}</h4>
                             </div>
