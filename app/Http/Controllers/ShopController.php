@@ -37,10 +37,10 @@ class ShopController extends Controller
         //         return response()->json(Shop::where('approve', '1')->get(), 200);
         //     }
 
-        // return view('shops.index', [
-        //             'shops' => Shop::all()
-        // ]);
-        return response()->json(Shop::all(), 200);
+        return view('shops.index', [
+                    'shops' => Shop::all()
+        ]);
+        // return response()->json(Shop::all(), 200);
     }
 
     //view shop create form
