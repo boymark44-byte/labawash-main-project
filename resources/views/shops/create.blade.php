@@ -54,7 +54,7 @@
 
                         <label>Detergent Price</label></br>
                         <input type="text" name="detergent" placeholder= "price per piece....." value="{{old('detergent')}}"></br>
-                        @error('detergent')
+                         @error('detergent')
                           <div class="form-error">
                               {{$message}}
                           </div>

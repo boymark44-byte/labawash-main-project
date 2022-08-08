@@ -11,24 +11,36 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Shop;
 use App\Models\Comment;
 use App\Models\User;
+
+
 class ShopController extends Controller
 {
     /*  display shops needed to be approve when role is 1 and displays all approved shops
         when role is customer */
-
     public function index()
     {
-        if ( Auth::user()->role == 1){
-        return view('shops.index', [
-            'shops' => Shop::all()
-        ]);
-        } else {
-            return view('shops.index', [
-                'shops' => Shop::where('approve', '1')->get()
 
-            ]);
-        }
+        // if ( Auth::user()->role == 1){
+        // return view('shops.index', [
+        //     'shops' => Shop::all()
+        // ]);
+        // } else {
+        //     return view('shops.index', [
+        //         'shops' => Shop::where('approve', '1')->get()
 
+        //     ]);
+        // }
+
+        // if ( Auth::user()->role == 1){
+        //     return response()->json(Shop::all(), 200);
+        //     } else {
+        //         return response()->json(Shop::where('approve', '1')->get(), 200);
+        //     }
+
+        // return view('shops.index', [
+        //             'shops' => Shop::all()
+        // ]);
+        return response()->json(Shop::all(), 200);
     }
 
     //view shop create form
@@ -109,7 +121,11 @@ class ShopController extends Controller
 
         $comment = Comment::with('shop')->where('shop_id', $id)->get();
 
-        return view('shops.show')->with('shops', $shop)->with('comments', $comment);
+        // return view('shops.show')->with('shops', $shop)->with('comments', $comment);
+        if(is_null($shop)){
+            return response()->json(['message'=> 'Shop Not Found'], 400);
+        }
+        return response()->json($shop::find($id), 200);
     }
 
     /**
@@ -152,6 +168,14 @@ class ShopController extends Controller
         $detergent = $request->input('detergent');
         DB::update('update shops set shop_name = ?, shop_address = ?, price = ?, category = ?, fabcon = ?, detergent = ?, description = ? where id = ?', [$shop_name, $shop_address, $price, $category, $fabcon, $detergent, $description, $id]);
         }
+        // $shop = Shop::find($id);
+        // if(is_null($shop)){
+        //         return response()->json(['message'=> 'Shop Not Found'], 400);
+        //         dd($id);
+        //     }
+        //     $shop = update($request->all());
+        //      return response()->json($shop, 200);
+
 
         return redirect()->route('shop_dashboard', ['id'=>Auth::id()]);
     }

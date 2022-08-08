@@ -17,8 +17,9 @@ class ShopDashController extends Controller
         $shops = Shop::with('user')->where('approve', '1')->where('user_id', $id)->get();
         $index = User::where('id', $id)->with('shops')->select('id')->first();
 
-        // return view('/shop_dashboard', compact('user', 'shops', 'index'));
-        return view('/shop_dashboard', compact('user', 'shops'));
+        // return response()->json($user, 200);
+        return view('/shop_dashboard', compact('user', 'shops', 'index'));
+
     }
 
     public function display($id){
@@ -27,7 +28,7 @@ class ShopDashController extends Controller
         $customers = Customer::with('shops')->where('shop_id', $id)->get();
         $index = Shop::where('id', $id)->with('customers')->select('id')->first();
 
-
+        // return response()->json($shops, 200);
         return view('/display', compact('shops', 'customers', 'index'));
     }
 
@@ -67,7 +68,6 @@ class ShopDashController extends Controller
         $customers = Customer::with('shops')->where('shop_id', $id)->get();
         $loads = Load::with('customer')->where('customers_id', $id)->get();
         $index = User::where('id', $id)->with('shops')->select('id')->first();
-
 
         return view('/earnings',compact('user', 'shops', 'customers', 'loads', 'index'));
     }

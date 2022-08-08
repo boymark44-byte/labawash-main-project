@@ -15,7 +15,7 @@
                                         <tr>
                                             <th style="padding:10px">User ID </th>
                                             <th style="padding:10px">Shop ID </th>
-                                            <th style="padding: 10px">Shop Image</th>
+                                            <th style="padding:10px">Shop Image</th>
                                             <th style="padding:10px">Shop Name </th>
                                             <th style="padding:10px">Shop Address </th>
                                             <th style="padding:10px">Price </th>
