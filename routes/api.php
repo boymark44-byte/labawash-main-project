@@ -93,4 +93,4 @@ Route::post('users/auth',
 
 // });
 
-// Route::get('/search', [ShopDashController::class, 'search']);
+Route::get('/search', [ShopDashController::class, 'search']);
