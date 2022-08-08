@@ -3,6 +3,12 @@
 use App\Http\Middleware\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\LoadController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ShopDashController;
+use App\Http\Controllers\ShowTables;
 // use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +49,17 @@ use Illuminate\Support\Facades\Route;
 // Route::post('users/auth',
 // [UserController::class, 'auth']);
 // });
+
+Route::resource('/shops', ShopController::class);
+
+Route::resource('/customers', CustomerController::class);
+
+Route::resource('/loads', LoadController::class);
+
+Route::resource('comment', CommentController::class);
+
+Route::get('/shop_dashboard/{id}', [ShopDashController::class, 'shop_dashboard']);
+
+// Route::get('/mycart', [ShowTables::class, 'mycart']);
+
+Route::get('/showloads/{id}', [ShowTables::class, 'showloads']);
