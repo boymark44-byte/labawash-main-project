@@ -65,6 +65,25 @@
                                 <div class="small-container">
                                     <h2 class="title">Choose Shop</h2>
 
+                                    <div class="card-body">
+                                        @if (session('status'))
+                                            <div class="alert alert-success" role="alert">
+                                                {{ session('status') }}
+                                            </div>
+                                        @endif
+                                        <br>
+                                        <form class="title" method ="GET" action="{{route('search')}}">
+                                            <textarea name="query" cols="50" placeholder= "Search shop name or description or category..."></textarea>
+                                            @error('query')
+                                                <div class="form-error">
+                                                    {{$message}}
+                                                </div>
+                                            @enderror
+                                        <br>
+                                        <button> Submit </button>
+
+                                    </div>
+
                                     <div class="row">
                                         @foreach ($shops as $shop)
                                         <div class="col-4">
@@ -88,6 +107,7 @@
 
                                             <!-- Price -->
                                             <p>Php {{ $shop->price }} {{$shop->category}}</p>
+                                            <p>{{ $shop->description }}</p>
                                         </div>
                                         @endforeach
 

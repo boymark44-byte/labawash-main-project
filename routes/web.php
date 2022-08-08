@@ -110,9 +110,11 @@ Route::get('/cancel/{id}', [ApprovalController::class, 'cancel'])->name('cancel'
 Route::get('/mycart', [ShowTables::class, 'mycart'])->name('mycart')->middleware('role: 3');
 
 //for comment testimonials
-Route::resource('comment', CommentController::class);
+// Route::resource('comment', CommentController::class);
 
 //to receive laundry
 Route::get('/receive/{id}', [ApprovalController::class, 'receive'])->name('receive');
 
 Route::get('/earnings/{id}', [ShopDashController::class, 'earnings'])->name('earnings')->middleware('role:2');
+
+Route::get('/search', [ShopDashController::class, 'search'])->name('search');

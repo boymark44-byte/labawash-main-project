@@ -71,4 +71,17 @@ class ShopDashController extends Controller
 
         return view('/earnings',compact('user', 'shops', 'customers', 'loads', 'index'));
     }
+
+    public function search(Request $request){
+        if(isset($_GET['query'])){
+            $search_text=$_GET['query'];
+            $shops = DB::table('shops')->where('shop_name','LIKE','%' .$search_text.'%')->get();
+            $shops = DB::table('shops')->where('description','LIKE','%' .$search_text.'%')->get();
+            $shops = DB::table('shops')->where('category','LIKE','%' .$search_text.'%')->get();
+            return view('search',['shops'=>$shops]);
+        }else{
+             return view('search');
+        }
+    }
+
 }
