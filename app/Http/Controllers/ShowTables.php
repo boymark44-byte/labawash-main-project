@@ -32,6 +32,7 @@ class ShowTables extends Controller
         $loads = Load::with('customer')->where('customers_id', $id)->get();
         $index = Customer::where('id', $id)->with('loads')->select('id')->first();
 
+        // return response()->json($customers  , 200);
         return view('loads.index', compact('customers', 'loads', 'index'));
     }
 

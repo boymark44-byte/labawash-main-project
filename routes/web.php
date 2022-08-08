@@ -74,9 +74,8 @@ Route::delete('/destroy/{id}', [ShopDashController::class, 'destroy'])->name('de
 
 //Shop's Form
 // Route::resource('shops', ShopController::class);
-// Route::get('shops/create', [ShopController::class, 'create'])->name('create');
 // Route::put('edit/{id}', [ShopController::class, 'edit'])->name('edit')->middleware('role:1,3');
-// Route::put('update/{id}', [ShopController::class, 'update'])->name('update');
+Route::put('update/{id}', [ShopController::class, 'update'])->name('update');
 
 //Show Shop Details
 Route::resource('details', DetailController::class);
@@ -88,13 +87,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 //display owner and the shops
-// Route::get('/shop_dashboard/{id}', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard')->middleware('role:2');
+Route::get('/shop_dashboard/{id}', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard')->middleware('role:2');
 
 //display shop and its customers
 Route::get('/display/{id}', [ShopDashController::class, 'display'])->name('display')->middleware('role:2');
 
 //For showing table for customers loads
-// Route::get('/showloads/{id}', [ShowTables::class, 'showloads'])->name('showloads');
+Route::get('/showloads/{id}', [ShowTables::class, 'showloads'])->name('showloads');
 
 
 //For showing joined tables of customer and load
@@ -109,9 +108,9 @@ Route::get('/cancel/{id}', [ApprovalController::class, 'cancel'])->name('cancel'
 Route::get('/mycart', [ShowTables::class, 'mycart'])->name('mycart')->middleware('role: 3');
 
 //for comment testimonials
-// Route::resource('comment', CommentController::class);
+Route::resource('comment', CommentController::class);
 
 //to receive laundry
 Route::get('/receive/{id}', [ApprovalController::class, 'receive'])->name('receive');
 
-// Route::get('/earnings/{id}', [ShopDashController::class, 'earnings'])->name('earnings')->middleware('role:2');
+Route::get('/earnings/{id}', [ShopDashController::class, 'earnings'])->name('earnings')->middleware('role:2');

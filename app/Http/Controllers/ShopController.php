@@ -31,16 +31,16 @@ class ShopController extends Controller
         //     ]);
         // }
 
-        if ( Auth::user()->role == 1){
-            return response()->json(Shop::all(), 200);
-            } else {
-                return response()->json(Shop::where('approve', '1')->get(), 200);
-            }
+        // if ( Auth::user()->role == 1){
+        //     return response()->json(Shop::all(), 200);
+        //     } else {
+        //         return response()->json(Shop::where('approve', '1')->get(), 200);
+        //     }
 
         // return view('shops.index', [
         //             'shops' => Shop::all()
         // ]);
-
+        return response()->json(Shop::all(), 200);
     }
 
     //view shop create form
@@ -168,6 +168,14 @@ class ShopController extends Controller
         $detergent = $request->input('detergent');
         DB::update('update shops set shop_name = ?, shop_address = ?, price = ?, category = ?, fabcon = ?, detergent = ?, description = ? where id = ?', [$shop_name, $shop_address, $price, $category, $fabcon, $detergent, $description, $id]);
         }
+        // $shop = Shop::find($id);
+        // if(is_null($shop)){
+        //         return response()->json(['message'=> 'Shop Not Found'], 400);
+        //         dd($id);
+        //     }
+        //     $shop = update($request->all());
+        //      return response()->json($shop, 200);
+
 
         return redirect()->route('shop_dashboard', ['id'=>Auth::id()]);
     }
