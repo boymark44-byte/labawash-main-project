@@ -4,12 +4,16 @@ use App\Models\Shop;
 use Illuminate\Http\Request;
 use App\Http\Middleware\Role;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LoadController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ShopDashController;
 use App\Http\Controllers\ShowTables;
+
+
+
 use App\Http\Controllers\UserController;
 
 /*
@@ -37,6 +41,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Route::prefix('/user')->group(['middleware' => ['web']], function(){
 //     // Route::post('/login', 'UserController@login');
 
+
+
+
+
 // //Show Register Form
 // Route::get('/register',
 // [UserController::class, 'create']);
@@ -52,6 +60,7 @@ Route::post('/logout',
 // //Show Log in Form
 // Route::get('/login',
 // [UserController::class, 'login']);
+
 
 Route::resource('/shops', ShopController::class);
 
@@ -73,8 +82,14 @@ Route::get('/earnings/{id}', [ShopDashController::class, 'earnings']);
 
 Route::get('/customertransaction/{id}', [ShowTables::class, 'customertransaction']);
 
+
+
 //Login User
 Route::post('users/auth',
 [UserController::class, 'auth']);
 
+
+
+
+// });
 
