@@ -15,14 +15,15 @@
                                         <tr>
                                             <th style="padding:10px">User ID </th>
                                             <th style="padding:10px">Shop ID </th>
-                                            <th style="padding: 10px">Shop Image</th>
+                                            <th style="padding:10px">Shop Image</th>
                                             <th style="padding:10px">Shop Name </th>
                                             <th style="padding:10px">Shop Address </th>
+                                            <th style="padding:10px">Price </th>
+                                            <th style="padding:10px">Category </th>
                                             <th style="padding:10px">Description </th>
                                             <th style="padding:10px">Status </th>
                                             <th style="padding:10px">Approve </th>
                                             <th style="padding:10px">Cancel </th>
-                                            <th style="padding:10px">View </th>
 
                                         </tr>
                                     </thead>
@@ -40,6 +41,8 @@
 
                                                 <td>{{$shop->shop_name}}</td>
                                                 <td>{{$shop->shop_address}}</td>
+                                                <td>Php {{$shop->price}}</td>
+                                                <td>{{$shop->category}}</td>
                                                 <td>{{$shop->description}}</td>
                                                 <td>{{$shop->approve}}</td>
 
@@ -59,38 +62,27 @@
                             @endif
                         @else
                             @if(isset($shops))
-                                {{-- <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th style="padding: 10px">Shop Image</th>
-                                            <th style="padding:10px">Shop Name </th>
-                                            <th style="padding:10px">Shop Address </th>
-                                            <th style="padding:10px">Description </th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if(count($shops)>0)
-                                            @foreach($shops as $shop)
-                                                <tr>
-                                                    @if ($shop->image == true)
-                                                    <td><img src="{{ $shop->image }}" alt=""></td>
-                                                @else
-                                                    <td><img src="images/laundry-default.jpg" alt=""></td>
-                                                @endif
-                                                <td><a href="{{route('customers.show', ['customer' => $shop->id])}}">{{$shop->shop_name}}</td>
-                                                <td>{{$shop->shop_address}}</td>
-                                                <td>{{$shop->description}}</td>
-                                                </tr>
-                                            @endforeach
-                                        @else
-                                            <tr><td>No Shop to display</td></tr>
-                                        @endif
-                                    </tbody>
-                                </table> --}}
-
                                 <div class="small-container">
                                     <h2 class="title">Choose Shop</h2>
+
+                                    <div class="card-body">
+                                        @if (session('status'))
+                                            <div class="alert alert-success" role="alert">
+                                                {{ session('status') }}
+                                            </div>
+                                        @endif
+                                        <br>
+                                        <form class="title" method ="GET" action="{{route('search')}}">
+                                            <textarea name="query" cols="50" placeholder= "Search shop name or description or category..."></textarea>
+                                            @error('query')
+                                                <div class="form-error">
+                                                    {{$message}}
+                                                </div>
+                                            @enderror
+                                        <br>
+                                        <button> Submit </button>
+
+                                    </div>
 
                                     <div class="row">
                                         @foreach ($shops as $shop)
@@ -114,7 +106,8 @@
                                             </div>
 
                                             <!-- Price -->
-                                            <p>$50.00</p>
+                                            <p>Php {{ $shop->price }} {{$shop->category}}</p>
+                                            <p>{{ $shop->description }}</p>
                                         </div>
                                         @endforeach
 

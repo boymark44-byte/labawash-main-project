@@ -7,17 +7,19 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Customer;
 use App\Models\Shop;
 use App\Models\User;
-
+use App\Models\Load;
+use App\Models\Expense;
 class ShopDashController extends Controller
 {
     public function shop_dashboard($id){
 
-        $user = User::where('id', $id)->with('shops')->get();
-        $shops = Shop::with('user')->where('user_id', $id)->get();
+        $user = User::where('id', $id)->with('shops')->first();
+        $shops = Shop::with('user')->where('approve', '1')->where('user_id', $id)->get();
         $index = User::where('id', $id)->with('shops')->select('id')->first();
 
-
+        // return response()->json($user, 200);
         return view('/shop_dashboard', compact('user', 'shops', 'index'));
+
     }
 
     public function display($id){
@@ -26,7 +28,7 @@ class ShopDashController extends Controller
         $customers = Customer::with('shops')->where('shop_id', $id)->get();
         $index = Shop::where('id', $id)->with('customers')->select('id')->first();
 
-
+        // return response()->json($shops, 200);
         return view('/display', compact('shops', 'customers', 'index'));
     }
 
@@ -49,4 +51,37 @@ class ShopDashController extends Controller
         $shop = Shop::find($id);
         return view('shops.shop')->with('shops', $shop);
     }
+
+    public function customer_expenses($id)
+    {
+        $loads = Load::where('id', $id)->with('expenses')->get();
+        $expenses = Expense::with('loads')->where('loads_id', $id)->get();
+        $index = Load::where('id', $id)->with('expenses')->select('id')->first();
+
+        return view('expenses.index', compact('loads', 'expenses', 'index'));
+    }
+
+    public function earnings($id){
+
+        $user = User::where('id', $id)->with('shops')->get();
+        $shops = Shop::with('user')->where('user_id', $id)->get();
+        $customers = Customer::with('shops')->where('shop_id', $id)->get();
+        $loads = Load::with('customer')->where('customers_id', $id)->get();
+        $index = User::where('id', $id)->with('shops')->select('id')->first();
+
+        return view('/earnings',compact('user', 'shops', 'customers', 'loads', 'index'));
+    }
+
+    public function search(Request $request){
+        if(isset($_GET['query'])){
+            $search_text=$_GET['query'];
+            $shops = DB::table('shops')->where('shop_name','LIKE','%' .$search_text.'%')->get();
+            $shops = DB::table('shops')->where('description','LIKE','%' .$search_text.'%')->get();
+            $shops = DB::table('shops')->where('category','LIKE','%' .$search_text.'%')->get();
+            return view('search',['shops'=>$shops]);
+        }else{
+             return view('search');
+        }
+    }
+
 }

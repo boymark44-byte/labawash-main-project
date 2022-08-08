@@ -19,9 +19,9 @@
                 <br>
                 <br>
                     <button class="btn">Submit</button>
-                    <button class="btn">Back</button>
-            </form>
+                </form>
 
+            </div>
+            <a href="{{ route('showloads', $load->customers_id ) }}" class="btn">Back</a>
         </div>
-    </div>
 @endsection

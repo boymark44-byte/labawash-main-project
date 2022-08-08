@@ -6,17 +6,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Customer;
 use App\Models\User;
+use App\Models\Comment;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 
 
 class Shop extends Model
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens, Notifiable;
 
     protected $fillable = [
-        'name',
+        'shop_name',
         'user_id',
-        'address',
-        'contact_number',
+        'shop_address',
+        'price',
+        'category',
+        'fabcon',
+        'detergent',
+        'description',
     ];
 
     public function user(){
@@ -26,4 +33,8 @@ class Shop extends Model
         return $this->hasMany(Customer::class, 'shop_id', 'id');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'shop_id', 'id');
+    }
 }

@@ -9,25 +9,38 @@ use Illuminate\Support\Facades\Auth;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\DB;
 use App\Models\Shop;
+use App\Models\Comment;
 use App\Models\User;
+
+
 class ShopController extends Controller
 {
     /*  display shops needed to be approve when role is 1 and displays all approved shops
         when role is customer */
-
     public function index()
     {
-        if ( Auth::user()->role == 1){
+
+        // if ( Auth::user()->role == 1){
+        // return view('shops.index', [
+        //     'shops' => Shop::all()
+        // ]);
+        // } else {
+        //     return view('shops.index', [
+        //         'shops' => Shop::where('approve', '1')->get()
+
+        //     ]);
+        // }
+
+        // if ( Auth::user()->role == 1){
+        //     return response()->json(Shop::all(), 200);
+        //     } else {
+        //         return response()->json(Shop::where('approve', '1')->get(), 200);
+        //     }
+
         return view('shops.index', [
-            'shops' => Shop::all()
+                    'shops' => Shop::all()
         ]);
-        } else {
-            return view('shops.index', [
-                'shops' => Shop::where('approve', '1')->get()
-
-            ]);
-        }
-
+        // return response()->json(Shop::all(), 200);
     }
 
     //view shop create form
@@ -44,6 +57,10 @@ class ShopController extends Controller
         $this->validate($request, [
             'shop_name' =>'required',
             'shop_address' =>'required',
+            'price' =>'required',
+            'fabcon' =>'required',
+            'detergent' =>'required',
+            'category' =>'required',
             'description' =>'required',
             // 'file' => [],
 
@@ -54,6 +71,10 @@ class ShopController extends Controller
             $shop->user_id = Auth::user()->id;
             $shop->shop_name = ($request->input('shop_name'));
             $shop->shop_address = ($request->input('shop_address'));
+            $shop->price = ($request->input('price'));
+            $shop->category = ($request->input('category'));
+            $shop->fabcon = ($request->input('fabcon'));
+            $shop->detergent = ($request->input('detergent'));
             $shop->description = ($request->input('description'));
         $shop->save();
 
@@ -66,6 +87,10 @@ class ShopController extends Controller
         $shop->user_id = Auth::user()->id;
         $shop->shop_name = ($request->input('shop_name'));
         $shop->shop_address = ($request->input('shop_address'));
+        $shop->price = ($request->input('price'));
+        $shop->category = ($request->input('category'));
+        $shop->fabcon = ($request->input('fabcon'));
+        $shop->detergent = ($request->input('detergent'));
         $shop->description = ($request->input('description'));
         $shop->image = $url;
 
@@ -90,8 +115,17 @@ class ShopController extends Controller
 
     public function show($id)
     {
+        $user_id = Auth::id();
+
         $shop = Shop::find($id);
-        return view('shops.show')->with('shops', $shop);
+
+        $comment = Comment::with('shop')->where('shop_id', $id)->get();
+
+        // return view('shops.show')->with('shops', $shop)->with('comments', $comment);
+        if(is_null($shop)){
+            return response()->json(['message'=> 'Shop Not Found'], 400);
+        }
+        return response()->json($shop::find($id), 200);
     }
 
     /**
@@ -110,26 +144,39 @@ class ShopController extends Controller
 
     public function update(Request $request, $id)
     {
-        // $uploadedFileUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-        // $url = $uploadedFileUrl;
+
         $image = $request->image;
         if ($image) {
         $shop_name = $request->input('shop_name');
         $shop_address = $request->input('shop_address');
+        $price = $request->input('price');
         $description = $request->input('description');
+        $category = $request->input('category');
+        $fabcon = $request->input('fabcon');
+        $detergent = $request->input('detergent');
         $image = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-        DB::update('update shops set shop_name = ?, shop_address = ?, description = ?, image = ? where id = ?', [$shop_name, $shop_address, $description, $image, $id]);
+        DB::update('update shops set shop_name = ?, shop_address = ?, price = ?, category = ?, fabcon = ?, detergent = ?,description = ?, image = ? where id = ?', [$shop_name, $shop_address, $price, $category, $fabcon, $detergent, $description, $image, $id]);
         }
         else {
 
         $shop_name = $request->input('shop_name');
         $shop_address = $request->input('shop_address');
+        $price = $request->input('price');
         $description = $request->input('description');
-        DB::update('update shops set shop_name = ?, shop_address = ?, description = ? where id = ?', [$shop_name, $shop_address, $description, $id]);
+        $category = $request->input('category');
+        $fabcon = $request->input('fabcon');
+        $detergent = $request->input('detergent');
+        DB::update('update shops set shop_name = ?, shop_address = ?, price = ?, category = ?, fabcon = ?, detergent = ?, description = ? where id = ?', [$shop_name, $shop_address, $price, $category, $fabcon, $detergent, $description, $id]);
         }
+        // $shop = Shop::find($id);
+        // if(is_null($shop)){
+        //         return response()->json(['message'=> 'Shop Not Found'], 400);
+        //         dd($id);
+        //     }
+        //     $shop = update($request->all());
+        //      return response()->json($shop, 200);
 
 
-        // DB::update('update shops set shop_name = ?, shop_address = ?, description = ? where id = ?', [$shop_name, $shop_address, $description, $id]);
         return redirect()->route('shop_dashboard', ['id'=>Auth::id()]);
     }
 

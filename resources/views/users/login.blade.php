@@ -8,7 +8,7 @@
         <p class="mb-4">Login to Account</p>
     </header>
 
-    <form method="POST" action="/users/auth">
+    <form method="POST" action="/api/users/auth">
         @csrf
 
         <div class="mb-6">

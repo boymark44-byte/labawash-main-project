@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Customer;
 use App\Models\Load;
 use App\Models\Shop;
+use App\Models\Expense;
+use App\Models\User;
 
 use function Ramsey\Uuid\v1;
 
@@ -30,14 +32,16 @@ class ShowTables extends Controller
         $loads = Load::with('customer')->where('customers_id', $id)->get();
         $index = Customer::where('id', $id)->with('loads')->select('id')->first();
 
+        // return response()->json($customers  , 200);
         return view('loads.index', compact('customers', 'loads', 'index'));
     }
 
     public function mycart()
     {
         $id = auth()->user()->id;
-        $customers = Customer::with( 'loads', 'shops')->where('user_id', $id)->get();
+        $customers = Customer::with('loads', 'shops')->where('user_id', $id)->get();
 
         return view('tables.mycart', compact('customers'));
+
     }
 }

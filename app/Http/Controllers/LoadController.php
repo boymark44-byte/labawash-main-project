@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Load;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
 class LoadController extends Controller
@@ -13,8 +14,8 @@ class LoadController extends Controller
     //not used at the moment
     public function index()
     {
-        // $id = Auth::id();
-        // dd($id);
+
+        return view('loads.rating');
     }
 
     //not used at the moment
@@ -29,7 +30,8 @@ class LoadController extends Controller
     {
         $this->validate($request, [
             'load_quantity' => ['required', 'integer'],
-            'additional_expenses' => ['required', 'integer'],
+            'fabcon' => ['required', 'integer'],
+            'detergent' => ['required', 'integer'],
             'color_type' => 'required',
             'load_selector' => 'required',
             'load_type' => 'required',
@@ -39,12 +41,14 @@ class LoadController extends Controller
         $customer = Customer::findOrFail($request->customers_id);
         $customer->loads()->create([
             'load_quantity' => $request->load_quantity,
-            'additional_expenses' => $request->additional_expenses,
+            'fabcon' => $request->fabcon,
+            'detergent' => $request->detergent,
             'color_type' => $request->color_type,
             'load_selector' => $request->load_selector,
             'load_type' => $request->load_type,
             'description' => $request->description,
         ]);
+
         $id = $customer->id;
         return redirect()->route('customertransaction', $id);
     }
