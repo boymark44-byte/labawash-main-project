@@ -30,7 +30,7 @@
 
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="/"><img src="/images/logo.png" alt="" width="75px" height="75px"></a>
+                    <a href="/api"><img src="/images/logo.png" alt="" width="75px" height="75px"></a>
                 </div>
 
                 <!-- Text-link -->

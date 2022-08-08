@@ -73,9 +73,9 @@ Route::delete('/destroy/{id}', [ShopDashController::class, 'destroy'])->name('de
 
 
 //Shop's Form
-Route::resource('shops', ShopController::class);
-Route::put('edit/{id}', [ShopController::class, 'edit'])->name('edit')->middleware('role:1,3');
-Route::put('update/{id}', [ShopController::class, 'update'])->name('update');
+// Route::resource('shops', ShopController::class);
+// Route::put('edit/{id}', [ShopController::class, 'edit'])->name('edit')->middleware('role:1,3');
+// Route::put('update/{id}', [ShopController::class, 'update'])->name('update');
 
 //Show Shop Details
 Route::resource('details', DetailController::class);
