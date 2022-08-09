@@ -36,7 +36,7 @@ class RedirectIfAuthenticated
                             break;        
                         
                         default:
-                            return redirect('/');
+                            return redirect('/api');
                             break;
                 }
             }

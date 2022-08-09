@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 
 class OnlyAcceptJsonMiddleware
 {
@@ -18,7 +19,18 @@ class OnlyAcceptJsonMiddleware
     {
        // Verify if request is JSON
        
-       $request->headers->set('Accept', 'application/json');
+       $request->headers->set(
+        'Accept', 'application/json',
+        // 'Authorization', 'Bearer' .$accessToken,
+       )
+    //    ->body->set([
+    //     'grant_type' => 'password',
+    //     'client_id' => '2', 
+    //     'client_secret' => 'GyNszv5EUB8thIcVBXpgBWvhi7ldciF9GO5oDZAE',
+    //     'username' => 'sampler123@gmail.com',
+    //      'password' => 'sampler123',
+    //       'scope' => ''])
+    ;
        return $next($request);
     }
 }

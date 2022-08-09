@@ -31,19 +31,19 @@ Route::get('/', function () {
     $images = Shop::where('approve', '1')->get();
     return view('welcome')->with('images', $images);
 })
-// ->middleware('auth:api')
+// // ->middleware('auth:api')
 ;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
+    // header('Accept: application/json');
+    // header('Authorization: Bearer' .$request->str('access_token'));
+
     return $request->user();
 });
 
+
 // Route::prefix('/user')->group(['middleware' => ['web']], function(){
 //     // Route::post('/login', 'UserController@login');
-
-
-
-
 
 // //Show Register Form
 // Route::get('/register',
@@ -88,9 +88,7 @@ Route::get('/customertransaction/{id}', [ShowTables::class, 'customertransaction
 Route::post('users/auth',
 [UserController::class, 'auth']);
 
-
-
-
 // });
 
 Route::get('/search', [ShopDashController::class, 'search']);
+
