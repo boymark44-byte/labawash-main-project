@@ -81,22 +81,24 @@ Route::post('users/auth',
 [UserController::class, 'auth']);
 
 //Customer's form
-Route::resource('customers', CustomerController::class)->middleware('role:3');
+// Route::resource('customers', CustomerController::class)->middleware('role:3');
 
 //Delete Customer's info
 Route::delete('/destroy/{id}', [ShopDashController::class, 'destroy'])->name('destroy');
 
 
-// Shop's Form
-Route::resource('shops', ShopController::class);
-Route::put('edit/{id}', [ShopController::class, 'edit'])->name('edit')->middleware('role:1,3');
+//Shop's Form
+// Route::resource('shops', ShopController::class);
+// Route::put('edit/{id}', [ShopController::class, 'edit'])->name('edit')->middleware('role:1,3');
+
 Route::put('update/{id}', [ShopController::class, 'update'])->name('update');
+
 
 //Show Shop Details
 Route::resource('details', DetailController::class);
 
 //For Customer's Load Transaction
-Route::resource('loads', LoadController::class)->middleware('role:2,3');
+// Route::resource('loads', LoadController::class)->middleware('role:2,3');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -118,16 +120,16 @@ Route::get('/customertransaction/{id}', [ShowTables::class, 'customertransaction
 Route::get('/accept/{id}', [ApprovalController::class, 'accept'])->name('accept');
 Route::get('/cancel/{id}', [ApprovalController::class, 'cancel'])->name('cancel');
 
-//for expenses table
-Route::resource('expenses', ExpenseController::class)->middleware('role:2');;
 
 //to get my cart
 Route::get('/mycart', [ShowTables::class, 'mycart'])->name('mycart')->middleware('role: 3');
 
 //for comment testimonials
-Route::resource('comment', CommentController::class);
+// Route::resource('comment', CommentController::class);
 
 //to receive laundry
 Route::get('/receive/{id}', [ApprovalController::class, 'receive'])->name('receive');
 
 Route::get('/earnings/{id}', [ShopDashController::class, 'earnings'])->name('earnings')->middleware('role:2');
+
+Route::get('/search', [ShopDashController::class, 'search'])->name('search');

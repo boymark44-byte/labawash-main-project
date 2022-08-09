@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('status')->default('On Going');
             $table->text('description')->nullable();
             $table->foreignId('customers_id')->constrained()->cascadeOnDelete();
+            $table->boolean('receive')->default(true);
             $table->timestamps();
         });
     }

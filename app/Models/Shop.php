@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Customer;
 use App\Models\User;
 use App\Models\Comment;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 
 
 class Shop extends Model
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens, Notifiable;
 
     protected $fillable = [
         'shop_name',
