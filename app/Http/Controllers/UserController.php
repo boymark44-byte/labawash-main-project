@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Laravel\Passport\Client;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+// use App\Http\Middleware\OnlyAcceptJsonMiddleware;
 
 class UserController extends Controller
 {
@@ -30,14 +34,56 @@ class UserController extends Controller
         // Create User
         $user = User::create($formFields);
 
-        $accessToken = $user->createToken('remember_token')->accessToken;
+        // $accessToken = $user->createToken('MyAccess')->accessToken;
+
+        //Mao ni siya ang pagkuha sa Oauth access and refresh token
+        $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
+          //if e try sa postman kay ibutang ni body sa oauth/token
+          'grant_type' => 'password',
+          'client_id' => '2',
+          'client_secret' => 'GyNszv5EUB8thIcVBXpgBWvhi7ldciF9GO5oDZAE',
+          'username' => $request->email,
+          'password' => $request->password,
+          'scope' => '',
+      ]);
+
+      // access_token only
+      $accessToken = $response->json('access_token');
+      
+      //suppose to be header
+      $token = Http::withHeaders([
+        'Accept' => 'application/json',
+        'Authorization' => 'Bearer '.$accessToken,
+    ])->get('http://labawash-main-project.com.ph/api/user');
+  
+
         //Login
         auth()->login($user);
 
         return redirect('/api');
     }
 
+    // public function bearer()
+    // {
+    //   header('Accept: application/json');
+    //   header('Authorization: Bearer' .$accessToken);
+    // }
+
     public function logout(Request $request) {
+      $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
+        'grant_type' => 'password',
+        'client_id' => '2',
+        'client_secret' => 'GyNszv5EUB8thIcVBXpgBWvhi7ldciF9GO5oDZAE',
+        'username' => $request->email,
+        'password' => $request->password,
+        'scope' => '',
+      ]);
+      $accessToken = $response->json('access_token');
+      $token = Http::withHeaders([
+        'Accept' => 'application/json',
+        'Authorization' => 'Bearer '.$accessToken,
+    ])->get('https://labawash-main-project.com.ph/api/user');
+
         auth()->logout();
 
         $request->session()->invalidate();
@@ -58,25 +104,62 @@ class UserController extends Controller
             'email' => ['required', 'email'],
             'password' => 'required'
         ]);
-        if(auth()->attempt($formFields)) {
-            $request->session()->regenerate();
 
+        $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
+          'grant_type' => 'password',
+          'client_id' => '2',
+          'client_secret' => 'GyNszv5EUB8thIcVBXpgBWvhi7ldciF9GO5oDZAE',
+          'username' => $request->email,
+          'password' => $request->password,
+          'scope' => '',
+      ]);
+      $accessToken = $response->json('access_token');
+
+      // header('Accept: application/json');
+      // header('Authorization: Bearer' .$accessToken);
+      //  dd('Bearer '.$accessToken);
+      // return $response->json();
+      $token = Http::withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer '.$accessToken,
+        ])->get('http://labawash-main-project.com.ph/api/user');
+      
+        // dd($response);
+
+        // new OnlyAcceptJsonMiddleware((string)$accessToken);
+      
+        // $user = Auth::user()->$token;
+        // return [$token->json()];
+        
+        if(auth()->attempt($formFields)) {
+
+          $token = Http::withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer '.$accessToken,
+          ])->post('http://labawash-main-project.com.ph/api/user');
+
+            $request->session()->regenerate();
+            // auth()->login($json);
             $role = Auth::user()->role;
         switch ($role) {
           case '1':
-            return redirect('/')->with('message', 'You are now logged in');
+            return redirect('/api')->with('message', 'You are now logged in');
             break;
           case '2':
-            return redirect('/')->with('message', 'You are now logged in');
+            return redirect('/api')->with('message', 'You are now logged in');
             break;
           case '3':
-            return redirect('/')->with('message', 'You are now logged in');
+            // dd('Bearer ' .$accessToken);
+            
+            return redirect('/api')
+            ;
               break;
 
           default:
-            return '/api/login';
+            return redirect('/api/login');
           break;
         }
+
         
   }
   else{

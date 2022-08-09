@@ -13,7 +13,8 @@ use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ExpenseController;
 use App\Models\Shop;
-
+use App\Models\User;
+use Illuminate\Http\Client\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,20 @@ Route::get('/', function () {
     $images = Shop::where('approve', '1')->get();
     return view('welcome')->with('images', $images);
 });
+
+// Route::post('/oauth/token' , function(Request $request){
+//     @csrf_token();
+//     [
+//     'form params' => [
+//         'grant_types' => 'password',
+//         'client_id' => env('CLIENT_ID'),
+//         'client_secret' => env('CLIENT_SECRET'),
+//         'username' => $request->user()->email,
+//         'password' => $request->user()->password,
+//     ]
+//     ];
+//     return view('welcome');
+// });
 
 //Reditected to admin dashboard
 Route::get('/admin',
@@ -72,10 +87,10 @@ Route::resource('customers', CustomerController::class)->middleware('role:3');
 Route::delete('/destroy/{id}', [ShopDashController::class, 'destroy'])->name('destroy');
 
 
-//Shop's Form
-// Route::resource('shops', ShopController::class);
-// Route::put('edit/{id}', [ShopController::class, 'edit'])->name('edit')->middleware('role:1,3');
-// Route::put('update/{id}', [ShopController::class, 'update'])->name('update');
+// Shop's Form
+Route::resource('shops', ShopController::class);
+Route::put('edit/{id}', [ShopController::class, 'edit'])->name('edit')->middleware('role:1,3');
+Route::put('update/{id}', [ShopController::class, 'update'])->name('update');
 
 //Show Shop Details
 Route::resource('details', DetailController::class);
