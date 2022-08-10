@@ -150,10 +150,10 @@ class UserController extends Controller
             $role = Auth::user()->role;
         switch ($role) {
           case '1':
-            return redirect('/api')->with('message', 'You are now logged in');
+            return redirect('/api')->withCookie($cookie);
             break;
           case '2':
-            return redirect('/api')->with('message', 'You are now logged in');
+            return redirect('/api')->withCookie($cookie);
             break;
           case '3':
             // dd('Bearer ' .$accessToken);
