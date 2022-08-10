@@ -49,18 +49,19 @@ class UserController extends Controller
 
       // access_token only
       $accessToken = $response->json('access_token');
-      
+      $value = $accessToken;
+      $cookie = cookie('jwt', $value ,minutes:60*24);
       //suppose to be header
       $token = Http::withHeaders([
         'Accept' => 'application/json',
         'Authorization' => 'Bearer '.$accessToken,
     ])->get('http://labawash-main-project.com.ph/api/user');
-  
+        
 
         //Login
         auth()->login($user);
 
-        return redirect('/api');
+        return redirect('/api')->withCookie($cookie);
     }
 
     // public function bearer()
@@ -83,13 +84,16 @@ class UserController extends Controller
         'Accept' => 'application/json',
         'Authorization' => 'Bearer '.$accessToken,
     ])->get('https://labawash-main-project.com.ph/api/user');
-
+    // $cookie = cookie('jwt', 'FORGOTTEN');
         auth()->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/api')->with('message', 'You have been logged out');
+        
+
+        return redirect('/api')->with('message', 'You have been logged out')
+        ->withoutCookie('jwt');
     }
 
     //Show Login Form
@@ -114,7 +118,9 @@ class UserController extends Controller
           'scope' => '',
       ]);
       $accessToken = $response->json('access_token');
-
+      $value = $accessToken;
+      $cookie = cookie('jwt', $value ,minutes:60*24);
+      // dd($cookie);
       // header('Accept: application/json');
       // header('Authorization: Bearer' .$accessToken);
       //  dd('Bearer '.$accessToken);
@@ -137,7 +143,8 @@ class UserController extends Controller
             'Accept' => 'application/json',
             'Authorization' => 'Bearer '.$accessToken,
           ])->post('http://labawash-main-project.com.ph/api/user');
-
+// dd($token);
+        
             $request->session()->regenerate();
             // auth()->login($json);
             $role = Auth::user()->role;
@@ -150,8 +157,8 @@ class UserController extends Controller
             break;
           case '3':
             // dd('Bearer ' .$accessToken);
-            
-            return redirect('/api')
+            Auth::user();
+            return redirect('/api')->withCookie($cookie)
             ;
               break;
 
