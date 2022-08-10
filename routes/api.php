@@ -54,6 +54,9 @@ Route::middleware('auth:api')->group(function(){
 
     Route::post('/logout',
     [UserController::class, 'logout']);
+
+    //insert routes that is valid for authorized user
+    
 });
 
 // Route::post('/login', 'UserController@login');
