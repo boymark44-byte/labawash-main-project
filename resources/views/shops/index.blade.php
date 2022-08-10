@@ -36,7 +36,7 @@
                                                 @if ($shop->image == true)
                                                     <td><img src="{{ $shop->image }}" alt=""></td>
                                                 @else
-                                                    <td><img src="images/laundry-default.jpg" alt=""></td>
+                                                    <td><img src="../../images/laundry-default.jpg" alt=""></td>
                                                 @endif
 
                                                 <td>{{$shop->shop_name}}</td>
@@ -91,7 +91,7 @@
                                             <a href="{{ route('shops.show', $shop->id) }}"><img src="{{$shop->image}}" alt=""></a>
 
                                             @else
-                                            <a href="{{ route('shops.show', $shop->id) }}"><img src="images/laundry-default.jpg" alt="">
+                                            <a href="{{ route('shops.show', $shop->id) }}"><img src="../images/laundry-default.jpg" alt="">
 
                                             @endif
                                             <a href="/details"><h4>{{ $shop->shop_name }}</h4></a>

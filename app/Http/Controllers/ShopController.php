@@ -20,16 +20,16 @@ class ShopController extends Controller
     public function index()
     {
 
-        // if ( Auth::user()->role == 1){
-        // return view('shops.index', [
-        //     'shops' => Shop::all()
-        // ]);
-        // } else {
-        //     return view('shops.index', [
-        //         'shops' => Shop::where('approve', '1')->get()
+        if ( Auth::user()->role == 1){
+        return view('shops.index', [
+            'shops' => Shop::all()
+        ]);
+        } else {
+            return view('shops.index', [
+                'shops' => Shop::where('approve', '1')->get()
 
-        //     ]);
-        // }
+            ]);
+        }
 
         // if ( Auth::user()->role == 1){
         //     return response()->json(Shop::all(), 200);
@@ -37,9 +37,9 @@ class ShopController extends Controller
         //         return response()->json(Shop::where('approve', '1')->get(), 200);
         //     }
 
-        return view('shops.index', [
-                    'shops' => Shop::all()
-        ]);
+        // return view('shops.index', [
+        //             'shops' => Shop::all()
+        // ]);
         // return response()->json(Shop::all(), 200);
     }
 
@@ -121,11 +121,11 @@ class ShopController extends Controller
 
         $comment = Comment::with('shop')->where('shop_id', $id)->get();
 
-        // return view('shops.show')->with('shops', $shop)->with('comments', $comment);
-        if(is_null($shop)){
-            return response()->json(['message'=> 'Shop Not Found'], 400);
-        }
-        return response()->json($shop::find($id), 200);
+        return view('shops.show')->with('shops', $shop)->with('comments', $comment);
+        // if(is_null($shop)){
+        //     return response()->json(['message'=> 'Shop Not Found'], 400);
+        // }
+        // return response()->json($shop::find($id), 200);
     }
 
     /**
