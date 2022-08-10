@@ -40,7 +40,7 @@ class UserController extends Controller
         // $accessToken = $user->createToken('MyAccess')->accessToken;
 
         //Mao ni siya ang pagkuha sa Oauth access and refresh token
-        $response = Http::asForm()->post(config('app.url') .'/oauth/token', [
+        $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
           //if e try sa postman kay ibutang ni body sa oauth/token
           'grant_type' => 'password',
           'client_id' => config('passport.personal_access_client.id'),
@@ -74,7 +74,7 @@ class UserController extends Controller
     // }
 
     public function logout(Request $request) {
-      $response = Http::asForm()->post(config('app.url') .'/oauth/token', [
+      $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
         'grant_type' => 'password',
         'client_id' => config('passport.personal_access_client.id'),
         'client_secret' => config('passport.personal_access_client.secret'),
@@ -112,7 +112,7 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 // dd($secret = config('passport.personal_access_client.secret'));
-        $response = Http::asForm()->post(config('app.url') .'/oauth/token', [
+        $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
           'grant_type' => 'password',
           'client_id' => config('passport.personal_access_client.id'),
           'client_secret' => config('passport.personal_access_client.secret'),
