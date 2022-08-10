@@ -3,18 +3,19 @@
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use App\Http\Middleware\Role;
-use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\ShopController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\LoadController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\ShopDashController;
 use App\Http\Controllers\ShowTables;
 
-
-
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoadController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
+
+
+
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ShopDashController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,16 +35,31 @@ Route::get('/', function () {
 // // ->middleware('auth:api')
 ;
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    // header('Accept: application/json');
-    // header('Authorization: Bearer' .$request->str('access_token'));
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     // header('Accept: application/json');
+//     // header('Authorization: Bearer' .$request->str('access_token'));
+    
+//     return $request->user();
+// })->group('users');
 
-    return $request->user();
+Route::middleware('auth:api')->group(function(){
+    //view current authorized user
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    //sample route for authorized
+    Route::get('/home', function(){
+        return 'Authorized';
+    });
+
+    Route::post('/logout',
+    [UserController::class, 'logout']);
+
+    //insert routes that is valid for authorized user
+    
 });
 
-
-// Route::prefix('/user')->group(['middleware' => ['web']], function(){
-//     // Route::post('/login', 'UserController@login');
+// Route::post('/login', 'UserController@login');
 
 // //Show Register Form
 // Route::get('/register',
@@ -54,8 +70,8 @@ Route::post('/users',
 [UserController::class, 'store']);
 
 //Logout
-Route::post('/logout',
-[UserController::class, 'logout']);
+// Route::post('/logout',
+// [UserController::class, 'logout']);
 
 // //Show Log in Form
 // Route::get('/login',
