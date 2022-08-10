@@ -56,7 +56,25 @@ Route::middleware('auth:api')->group(function(){
     [UserController::class, 'logout']);
 
     //insert routes that is valid for authorized user
-    
+    Route::resource('/shops', ShopController::class);
+
+    Route::resource('/customers', CustomerController::class);
+
+    Route::resource('/loads', LoadController::class);
+
+    Route::resource('comment', CommentController::class);
+
+    Route::get('/shop_dashboard/{id}', [ShopDashController::class, 'shop_dashboard']);
+
+    Route::get('/mycart', [ShowTables::class, 'mycart']);
+
+    Route::get('/display/{id}', [ShopDashController::class, 'display']);
+
+    Route::get('/showloads/{id}', [ShowTables::class, 'showloads']);
+
+    Route::get('/customertransaction/{id}', [ShowTables::class, 'customertransaction']);
+
+    Route::get('/search', [ShopDashController::class, 'search']);
 });
 
 // Route::post('/login', 'UserController@login');
@@ -65,7 +83,7 @@ Route::middleware('auth:api')->group(function(){
 // Route::get('/register',
 // [UserController::class, 'create']);
 
-//Create New User
+//Register New User
 Route::post('/users',
 [UserController::class, 'store']);
 
