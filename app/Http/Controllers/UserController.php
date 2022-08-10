@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 use Laravel\Passport\Client;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Dotenv\Dotenv;
+use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 // use App\Http\Middleware\OnlyAcceptJsonMiddleware;
+use Config;
 
 class UserController extends Controller
 {
@@ -40,8 +43,8 @@ class UserController extends Controller
         $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
           //if e try sa postman kay ibutang ni body sa oauth/token
           'grant_type' => 'password',
-          'client_id' => '2',
-          'client_secret' => 'GyNszv5EUB8thIcVBXpgBWvhi7ldciF9GO5oDZAE',
+          'client_id' => config('passport.personal_access_client.id'),
+          'client_secret' => config('passport.personal_access_client.secret'),
           'username' => $request->email,
           'password' => $request->password,
           'scope' => '',
@@ -73,8 +76,8 @@ class UserController extends Controller
     public function logout(Request $request) {
       $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
         'grant_type' => 'password',
-        'client_id' => '2',
-        'client_secret' => 'GyNszv5EUB8thIcVBXpgBWvhi7ldciF9GO5oDZAE',
+        'client_id' => config('passport.personal_access_client.id'),
+        'client_secret' => config('passport.personal_access_client.secret'),
         'username' => $request->email,
         'password' => $request->password,
         'scope' => '',
@@ -108,11 +111,11 @@ class UserController extends Controller
             'email' => ['required', 'email'],
             'password' => 'required'
         ]);
-
+// dd($secret = config('passport.personal_access_client.secret'));
         $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
           'grant_type' => 'password',
-          'client_id' => '2',
-          'client_secret' => 'GyNszv5EUB8thIcVBXpgBWvhi7ldciF9GO5oDZAE',
+          'client_id' => config('passport.personal_access_client.id'),
+          'client_secret' => config('passport.personal_access_client.secret'),
           'username' => $request->email,
           'password' => $request->password,
           'scope' => '',
