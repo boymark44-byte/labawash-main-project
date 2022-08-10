@@ -41,7 +41,7 @@ class UserController extends Controller
           //if e try sa postman kay ibutang ni body sa oauth/token
           'grant_type' => 'password',
           'client_id' => '2',
-          'client_secret' => 'GyNszv5EUB8thIcVBXpgBWvhi7ldciF9GO5oDZAE',
+          'client_secret' => 'x4C8FeXVHRtX4rXDNh8TypBu680DVKoCFR7wmahS',
           'username' => $request->email,
           'password' => $request->password,
           'scope' => '',
@@ -56,7 +56,7 @@ class UserController extends Controller
         'Accept' => 'application/json',
         'Authorization' => 'Bearer '.$accessToken,
     ])->get('http://labawash-main-project.com.ph/api/user');
-        
+
 
         //Login
         auth()->login($user);
@@ -74,7 +74,7 @@ class UserController extends Controller
       $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
         'grant_type' => 'password',
         'client_id' => '2',
-        'client_secret' => 'GyNszv5EUB8thIcVBXpgBWvhi7ldciF9GO5oDZAE',
+        'client_secret' => 'x4C8FeXVHRtX4rXDNh8TypBu680DVKoCFR7wmahS',
         'username' => $request->email,
         'password' => $request->password,
         'scope' => '',
@@ -90,7 +90,7 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        
+
 
         return redirect('/api')->with('message', 'You have been logged out')
         ->withoutCookie('jwt');
@@ -112,7 +112,7 @@ class UserController extends Controller
         $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
           'grant_type' => 'password',
           'client_id' => '2',
-          'client_secret' => 'GyNszv5EUB8thIcVBXpgBWvhi7ldciF9GO5oDZAE',
+          'client_secret' => 'x4C8FeXVHRtX4rXDNh8TypBu680DVKoCFR7wmahS',
           'username' => $request->email,
           'password' => $request->password,
           'scope' => '',
@@ -129,14 +129,14 @@ class UserController extends Controller
             'Accept' => 'application/json',
             'Authorization' => 'Bearer '.$accessToken,
         ])->get('http://labawash-main-project.com.ph/api/user');
-      
+
         // dd($response);
 
         // new OnlyAcceptJsonMiddleware((string)$accessToken);
-      
+
         // $user = Auth::user()->$token;
         // return [$token->json()];
-        
+
         if(auth()->attempt($formFields)) {
 
           $token = Http::withHeaders([
@@ -144,7 +144,7 @@ class UserController extends Controller
             'Authorization' => 'Bearer '.$accessToken,
           ])->post('http://labawash-main-project.com.ph/api/user');
 // dd($token);
-        
+
             $request->session()->regenerate();
             // auth()->login($json);
             $role = Auth::user()->role;
@@ -167,11 +167,11 @@ class UserController extends Controller
           break;
         }
 
-        
+
   }
   else{
     return back()->withErrors(['email' => 'Invalid'])->onlyInput('email');
 }
-    
+
      }
  }

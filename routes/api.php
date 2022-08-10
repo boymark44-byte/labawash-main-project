@@ -38,7 +38,7 @@ Route::get('/', function () {
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     // header('Accept: application/json');
 //     // header('Authorization: Bearer' .$request->str('access_token'));
-    
+
 //     return $request->user();
 // })->group('users');
 
@@ -56,7 +56,7 @@ Route::middleware('auth:api')->group(function(){
     [UserController::class, 'logout']);
 
     //insert routes that is valid for authorized user
-    
+
 });
 
 // Route::post('/login', 'UserController@login');
