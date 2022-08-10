@@ -44,7 +44,7 @@ class UserController extends Controller
           //if e try sa postman kay ibutang ni body sa oauth/token
           'grant_type' => 'password',
           'client_id' => '2',
-          'client_secret' => 'GyNszv5EUB8thIcVBXpgBWvhi7ldciF9GO5oDZAE',
+          'client_secret' => 'x4C8FeXVHRtX4rXDNh8TypBu680DVKoCFR7wmahS',
           'username' => $request->email,
           'password' => $request->password,
           'scope' => '',
@@ -76,8 +76,8 @@ class UserController extends Controller
     public function logout(Request $request) {
       $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
         'grant_type' => 'password',
-        'client_id' => '2',
-        'client_secret' => 'GyNszv5EUB8thIcVBXpgBWvhi7ldciF9GO5oDZAE',
+        'client_id' => config('passport.personal_access_client.id'),
+          'client_secret' => config('passport.personal_access_client.secret'),
         'username' => $request->email,
         'password' => $request->password,
         'scope' => '',
@@ -114,8 +114,8 @@ class UserController extends Controller
 // dd($secret = config('passport.personal_access_client.secret'));
         $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
           'grant_type' => 'password',
-          'client_id' => '2',
-          'client_secret' => 'GyNszv5EUB8thIcVBXpgBWvhi7ldciF9GO5oDZAE',
+          'client_id' => config('passport.personal_access_client.id'),
+          'client_secret' => config('passport.personal_access_client.secret'),
           'username' => $request->email,
           'password' => $request->password,
           'scope' => '',
