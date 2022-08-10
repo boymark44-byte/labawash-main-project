@@ -33,7 +33,7 @@ class CommentController extends Controller
         $comment->comment_body = $request->comment_body;
         $comment->save();
 
-        return view("welcome");
+        return redirect("api/mycart");
     }
 
     //

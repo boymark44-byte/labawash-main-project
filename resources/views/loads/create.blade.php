@@ -67,6 +67,6 @@
                         <button class="btn"> Submit </button>
             </form>
         </div>
-        <a href="{{ route('customertransaction', $customers_id) }}" class="btn">Back</a>
+        <a href="/api/customertransaction/{{ $customers_id }}" class="btn">Back</a>
     </div>
 @endsection

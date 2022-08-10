@@ -20,9 +20,9 @@
                             <div class="col-6">
                                 {{-- images --}}
                                 @if ($shop->image == true)
-                                <a href="{{ route('display', $shop->id) }}"><img src="{{ $shop->image }}" alt=""></a></td>
+                                <a href="/api/display/{{ $shop->id }}"><img src="{{ $shop->image }}" alt=""></a></td>
                                 @else
-                                <a href="{{ route('display', $shop->id) }}"><img src="../images/laundry-default.jpg" alt=""></a></td>
+                                <a href="/api/display/{{ $shop->id }}"><img src="../../images/laundry-default.jpg" alt=""></a></td>
                                 @endif
                                 <br>
                                 <h2>{{$shop->shop_name}}</h2>

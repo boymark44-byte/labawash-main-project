@@ -120,6 +120,7 @@ class UserController extends Controller
           'password' => $request->password,
           'scope' => '',
       ]);
+      // dd($response);
       $accessToken = $response->json('access_token');
       $value = $accessToken;
       $cookie = cookie('jwt', $value ,minutes:60*24);
