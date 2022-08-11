@@ -19,17 +19,19 @@ class ShopController extends Controller
         when role is customer */
     public function index()
     {
+        
 
-        if ( Auth::user()->role == 1){
-        return view('shops.index', [
-            'shops' => Shop::all()
-        ]);
-        } else {
-            return view('shops.index', [
-                'shops' => Shop::where('approve', '1')->get()
+        // To show single view shops  comment this out
+        // if ( Auth::user()->role == 1){
+        // return view('shops.index', [
+        //     'shops' => Shop::all()
+        // ]);
+        // } else {
+        //     return view('shops.index', [
+        //         'shops' => Shop::where('approve', '1')->get()
 
-            ]);
-        }
+        //     ]);
+        // }
 
         // if ( Auth::user()->role == 1){
         //     return response()->json(Shop::all(), 200);
@@ -37,10 +39,14 @@ class ShopController extends Controller
         //         return response()->json(Shop::where('approve', '1')->get(), 200);
         //     }
 
+
+        // return response()->json(Shop::all(), 200);
         // return view('shops.index', [
         //             'shops' => Shop::all()
         // ]);
-        // return response()->json(Shop::all(), 200);
+
+        // Uncomment this to fet single view shop
+        return response()->json(Shop::all(), 200);
     }
 
     //view shop create form
