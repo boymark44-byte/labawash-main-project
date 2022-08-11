@@ -40,7 +40,7 @@ class UserController extends Controller
         // $accessToken = $user->createToken('MyAccess')->accessToken;
 
         //Mao ni siya ang pagkuha sa Oauth access and refresh token
-        $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
+        $response = Http::asForm()->post(config('app.url') .'/oauth/token', [
           //if e try sa postman kay ibutang ni body sa oauth/token
           'grant_type' => 'password',
           'client_id' => config('passport.personal_access_client.id'),
@@ -74,7 +74,7 @@ class UserController extends Controller
     // }
 
     public function logout(Request $request) {
-      $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
+      $response = Http::asForm()->post(config('app.url') .'/oauth/token', [
         'grant_type' => 'password',
         'client_id' => config('passport.personal_access_client.id'),
         'client_secret' => config('passport.personal_access_client.secret'),
@@ -112,7 +112,7 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 // dd($secret = config('passport.personal_access_client.secret'));
-        $response = Http::asForm()->post('http://labawash-main-project.com.ph/oauth/token', [
+$response = Http::asForm()->post(config('app.url') .'/oauth/token', [
           'grant_type' => 'password',
           'client_id' => config('passport.personal_access_client.id'),
           'client_secret' => config('passport.personal_access_client.secret'),
@@ -122,6 +122,7 @@ class UserController extends Controller
       ]);
       // dd($response);
       $accessToken = $response->json('access_token');
+      // dd($accessToken);
       $value = $accessToken;
       $cookie = cookie('jwt', $value ,minutes:60*24);
       // dd($cookie);
@@ -155,14 +156,22 @@ class UserController extends Controller
         switch ($role) {
           case '1':
             return redirect('/api')->withCookie($cookie);
+            // return response()->json(Auth::user())
+            // ->withCookie($cookie)
+            ;
             break;
           case '2':
             return redirect('/api')->withCookie($cookie);
+            // return response()->json(Auth::user())
+            // ->withCookie($cookie)
+            ;
             break;
           case '3':
             // dd('Bearer ' .$accessToken);
-            Auth::user();
+            // Auth::user();
             return redirect('/api')->withCookie($cookie)
+            // return response()->json(Auth::user())
+            // ->withCookie($cookie)
             ;
               break;
 
