@@ -23,7 +23,8 @@
                     @foreach ($item->customers as $customer)
                     <tr>
                         <td>{{$customer->shop_id}}</td></a>
-                        <td><a href="{{ route('showloads', $customer->id) }}">{{$customer->name}}</a></td>
+                        {{-- <td><a href="{{ route('showloads', $customer->id) }}">{{$customer->name}}</a></td> --}}
+                        <td><a href="/api/showloads/{{ $customer->id }}">{{$customer->name}}</a></td>
                         <td>{{$customer->address}}</td>
                         <td>{{$customer->contact_number}}</td>
                         <td>
@@ -39,7 +40,7 @@
                     @endforeach
                 @endforeach
             </table>
-            <a href="{{ route('shop_dashboard', $id = Auth::id()) }}" class="btn">Back</a>
+            <a href="/api/shop_dashboard/{{Auth::user()->id}}" class="btn">Back</a>
         @endif
     </div>
 @endsection

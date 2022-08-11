@@ -65,7 +65,7 @@ Route::middleware('auth:api')->group(function(){
 // Route::get('/register',
 // [UserController::class, 'create']);
 
-//Create New User
+//Register New User
 Route::post('/users',
 [UserController::class, 'store']);
 

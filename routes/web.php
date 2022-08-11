@@ -103,11 +103,11 @@ Route::resource('details', DetailController::class);
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
-//display owner and the shops
-Route::get('/shop_dashboard/{id}', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard')->middleware('role:2');
+// //display owner and the shops
+// Route::get('/shop_dashboard/{id}', [ShopDashController::class, 'shop_dashboard'])->name('shop_dashboard')->middleware('role:2');
 
 //display shop and its customers
-Route::get('/display/{id}', [ShopDashController::class, 'display'])->name('display')->middleware('role:2');
+// Route::get('/display/{id}', [ShopDashController::class, 'display'])->name('display')->middleware('role:2');
 
 //For showing table for customers loads
 Route::get('/showloads/{id}', [ShowTables::class, 'showloads'])->name('showloads');

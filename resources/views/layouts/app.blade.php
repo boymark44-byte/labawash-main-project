@@ -45,7 +45,8 @@
 
                     @elseif ( Auth::user()->role == 2)
                     <ul id="MenuItems">
-                        <li><a href="{{route('shop_dashboard', ['id'=>Auth::id()])}}">Dashboard</a></li>
+                        <li><a href="api/shop_dashboard/{{ Auth::user()->id }}">Dashboard</a></li>
+                        {{-- <li><a href="/">Dashboard</a></li> --}}
                         <li><a href="">Services</a></li>
 
                     @else
@@ -75,7 +76,7 @@
                             <img src="/images/laundry-basket.png" alt="" width="30px" height="30px">
                         </a>
                             <img src="/images/menu.png" class="menu-icon" onclick="menutoggle()">
-                    @else
+                    @elseif( Auth::user()->role == 3 )
                         <a href="{{ route('mycart') }}">
                             <img src="/images/laundry-basket.png" alt="" width="30px" height="30px">
                         </a>

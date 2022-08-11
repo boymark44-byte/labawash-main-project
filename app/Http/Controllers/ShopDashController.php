@@ -52,14 +52,7 @@ class ShopDashController extends Controller
         return view('shops.shop')->with('shops', $shop);
     }
 
-    public function customer_expenses($id)
-    {
-        $loads = Load::where('id', $id)->with('expenses')->get();
-        $expenses = Expense::with('loads')->where('loads_id', $id)->get();
-        $index = Load::where('id', $id)->with('expenses')->select('id')->first();
 
-        return view('expenses.index', compact('loads', 'expenses', 'index'));
-    }
 
     public function earnings($id){
 
@@ -75,9 +68,9 @@ class ShopDashController extends Controller
     public function search(Request $request){
         if(isset($_GET['query'])){
             $search_text=$_GET['query'];
-            $shops = DB::table('shops')->where('shop_name','LIKE','%' .$search_text.'%')->get();
-            $shops = DB::table('shops')->where('description','LIKE','%' .$search_text.'%')->get();
-            $shops = DB::table('shops')->where('category','LIKE','%' .$search_text.'%')->get();
+            $shops = DB::table('shops')->where('shop_name','LIKE','%' .$search_text.'%')->where('approve', '1')->get();
+            // $shops = DB::table('shops')->where('description','LIKE','%' .$search_text.'%')->get();
+            // $shops = DB::table('shops')->where('category','LIKE','%' .$search_text.'%')->get();
             return view('search',['shops'=>$shops]);
         }else{
              return view('search');

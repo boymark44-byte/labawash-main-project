@@ -44,8 +44,9 @@
 
                                 </tbody>
                             </table>
+                            
                         @endif
-                        <a href ="{{route('shop_dashboard', $id = Auth::id())}}" class="btn">Back</a
+                        <a href ="/api/shop_dashboard/{{ Auth::user()->id }}" class="btn">Back</a>
                 </div>
             </div>
         </div>
