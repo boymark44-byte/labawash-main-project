@@ -24,6 +24,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\OnlyAcceptJsonMiddleware::class,
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        \App\Http\Middleware\Cors::class,
     ];
 
     /**

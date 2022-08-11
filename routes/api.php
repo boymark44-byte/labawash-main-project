@@ -56,25 +56,25 @@ Route::middleware('auth:api')->group(function(){
     [UserController::class, 'logout']);
 
     //insert routes that is valid for authorized user
-    Route::resource('/shops', ShopController::class);
+    Route::resource('/shops', ShopController::class)->middleware('role: 1, 3');
 
-    Route::resource('/customers', CustomerController::class);
+    Route::resource('/customers', CustomerController::class)->middleware('role: 3');
 
-    Route::resource('/loads', LoadController::class);
+    Route::resource('/loads', LoadController::class)->middleware('role: 3');
 
-    Route::resource('comment', CommentController::class);
+    Route::resource('comment', CommentController::class)->middleware('role: 3');
 
-    Route::get('/shop_dashboard/{id}', [ShopDashController::class, 'shop_dashboard']);
+    Route::get('/shop_dashboard/{id}', [ShopDashController::class, 'shop_dashboard'])->middleware('role: 2');
 
-    Route::get('/mycart', [ShowTables::class, 'mycart']);
+    Route::get('/mycart', [ShowTables::class, 'mycart'])->middleware('role: 3');
 
-    Route::get('/display/{id}', [ShopDashController::class, 'display']);
+    Route::get('/display/{id}', [ShopDashController::class, 'display'])->middleware('role: 2');
 
-    Route::get('/showloads/{id}', [ShowTables::class, 'showloads']);
+    Route::get('/showloads/{id}', [ShowTables::class, 'showloads'])->middleware('role: 2');
 
-    Route::get('/customertransaction/{id}', [ShowTables::class, 'customertransaction']);
+    Route::get('/customertransaction/{id}', [ShowTables::class, 'customertransaction'])->middleware('role: 3');
 
-    Route::get('/search', [ShopDashController::class, 'search']);
+    Route::get('/search', [ShopDashController::class, 'search'])->middleware('role: 3');
 });
 
 // Route::post('/login', 'UserController@login');
@@ -96,25 +96,25 @@ Route::post('/users',
 // [UserController::class, 'login']);
 
 
-Route::resource('/shops', ShopController::class);
+// Route::resource('/shops', ShopController::class);
 
-Route::resource('/customers', CustomerController::class);
+// Route::resource('/customers', CustomerController::class);
 
-Route::resource('/loads', LoadController::class);
+// Route::resource('/loads', LoadController::class);
 
-Route::resource('comment', CommentController::class);
+// Route::resource('comment', CommentController::class);
 
-Route::get('/shop_dashboard/{id}', [ShopDashController::class, 'shop_dashboard']);
+// Route::get('/shop_dashboard/{id}', [ShopDashController::class, 'shop_dashboard']);
 
-Route::get('/mycart', [ShowTables::class, 'mycart']);
+// Route::get('/mycart', [ShowTables::class, 'mycart']);
 
-Route::get('/display/{id}', [ShopDashController::class, 'display']);
+// Route::get('/display/{id}', [ShopDashController::class, 'display']);
 
-Route::get('/showloads/{id}', [ShowTables::class, 'showloads']);
+// Route::get('/showloads/{id}', [ShowTables::class, 'showloads']);
 
-Route::get('/earnings/{id}', [ShopDashController::class, 'earnings']);
+// Route::get('/earnings/{id}', [ShopDashController::class, 'earnings']);
 
-Route::get('/customertransaction/{id}', [ShowTables::class, 'customertransaction']);
+// Route::get('/customertransaction/{id}', [ShowTables::class, 'customertransaction']);
 
 
 
@@ -124,5 +124,5 @@ Route::post('users/auth',
 
 // });
 
-Route::get('/search', [ShopDashController::class, 'search']);
+// Route::get('/search', [ShopDashController::class, 'search']);
 
