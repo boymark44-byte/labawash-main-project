@@ -5,15 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //
 
     public function index()
     {
@@ -24,85 +22,61 @@ class CustomerController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //
     public function create()
     {
-        return view('customers.create');
+        $shop = Shop::all();
+        return view('customers.create', compact('shop'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //
     public function store(Request $request)
     {
         $this ->validate($request, ['name' =>'required', 'address' =>'required', 'contact_number' =>'required']);
+
+        // $shop = Shop::findOrFail($request->shop_id);
+        // $shop->customers()->create([
+        //     'name' => $request -> name,
+        //     'address' => $request -> address,
+        //     'contact_number' => $request -> contact_number
+        // ]);
+
         $customer = new Customer();
 
-        // $customer->name = strip_tags($request->input('name'));
-        // $customer->address = strip_tags($request->input('address'));
-        // $customer->contact_number = strip_tags($request->input('contact_number'));
+        $customer->user_id = Auth::user()->id;
+        $customer->shop_id = $request->shop_id;
+        $customer->name = $request->name;
+        $customer->address = $request->address;
+        $customer->contact_number = $request->contact_number;
+        $customer->save();
 
-        // $customer->save();
-        // return redirect()->route('c.index');
-        auth()->user()->customers()->create([
-            'name' => $request -> name,
-            'address' => $request -> address,
-            'contact_number' => $request -> contact_number
-        ]);
-        return redirect()->route('customers.show');
-
+        $id = DB::getPdo()->lastInsertId();
+        return redirect()->route('loads.show', ['load'=> $id]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //
     public function show($id)
     {
-        $customer = Customer::find($id);
-        return view('customers.show')->with('customers', $customer);
+        return view('customers.create')->with('shop_id', $id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //
     public function edit($id)
     {
-        //
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //
     public function destroy($id)
     {
-        //
+        $customers = Customer::find($id);
+        $customers->delete();
+        return view('/shop_dashboard');
     }
 }

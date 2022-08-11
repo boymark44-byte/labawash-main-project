@@ -1,50 +1,101 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Linking the CSS file -->
+    <link rel="stylesheet" href="/css/app.css" type="text/css">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-secondary shadow-sm">
-            <div class="container">
 
-                <a class="navbar-brand" href="{{ url('/') }}">Home</a>
-                <a class="navbar-brand" href="{{ route('customers.create') }}">Shop Display</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <!-- The Header Class -->
+    <div class="header">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+         <!-- The Container Class -->
+        <div class="container">
+            <!-- NavBar -->
+            <div class="navbar navbar-expand-md navbar-light">
 
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="/api"><img src="/images/logo.png" alt="" width="75px" height="75px"></a>
+                </div>
+
+                <!-- Text-link -->
+                <nav>
+                    <ul id="MenuItems">
+                    <li><a href="/">Home</a></li>
+                    @auth
+                    @if ( Auth::user()->role == 1)
+                    <ul id="MenuItems">
+                        <li><a href="{{route('shops.index')}}">Dashboard</a></li>
+                        <li><a href="">Services</a></li>
+
+                    @elseif ( Auth::user()->role == 2)
+                    <ul id="MenuItems">
+                        <li><a href="api/shop_dashboard/{{ Auth::user()->id }}">Dashboard</a></li>
+                        {{-- <li><a href="/">Dashboard</a></li> --}}
+                        <li><a href="">Services</a></li>
+
+                    @else
+                    <ul id="MenuItems">
+                        <li><a href="{{route('shops.index')}}">Dashboard</a></li>
+                        <li><a href="">Services</a></li>
+                    @endif
+                    @endauth
+                    @auth
+                        <li><form class="inline" method="POST" action="/logout">
+                            @csrf
+                            <button>Logout</button>
+                        </form></li>
+                    @else
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">Register</a></li>
+                    @endauth
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
 
-                </div>
+                </nav>
+                 <!-- Image Icon for Cart on the Upper Right-->
+                @auth
+                    @if ( Auth::user()->role == 2)
+
+                        <a href="{{ route('earnings', ['id'=>Auth::id()] )}}">
+                            <img src="/images/laundry-basket.png" alt="" width="30px" height="30px">
+                        </a>
+                            <img src="/images/menu.png" class="menu-icon" onclick="menutoggle()">
+                    @elseif( Auth::user()->role == 3 )
+                        <a href="{{ route('mycart') }}">
+                            <img src="/images/laundry-basket.png" alt="" width="30px" height="30px">
+                        </a>
+                            <img src="/images/menu.png" class="menu-icon" onclick="menutoggle()">
+                    @endif
+                @else
+                    <a href="/">
+                        <img src="/images/laundry-basket.png" alt="" width="30px" height="30px">
+                    </a>
+                        <img src="/images/menu.png" class="menu-icon" onclick="menutoggle()">
+                @endauth
+
             </div>
-        </nav>
+        </div>
+    </div>
+
 
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
 </body>
 </html>

@@ -1,10 +1,14 @@
+@extends('layouts.app')
+
+@section('content')
+
 <div class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24">
     <header class="text-center">
 
         <p class="mb-4">Login to Account</p>
     </header>
 
-    <form method="POST" action="/users/auth">
+    <form method="POST" action="/api/users/auth">
         @csrf
 
         <div class="mb-6">
@@ -54,3 +58,4 @@
         </div>
     </form>
 </div>
+@endsection

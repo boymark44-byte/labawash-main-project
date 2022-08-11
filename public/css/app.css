@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+
 }
 
 
@@ -13,57 +13,13 @@ body{
 }
 
 
-/* Bootstrap NavBar */
-/* .menu-bar{
-    background: radial-gradient(#fff, #ffd6d6);
-}
-
-.nav-link{
-    font-size: 16px;
-    margin: 3px;
-    color: #000!important;
-    font-weight: 500;
-}
-
-.navbar-nav {
-    text-align: right;
-    margin-right: 20px;
-}
-
-.menu-bar .navbar-toggler {
-    padding-right: 20px;
-    outline: none!important;
-    border: none!important;
-}
-
-.navbar .fa {
-    color: #555!important;
-    font-size: 26px;
-}
-
-.nav-link:hover {
-    font-weight: 600;
-    border-bottom: 1px solid #fff;
-}
-
-.navbar-brand img {
-    width: 150px;
-    margin-top: 5px;
-    margin-left: 20px;
-}
-
-@media only screen and (max-width: 1000px) {
-    .nav-link:hover{
-        border-bottom: none!important;
-    }
-} */
-
-
 /* The NavBar class */
 .navbar{
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 5px;
+    border: 1px solid #e7e7e7;
+    background-color: #f3f3f3;
 }
 
 nav{
@@ -91,7 +47,6 @@ p{
 }
 
 
-
 /* Container for NavBar */
 .container{
     max-width: 1300px;
@@ -115,7 +70,7 @@ p{
 
 .col-2 img{
     max-width: 100%;
-    padding: 50px 0; 
+    padding: 50px 0;
 }
 
 .col-2 h1{
@@ -135,7 +90,7 @@ p{
 }
 
 .btn:hover{
-    
+
     background-color: #0093E9;
     background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 
@@ -144,12 +99,7 @@ p{
 
 /* Header Class - it contains the container, */
 .header{
-    /* background-image: url('/images/header-bg-color.jpg'); */
-    
-    background-color: #045de9;
-    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
-   
-    
+    background-image: url('/images/header-bg-color.jpg');
 }
 
 
@@ -175,8 +125,8 @@ p{
 }
 
 .col-3 img{
-    /* width: 100%;  
-    height: 100%; 
+    /* width: 100%;
+    height: 100%;
     object-fit: scale-down;  */
     height: auto;
     width: 400px;
@@ -239,6 +189,44 @@ h4{
     color: #2766db;
 }
 
+/* for rating */
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:25px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #2766db;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: rgb(21, 76, 179);
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #0a43ac;
+}
+/* for rating */
+
 .col-4:hover{
     transform: translateY(-5px);
 }
@@ -252,7 +240,7 @@ h4{
 
     /* Full height */
     height: 100%;
-    
+
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -309,6 +297,51 @@ small{
     font-size: 16px;
 }
 
+/* testimonials col-6 */
+.testimonials{
+    padding-top: 25px;
+    padding-bottom: 100 px;
+}
+
+.testimonials .col-6{
+    margin: 20px;
+    text-align: center;
+    padding: 25px 50px 10px;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.testimonials .col-6:hover{
+    transform: translateY(-10px);
+}
+
+.testimonials .col-6 img{
+    width: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+}
+
+.testimonials .col-6 h3{
+    font-weight: 600;
+    color: #555;
+    font-size: 16px;
+}
+.testimonials .col-6 h2{
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    /* #777 */
+    font-size: 20px;
+}
+
+.col-6 p{
+    font-size: 12px;
+    margin: 12px 0;
+    color: rgb(0, 0, 0);
+    /* #777 */
+}
+/* testimonials col-6 */
 
 /* The Brands Section */
 .brands{
@@ -330,7 +363,7 @@ small{
 }
 
 
- 
+
 /* The Footer Section */
 .footer{
     background: #2766db;
@@ -359,7 +392,7 @@ small{
 
 .footer-col-2{
     flex: 1;
-    text-align: center;   
+    text-align: center;
 }
 
 .footer-col-2 img{
@@ -373,7 +406,7 @@ small{
 }
 
 ul{
-    list-style-type: none; 
+    list-style-type: none;
 }
 
 .app-logo{
@@ -540,7 +573,7 @@ table{
 
 .cart-info{
     display: flex;
-    flex-wrap: wrap;   
+    flex-wrap: wrap;
 }
 
 th{

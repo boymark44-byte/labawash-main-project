@@ -1,62 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+@extends('layouts.app')
 
-    <!-- Linking the CSS file -->
-    <link rel="stylesheet" href="css/app.css" type="text/css">
+@section('content')
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-
-</head>
-<body>
-
-    <!-- The Header Class -->
-    <div class="header">
-
-         <!-- The Container Class -->
-        <div class="container">
-            <!-- NavBar -->
-            <div class="navbar navbar-expand-md navbar-light">
-
-                <!-- Logo -->
-                <div class="logo">
-                    <a href="/"><img src="images/logo.png" alt="" width="75px" height="75px"></a>
-                </div>
-
-                <!-- Text-link -->
-                <nav>
-                    <ul id="MenuItems">
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Shops</a></li>
-                        <li><a href="">Services</a></li>
-                        @auth
-                        <form class="inline" method="POST" action="/logout">
-                            @csrf
-                            <button>Logout</button>
-                        @else
-                            <li><a href="/login">Login</a></li>
-                            <li><a href="/register">Register</a></li>
-                        @endauth
-                    </ul>
-                </nav>
-                
-                <!-- Image Icon for Cart on the Upper Right-->
-                <a href="#"><img src="images/laundry-basket.png" alt="" width="30px" height="30px"></a>
-                <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
-
-            </div>
-
-
+<div class="header">
             <!-- Row -->
             <div class="row">
                 <div class="col-2">
@@ -66,19 +12,21 @@
                     </p>
 
                     <!-- Button: Explore now! -->
-                    <a href="" class="btn">Find Laundry Shops &#8594;</a>
+                    @auth
+                    <a href="{{route('shops.index')}}" class="btn">Find Laundry Shops &#8594;</a>
+                    @else
+                    <a href="/login" class="btn">Find Laundry Shops &#8594;</a>
+                    @endauth
+
                 </div>
 
                 <!-- Image -->
                 <div class="col-2">
                     <img src="images/woman-landing.png" alt="">
                 </div>
+
             </div>
         </div>
-
-    </div>
-
-
     <!-- The Featured Category Section -->
     <div class="categories">
         <div class="small-container">
@@ -106,11 +54,16 @@
         <h2 class="title">Featured Laundry Shops</h2>
 
         <div class="row">
-
-            <!-- Product 1 -->
+            @foreach ($images as $item)
             <div class="col-4">
-                <a href="laundry-shopetails.html"><img src="images/laundry-shop-5.jpg" alt=""></a>
-                <a href="laundry-shopetails.html"><h4>Laundry Shop </h4></a>
+                @if ($item->image == true)
+                <a href="{{ route('shops.show', $item->id) }}"><img src="{{$item->image}}" alt=""></a>
+
+                @else
+                <a href="{{ route('shops.show', $item->id) }}"><img src="images/laundry-default.jpg" alt="">
+
+                @endif
+                <a href="/details"><h4>{{ $item->shop_name }}</h4></a>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -122,62 +75,10 @@
                 </div>
 
                 <!-- Price -->
-                <p>$50.00</p>
+                <p>Php {{ $item->price }} {{$item->category}}</p>
             </div>
+            @endforeach
 
-            <!-- Product 2 -->
-            <div class="col-4">
-                <img src="images/laundry-shop-2.jpg" alt="">
-                <h4>Laundry Shop </h4>
-
-                <!-- Rating -->
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-
-                <!-- Price -->
-                <p>$51.00</p>
-            </div>
-
-            <!-- Product 3 -->
-            <div class="col-4">
-                <img src="images/laundry-shop-6.jpg" alt="">
-                <h4>Laundry Shop </h4>
-
-                <!-- Rating -->
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-
-                <!-- Price -->
-                <p>$52.00</p>
-            </div>
-
-            <!-- Product 4 -->
-            <div class="col-4">
-                <img src="images/laundry-shop-4.jpg" alt="">
-                <h4>Laundry Shop </h4>
-
-                <!-- Rating -->
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-
-                <!-- Price -->
-                <p>$53.00</p>
-            </div>
         </div>
 
 
@@ -187,8 +88,8 @@
 
             <!-- Product 5 -->
             <div class="col-4">
-                <img src="images/laundry-shop-1.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/5"><img src="images/laundry-shop-1.jpg" alt=""></a>
+                <h4>Best Coin Laundry</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -205,8 +106,8 @@
 
             <!-- Product 6 -->
             <div class="col-4">
-                <img src="images/laundry-shop-2.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/6"><img src="images/laundry-shop-2.jpg" alt=""></a>
+                <h4>Bright and Beautiful Cleaning</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -223,8 +124,8 @@
 
             <!-- Product 7 -->
             <div class="col-4">
-                <img src="images/laundry-shop-3.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/7"><img src="images/laundry-shop-3.jpg" alt=""></a>
+                <h4>City Limits Laundry</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -241,8 +142,8 @@
 
             <!-- Product 8 -->
             <div class="col-4">
-                <img src="images/laundry-shop-4.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/8"><img src="images/laundry-shop-4.jpg" alt=""></a>
+                <h4>Clean Freedom</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -262,8 +163,8 @@
 
             <!-- Product 9 -->
             <div class="col-4">
-                <img src="images/laundry-shop-4.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/9"><img src="images/laundry-shop-4.jpg" alt=""></a>
+                <h4>Clean Sweep</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -280,8 +181,8 @@
 
             <!-- Product 10 -->
             <div class="col-4">
-                <img src="images/laundry-shop-3.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/10"><img src="images/laundry-shop-3.jpg" alt=""></a>
+                <h4>COIN Less Laundry</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -298,8 +199,8 @@
 
             <!-- Product 11 -->
             <div class="col-4">
-                <img src="images/laundry-shop-2.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/11"><img src="images/laundry-shop-2.jpg" alt=""></a>
+                <h4>Dirtbusters</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -316,8 +217,8 @@
 
             <!-- Product 12 -->
             <div class="col-4">
-                <img src="images/laundry-shop-1.jpg" alt="">
-                <h4>Laundry Shop </h4>
+                <a href="/details/12"><img src="images/laundry-shop-1.jpg" alt=""></a>
+                <h4>Do Right Cleaning</h4>
 
                 <!-- Rating -->
                 <div class="rating">
@@ -349,7 +250,11 @@
                     {{-- <small>
 
                     </small> --}}
-                    <a href="" class="btn">Inquire Now &#8594; </a>
+                    @auth
+                    <a href="{{route('shops.create')}}" class="btn">Inquire Now &#8594;</a>
+                    @else
+                    <a href="/login" class="btn">Inquire Now &#8594;</a>
+                    @endauth
                 </div>
             </div>
         </div>
@@ -364,7 +269,7 @@
 
                 <!-- 1st User -->
                 <div class="col-3">
-                    
+
                     <i class="fa fa-quote-left"></i>
 
                     <!-- Testimony Text -->
@@ -377,8 +282,9 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
                         <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
+
                     </div>
 
                     <!-- Image -->
@@ -403,8 +309,8 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
                     </div>
 
                     <!-- Image -->
@@ -429,8 +335,9 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
                         <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
+
                     </div>
 
                     <!-- Image -->
@@ -464,16 +371,6 @@
                 <div class="col-5">
                     <img src="images/unilever-logo.png" alt="">
                 </div>
-
-                {{-- <!-- 4th Brand -->
-                <div class="col-5">
-                    <img src="images/logo-paypal.png" alt="">
-                </div>
-
-                <!-- 5th Brand -->
-                <div class="col-5">
-                    <img src="images/logo-philips.png" alt="">
-                </div> --}}
             </div>
         </div>
     </div>
@@ -555,7 +452,4 @@
 
     </script>
 
-
-
-</body>
-</html>
+@endsection

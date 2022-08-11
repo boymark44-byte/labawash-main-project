@@ -4,38 +4,40 @@
 <head>
 
 </head>
-
-    <form class="form bg-white p-6 border-1" method ="POST" action="{{route('customers.store')}}">
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-            </div>
-                @endif
-                @csrf
-                <br>
-                <textarea name="name" placeholder= "Type Your Name..." value="{{old('name')}}"></textarea>
+    <div class="container">
+        <form method ="POST" action="{{route('customers.store')}}">
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+            @csrf
+                <input type="hidden" name="shop_id" value="{{ $shop_id }}">
+                <label>Name</label></br>
+                <input type="text" name="name" placeholder= "Type Your Name..." value="{{old('name')}}"></br>
                     @error('name')
-                      <div class="form-error">
-                          {{$message}}
-                      </div>
+                        <div class="form-error">
+                            {{$message}}
+                        </div>
                     @enderror
-                    <br>
-                    <br>
-                <textarea name="address" placeholder= "Type Your Address..." value="{{old('address')}}"></textarea>
+
+                <label>Address</label></br>
+                <input type="text" name="address" placeholder= "Type Your Address..." value="{{old('address')}}"></br>
                     @error('address')
-                      <div class="form-error">
-                          {{$message}}
-                      </div>
+                        <div class="form-error">
+                            {{$message}}
+                        </div>
                     @enderror
-                    <br>
-                    <br>
-                <textarea name="contact_number" placeholder= "Type Your Contact Number..." value="{{old('contact_number')}}"></textarea>
+
+                <label>Contact Number</label></br>
+                <input type="text" name="contact_number" placeholder= "Type Your Contact Number..." value="{{old('contact_number')}}"></br>
                     @error('contact_number')
-                      <div class="form-error">
-                          {{$message}}
-                      </div>
+                        <div class="form-error">
+                            {{$message}}
+                        </div>
                     @enderror
-                    <br>
-                <button> Submit </button>
-    </form>
+
+                <button class="btn"> Submit </button>
+        </form>
+    </div>
 @endsection
